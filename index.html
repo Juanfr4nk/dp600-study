@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DP-600 Study Companion — Microsoft Fabric Analytics Engineer</title>
+  <meta name="description" content="Aplicación de estudio interactiva para la certificación DP-600 Microsoft Fabric Analytics Engineer Associate">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span class="icon">🎓</span>
+        <span>DP-600 Study</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-link active" data-section="dashboard"><span class="icon">📊</span><span>Dashboard</span></button>
+        <button class="nav-link" data-section="knowledge-map"><span class="icon">🗺️</span><span>Mapa</span></button>
+        <button class="nav-link" data-section="analytics"><span class="icon">📈</span><span>Stats</span></button>
+        <button class="nav-link" data-section="quiz"><span class="icon">🧠</span><span>Quiz</span></button>
+        <button class="nav-link" data-section="flashcards"><span class="icon">💡</span><span>Flashcards</span></button>
+        <button class="nav-link" data-section="review"><span class="icon">🔴</span><span>Errores</span><span class="nav-alert-badge" id="review-nav-badge" style="display:none">0</span></button>
+        <button class="nav-link" data-section="notes"><span class="icon">📝</span><span>Notas</span></button>
+        <button class="nav-link" data-section="summaries"><span class="icon">📝</span><span>Resúmenes</span></button>
+        <button class="nav-link" data-section="labs"><span class="icon">🔬</span><span>Labs</span></button>
+        <button class="nav-link" data-section="glossary"><span class="icon">📖</span><span>Glosario</span></button>
+        <button class="nav-link" data-section="exam"><span class="icon">🎯</span><span>Examen</span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main">
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section id="dashboard" class="section active">
+      <div class="section-header">
+        <h1 class="section-title">Dashboard</h1>
+        <p class="section-subtitle">Tu progreso hacia la certificación DP-600</p>
+      </div>
+
+      <div class="dash-grid">
+        <div class="card stat-card">
+          <div class="stat-icon">🧠</div>
+          <div class="stat-value" id="stat-questions">0</div>
+          <div class="stat-label">Preguntas Respondidas</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" id="stat-correct">0%</div>
+          <div class="mini-sparkline" id="global-accuracy-sparkline"></div>
+          <div class="stat-label">Tasa de Acierto</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">💡</div>
+          <div class="stat-value" id="stat-flashcards">0</div>
+          <div class="stat-label">Flashcards Revisadas</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="stat-exams">0</div>
+          <div class="stat-label">Simulacros Completados</div>
+        </div>
+      </div>
+
+      <div id="recommendation" class="recommendation">
+        <span class="icon">💡</span>
+        <div class="recommendation-text">
+          <strong>Recomendación:</strong> <span id="recommendation-text">¡Empieza con el Quiz para evaluar tu nivel actual!</span>
+        </div>
+      </div>
+
+      <div class="card study-plan-card">
+        <div class="study-plan-title">🧭 Plan de Estudio Sugerido</div>
+        <ul class="study-plan-list" id="study-plan-list"></ul>
+      </div>
+
+      <!-- Badges -->
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;">🏆 Logros</h2>
+      <div class="badges-grid" id="badges-grid"></div>
+
+      <!-- Export / Import -->
+      <div class="card export-card">
+        <div class="export-title">💾 Progreso</div>
+        <div class="export-actions">
+          <button class="btn btn-secondary" id="export-btn">⬇ Exportar JSON</button>
+          <label class="btn btn-secondary import-label">
+            ⬆ Importar JSON
+            <input type="file" id="import-file" accept=".json" style="display:none">
+          </label>
+        </div>
+        <div class="export-hint">Guarda o restaura tu progreso, estadísticas e insignias en otro dispositivo.</div>
+      </div>
+
+      <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;">Progreso por Dominio</h2>
+      <div class="domain-progress">
+        <div class="card domain-card">
+          <div class="domain-info">
+            <div class="domain-name">📘 Preparar Datos</div>
+            <div class="domain-weight">45-50% del examen</div>
+          </div>
+          <div class="domain-bar-container"><div class="domain-bar d1" id="bar-d1" style="width:0%"></div></div>
+          <div class="domain-pct" id="pct-d1">0%</div>
+        </div>
+        <div class="card domain-card">
+          <div class="domain-info">
+            <div class="domain-name">🔧 Mantener Solución</div>
+            <div class="domain-weight">25-30% del examen</div>
+          </div>
+          <div class="domain-bar-container"><div class="domain-bar d2" id="bar-d2" style="width:0%"></div></div>
+          <div class="domain-pct" id="pct-d2">0%</div>
+        </div>
+        <div class="card domain-card">
+          <div class="domain-info">
+            <div class="domain-name">📐 Modelos Semánticos</div>
+            <div class="domain-weight">25-30% del examen</div>
+          </div>
+          <div class="domain-bar-container"><div class="domain-bar d3" id="bar-d3" style="width:0%"></div></div>
+          <div class="domain-pct" id="pct-d3">0%</div>
+        </div>
+      </div>
+
+      <div class="card exam-countdown">
+        <div class="countdown-value" id="countdown-value">--</div>
+        <div class="countdown-label">días hasta tu examen</div>
+        <div class="exam-date-input">
+          <label for="exam-date">Fecha del examen:</label>
+          <input type="date" id="exam-date">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ KNOWLEDGE MAP ═══ -->
+    <section id="knowledge-map" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Mapa de Conocimiento</h1>
+        <p class="section-subtitle">Progreso por subtema, cobertura y precisión para todo el temario DP-600</p>
+      </div>
+
+      <div id="knowledge-map-grid" class="knowledge-map-grid"></div>
+    </section>
+
+    <!-- ═══ ANALYTICS ═══ -->
+    <section id="analytics" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Analíticas de Estudio</h1>
+        <p class="section-subtitle">Actividad, evolución de precisión, debilidades y predicción de aprobado</p>
+      </div>
+
+      <div class="analytics-layout">
+        <div class="card analytics-card">
+          <h3 class="analytics-title">Heatmap de Actividad (13 semanas)</h3>
+          <div id="activity-heatmap" class="activity-heatmap"></div>
+          <div class="heatmap-legend">
+            <span>Menos</span>
+            <span class="heat-cell lv0"></span>
+            <span class="heat-cell lv1"></span>
+            <span class="heat-cell lv2"></span>
+            <span class="heat-cell lv3"></span>
+            <span class="heat-cell lv4"></span>
+            <span>Más</span>
+          </div>
+        </div>
+
+        <div class="card analytics-card">
+          <h3 class="analytics-title">Evolución de Acierto (30 días)</h3>
+          <div id="accuracy-trend-chart" class="trend-chart"></div>
+        </div>
+
+        <div class="card analytics-card">
+          <h3 class="analytics-title">Predicción de Aprobado</h3>
+          <div class="prediction-wrap">
+            <div class="prediction-donut" id="pass-prediction-donut">
+              <div class="prediction-value" id="pass-prediction-value">0%</div>
+            </div>
+            <div class="prediction-text" id="pass-prediction-text">Sin datos suficientes todavía.</div>
+          </div>
+        </div>
+
+        <div class="card analytics-card analytics-summary-card">
+          <h3 class="analytics-title">Resumen de Estudio</h3>
+          <div class="analytics-summary-grid" id="analytics-summary-grid"></div>
+        </div>
+
+        <div class="card analytics-card analytics-weakness-card">
+          <h3 class="analytics-title">Debilidades Prioritarias</h3>
+          <div id="weakness-list" class="weakness-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ QUIZ ═══ -->
+    <section id="quiz" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Quiz Inteligente</h1>
+        <p class="section-subtitle">Practica con preguntas tipo examen — 300+ preguntas disponibles</p>
+      </div>
+
+      <div class="quiz-controls">
+        <div class="quiz-filter">
+          <button class="filter-btn active" data-domain="0">Todos</button>
+          <button class="filter-btn" data-domain="1">📘 Preparar Datos</button>
+          <button class="filter-btn" data-domain="2">🔧 Mantener</button>
+          <button class="filter-btn" data-domain="3">📐 Semánticos</button>
+        </div>
+        <div class="quiz-difficulty">
+          <button class="filter-btn active" data-diff="0">Todas</button>
+          <button class="filter-btn" data-diff="1">Fácil</button>
+          <button class="filter-btn" data-diff="2">Media</button>
+          <button class="filter-btn" data-diff="3">Difícil</button>
+        </div>
+        <div class="quiz-subtopic-filter">
+          <label for="quiz-subtopic-select">Subtopic</label>
+          <select id="quiz-subtopic-select" class="quiz-subtopic-select">
+            <option value="">Todos los subtopics</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="quiz-area" class="quiz-card card">
+        <div class="empty-state" id="quiz-empty">
+          <div class="icon">🧠</div>
+          <p>Selecciona tus filtros y pulsa "Iniciar Quiz" para empezar</p>
+          <br>
+          <button class="btn btn-primary" id="start-quiz-btn">Iniciar Quiz</button>
+        </div>
+        <div id="quiz-content" style="display:none">
+          <div class="quiz-progress">
+            <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+            <div class="quiz-progress-text" id="quiz-progress-text">1 / 10</div>
+          </div>
+          <div class="quiz-domain-badge" id="quiz-badge"></div>
+          <div class="quiz-question" id="quiz-question"></div>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-explanation" id="quiz-explanation" style="display:none"></div>
+          <div class="quiz-actions">
+            <button class="btn btn-primary" id="quiz-next-btn" style="display:none">Siguiente →</button>
+            <button class="btn btn-success" id="quiz-finish-btn" style="display:none">Ver Resultados</button>
+          </div>
+        </div>
+        <div id="quiz-results" style="display:none"></div>
+      </div>
+    </section>
+
+    <!-- ═══ FLASHCARDS ═══ -->
+    <section id="flashcards" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Flashcards</h1>
+        <p class="section-subtitle">Repaso espaciado — las que más fallas aparecen más frecuentemente</p>
+      </div>
+
+      <div class="flashcard-controls">
+        <button class="filter-btn active" data-fc-domain="0">Todos</button>
+        <button class="filter-btn" data-fc-domain="1">📘 Preparar Datos</button>
+        <button class="filter-btn" data-fc-domain="2">🔧 Mantener</button>
+        <button class="filter-btn" data-fc-domain="3">📐 Semánticos</button>
+      </div>
+
+      <div class="flashcard-container" id="flashcard-container">
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-face flashcard-front">
+            <div class="flashcard-label">PREGUNTA</div>
+            <div class="flashcard-text" id="fc-front"></div>
+            <div class="flashcard-hint">Haz clic para ver la respuesta</div>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <div class="flashcard-label">RESPUESTA</div>
+            <div class="flashcard-text" id="fc-back"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard-nav">
+        <button class="btn btn-secondary" id="fc-prev">← Anterior</button>
+        <span class="flashcard-counter" id="fc-counter">1 / 45</span>
+        <button class="btn btn-secondary" id="fc-next">Siguiente →</button>
+      </div>
+
+      <div class="flashcard-rating" id="fc-rating">
+        <button class="rating-btn easy" data-rating="easy">😊 Fácil</button>
+        <button class="rating-btn medium" data-rating="medium">🤔 Regular</button>
+        <button class="rating-btn hard" data-rating="hard">😰 Difícil</button>
+      </div>
+    </section>
+
+    <!-- ═══ SUMMARIES ═══ -->
+    <section id="summaries" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Resúmenes</h1>
+        <p class="section-subtitle">Resúmenes de cada tema con enlaces a Microsoft Learn</p>
+      </div>
+
+      <div class="summaries-search">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" id="search-input" placeholder="Buscar conceptos (ej: Delta Lake, DAX, RLS...)">
+        </div>
+      </div>
+
+      <div id="summaries-list"></div>
+    </section>
+
+    <!-- ═══ LABS ═══ -->
+    <section id="labs" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Laboratorios Prácticos</h1>
+        <p class="section-subtitle">Ejercicios guiados paso a paso para practicar Microsoft Fabric</p>
+      </div>
+
+      <div class="labs-controls">
+        <div class="labs-filter-group">
+          <button class="filter-btn active" data-lab-domain="0">Todos los dominios</button>
+          <button class="filter-btn" data-lab-domain="1">📘 Preparar Datos</button>
+          <button class="filter-btn" data-lab-domain="2">🔧 Mantener</button>
+          <button class="filter-btn" data-lab-domain="3">📐 Semánticos</button>
+        </div>
+        <div class="labs-filter-group">
+          <button class="filter-btn active" data-lab-diff="0">Todas</button>
+          <button class="filter-btn" data-lab-diff="1">Fácil</button>
+          <button class="filter-btn" data-lab-diff="2">Media</button>
+          <button class="filter-btn" data-lab-diff="3">Difícil</button>
+        </div>
+      </div>
+
+      <div class="card labs-summary-card">
+        <div class="labs-summary-item">
+          <div class="label">Labs completados</div>
+          <div class="value" id="labs-completed-count">0</div>
+        </div>
+        <div class="labs-summary-item">
+          <div class="label">Progreso global</div>
+          <div class="value" id="labs-progress-pct">0%</div>
+        </div>
+      </div>
+
+      <div id="labs-list"></div>
+    </section>
+
+    <!-- ═══ GLOSSARY ═══ -->
+    <section id="glossary" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Glosario Interactivo</h1>
+        <p class="section-subtitle">Terminología DP-600 con filtros por dominio y relevancia</p>
+      </div>
+
+      <div class="glossary-controls">
+        <div class="search-wrapper">
+          <input type="text" class="search-input" id="glossary-search-input" placeholder="Buscar término o definición (ej: Framing, RLS, Medallion...)">
+        </div>
+        <div class="glossary-filter-row">
+          <div class="glossary-pills" id="glossary-domain-filters">
+            <button class="filter-btn active" data-glossary-domain="0">Todos</button>
+            <button class="filter-btn" data-glossary-domain="1">D1</button>
+            <button class="filter-btn" data-glossary-domain="2">D2</button>
+            <button class="filter-btn" data-glossary-domain="3">D3</button>
+          </div>
+          <div class="glossary-pills" id="glossary-relevance-filters">
+            <button class="filter-btn active" data-glossary-relevance="all">Todas</button>
+            <button class="filter-btn" data-glossary-relevance="high">🔴 Alta</button>
+            <button class="filter-btn" data-glossary-relevance="medium">🟡 Media</button>
+            <button class="filter-btn" data-glossary-relevance="low">🟢 Baja</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="glossary-list"></div>
+    </section>
+
+    <!-- ═══ REPASO DE ERRORES ═══ -->
+    <section id="review" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Repaso de Errores</h1>
+        <p class="section-subtitle">Solo las preguntas que has fallado — repásalas hasta dominarlas</p>
+      </div>
+
+      <div id="review-empty" class="card" style="text-align:center;padding:3rem 2rem;">
+        <div style="font-size:3rem;margin-bottom:1rem;">🎉</div>
+        <p style="color:var(--text-secondary);font-size:1rem;">¡No tienes errores registrados todavía!<br>Completa algún Quiz o Examen para ver aquí las preguntas falladas.</p>
+      </div>
+
+      <div id="review-start" style="display:none">
+        <div class="card" style="max-width:600px;margin:0 auto;text-align:center;padding:2rem;">
+          <div class="review-stats-row" id="review-stats-row"></div>
+          <button class="btn btn-primary" id="start-review-btn" style="margin-top:1.5rem;">Iniciar Repaso</button>
+        </div>
+      </div>
+
+      <div id="review-quiz-area" class="quiz-card card" style="display:none;max-width:800px;margin:1.5rem auto 0;">
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="review-progress-fill"></div></div>
+          <div class="quiz-progress-text" id="review-progress-text">1 / 10</div>
+        </div>
+        <div class="quiz-domain-badge" id="review-badge"></div>
+        <div class="quiz-question" id="review-question"></div>
+        <div class="quiz-options" id="review-options"></div>
+        <div class="quiz-explanation" id="review-explanation" style="display:none"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="review-next-btn" style="display:none">Siguiente →</button>
+          <button class="btn btn-success" id="review-finish-btn" style="display:none">Ver Resultados</button>
+        </div>
+      </div>
+
+      <div id="review-results" style="display:none"></div>
+    </section>
+
+    <!-- ═══ EXAM SIMULATOR ═══ -->
+    <section id="exam" class="section">
+      <div id="exam-setup" class="exam-setup">
+        <div class="card">
+          <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;">🎯 Simulador de Examen DP-600</h2>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;">Simula las condiciones reales del examen</p>
+          <div class="exam-info-grid">
+            <div class="exam-info-item">
+              <div class="value">50</div>
+              <div class="label">Preguntas</div>
+            </div>
+            <div class="exam-info-item">
+              <div class="value">100</div>
+              <div class="label">Minutos</div>
+            </div>
+            <div class="exam-info-item">
+              <div class="value">700</div>
+              <div class="label">Puntos para aprobar</div>
+            </div>
+          </div>
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem;">Las preguntas se seleccionan ponderadas según el peso de cada dominio en el examen real.</p>
+          <button class="btn btn-primary" id="start-exam-btn">Comenzar Examen</button>
+        </div>
+      </div>
+
+      <div id="exam-active" style="display:none">
+        <div class="exam-timer">
+          <div class="timer-display" id="exam-timer">100:00</div>
+          <div style="display:flex;gap:0.75rem;align-items:center;">
+            <span id="exam-progress-text" style="color:var(--text-muted);font-size:0.85rem;">1 / 50</span>
+            <button class="btn btn-secondary" id="mark-exam-btn" style="padding:0.5rem 1rem;font-size:0.8rem;">Marcar</button>
+            <button class="btn btn-danger" id="finish-exam-btn" style="padding:0.5rem 1rem;font-size:0.8rem;">Finalizar</button>
+          </div>
+        </div>
+        <div class="exam-question-nav" id="exam-q-nav"></div>
+        <div class="card" id="exam-question-card" style="max-width:800px;margin:0 auto;"></div>
+        <div class="exam-actions">
+          <button class="btn btn-secondary" id="exam-prev-btn">← Anterior</button>
+          <button class="btn btn-primary" id="exam-next-btn">Siguiente →</button>
+        </div>
+      </div>
+
+      <div id="exam-review" style="display:none">
+        <div class="results-card card">
+          <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:0.75rem;">Revisión antes de finalizar</h3>
+          <p style="color:var(--text-secondary);margin-bottom:1.25rem;">Revisa preguntas marcadas y sin responder antes de enviar el examen.</p>
+          <div id="exam-review-stats" class="exam-review-stats"></div>
+          <div id="exam-review-list" class="exam-review-list"></div>
+          <div class="exam-review-actions">
+            <button class="btn btn-secondary" id="exam-review-back-btn">Volver al examen</button>
+            <button class="btn btn-danger" id="exam-review-submit-btn">Enviar examen</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="exam-results" style="display:none" class="results-card card"></div>
+    </section>
+
+    <!-- ═══ PERSONAL NOTES ═══ -->
+    <section id="notes" class="section">
+      <div class="section-header">
+        <h1 class="section-title">Notas Personales</h1>
+        <p class="section-subtitle">Crea apuntes por dominio y subtopic, con búsqueda y formato markdown básico</p>
+      </div>
+
+      <div class="notes-toolbar card">
+        <div class="notes-search-wrap">
+          <input type="text" id="notes-search" class="search-input" placeholder="Buscar en notas...">
+        </div>
+        <div class="notes-filter-wrap">
+          <select id="notes-domain-filter" class="notes-select">
+            <option value="0">Todos los dominios</option>
+            <option value="1">D1 • Preparar Datos</option>
+            <option value="2">D2 • Mantener Solución</option>
+            <option value="3">D3 • Modelos Semánticos</option>
+          </select>
+          <button class="btn btn-primary" id="notes-new-btn">Nueva Nota</button>
+        </div>
+      </div>
+
+      <div class="card notes-editor" id="notes-editor" style="display:none;">
+        <div class="notes-editor-grid">
+          <input type="text" id="note-title" class="notes-input" placeholder="Título">
+          <select id="note-domain" class="notes-select">
+            <option value="1">D1 • Preparar Datos</option>
+            <option value="2">D2 • Mantener Solución</option>
+            <option value="3">D3 • Modelos Semánticos</option>
+          </select>
+          <select id="note-subtopic" class="notes-select"></select>
+        </div>
+        <textarea id="note-content" class="notes-textarea" placeholder="Escribe tu nota aquí..."></textarea>
+        <div class="notes-editor-help">Soporta <code>**negrita**</code> y listas con <code>- item</code>.</div>
+        <div class="notes-editor-actions">
+          <button class="btn btn-secondary" id="notes-cancel-btn">Cancelar</button>
+          <button class="btn btn-success" id="notes-save-btn">Guardar</button>
+        </div>
+      </div>
+
+      <div id="notes-list" class="notes-list"></div>
+    </section>
+
+  </main>
+
+  <div class="topic-modal" id="topic-modal" style="display:none;">
+    <div class="topic-modal-backdrop" id="topic-modal-close"></div>
+    <div class="topic-modal-card">
+      <button class="topic-modal-x" id="topic-modal-x" aria-label="Cerrar">×</button>
+      <div id="topic-modal-content"></div>
+    </div>
+  </div>
+
+  <script src="data/questions.js"></script>
+  <script src="data/flashcards.js"></script>
+  <script src="data/summaries.js"></script>
+  <script src="data/labs.js"></script>
+  <script src="data/glossary.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
