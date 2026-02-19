@@ -50,6 +50,10 @@
     notesDomainFilter: 0,
     noteEditingId: null,
 
+    // Learning Path
+    currentModuleId: null,
+    lpModuleContext: null,
+
     // Stats (persisted)
     stats: loadStats()
   };
@@ -93,6 +97,8 @@
       labsProgress: {},
       labsCompleted: [],
       dailyLog: {},
+      curriculumProgress: {},
+      curriculumStarted: false,
       sessionStart: null,
       lastActivityTs: null,
       notes: []
@@ -192,6 +198,9 @@
     if (!Number.isFinite(Number(s.sessionStart))) s.sessionStart = null;
     if (!Number.isFinite(Number(s.lastActivityTs))) s.lastActivityTs = null;
     if (!Number.isFinite(Number(s.maxStreak))) s.maxStreak = 0;
+    if (!s.curriculumProgress || typeof s.curriculumProgress !== 'object') s.curriculumProgress = {};
+    if (typeof s.curriculumStarted !== 'boolean') s.curriculumStarted = false;
+
     if (!Array.isArray(s.notes)) s.notes = [];
     s.notes = s.notes
       .filter((note) => note && typeof note === 'object')
@@ -424,7 +433,8 @@
 
   function setActiveSection(section) {
     document.querySelectorAll('.nav-link').forEach((b) => b.classList.remove('active'));
-    const navBtn = document.querySelector(`.nav-link[data-section="${section}"]`);
+    let navBtn = document.querySelector(`.nav-link[data-section="${section}"]`);
+    if (!navBtn && section === 'module-detail') navBtn = document.querySelector('.nav-link[data-section="learning-path"]');
     if (navBtn) navBtn.classList.add('active');
 
     document.querySelectorAll('.section').forEach((s) => s.classList.remove('active'));
@@ -434,16 +444,157 @@
     state.currentSection = section;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (section === 'dashboard') updateDashboard();
+    if (section === 'dashboard') { updateDashboard(); updateDashboardLPCard(); }
+    if (section === 'learning-path') renderLearningPath();
     if (section === 'knowledge-map') renderKnowledgeMap();
     if (section === 'analytics') renderAnalytics();
-    if (section === 'quiz') syncQuizSubtopicOptions();
+    if (section === 'quiz') { syncQuizSubtopicOptions(); if (!state.lpModuleContext) { var b = document.querySelector('.lp-quiz-banner'); if (b) b.remove(); } }
     if (section === 'notes') renderNotes();
     if (section === 'summaries') renderSummaries(document.getElementById('search-input').value.trim());
     if (section === 'review') initReview();
     if (section === 'labs') renderLabs();
     if (section === 'glossary') renderGlossary();
+    if (section === 'flashcards' && !state.lpModuleContext) { var fb = document.querySelector('.lp-fc-banner'); if (fb) fb.remove(); }
   }
+
+  function renderRelatedContentBlock(question) {
+    if (!question || !question.relatedContent || typeof question.relatedContent !== 'object') return '';
+
+    const related = question.relatedContent;
+    const links = [];
+
+    (related.flashcards || []).forEach((id) => {
+      const num = Number(id);
+      if (!Number.isFinite(num)) return;
+      const fc = FLASHCARDS.find((item) => item.id === num);
+      const label = fc ? `🃏 Flashcard: ${escapeHtml(fc.front)}` : `🃏 Flashcard #${num}`;
+      links.push(`<button class="btn btn-secondary related-link-btn" onclick="goToFlashcard(${num})">${label}</button>`);
+    });
+
+    (related.summaries || []).forEach((id) => {
+      const num = Number(id);
+      if (!Number.isFinite(num)) return;
+      const sm = SUMMARIES.find((item) => item.id === num);
+      const label = sm ? `📄 Resumen: ${escapeHtml(sm.title)}` : `📄 Resumen #${num}`;
+      links.push(`<button class="btn btn-secondary related-link-btn" onclick="goToSummary(${num})">${label}</button>`);
+    });
+
+    (related.labs || []).forEach((id) => {
+      const num = Number(id);
+      if (!Number.isFinite(num)) return;
+      const lab = LABS.find((item) => item.id === num);
+      const label = lab ? `🧪 Lab: ${escapeHtml(lab.title)}` : `🧪 Lab #${num}`;
+      links.push(`<button class="btn btn-secondary related-link-btn" onclick="goToLab(${num})">${label}</button>`);
+    });
+
+    (related.glossary || []).forEach((termRaw) => {
+      const term = String(termRaw || '').trim();
+      if (!term) return;
+      const encoded = encodeURIComponent(term);
+      links.push(`<button class="btn btn-secondary related-link-btn" onclick="goToGlossary(decodeURIComponent('${encoded}'))">📖 Glosario: ${escapeHtml(term)}</button>`);
+    });
+
+    if (links.length === 0) return '';
+
+    return `
+      <div class="related-content card">
+        <h4>📚 Material de Estudio</h4>
+        <div class="related-links">${links.join('')}</div>
+      </div>
+    `;
+  }
+
+  window.goToFlashcard = function (flashcardId) {
+    const id = Number(flashcardId);
+    if (!Number.isFinite(id)) return;
+
+    setActiveSection('flashcards');
+    state.fcDomain = 0;
+    document.querySelectorAll('[data-fc-domain]').forEach((btn) => btn.classList.remove('active'));
+    const allBtn = document.querySelector('[data-fc-domain="0"]');
+    if (allBtn) allBtn.classList.add('active');
+
+    initFlashcards();
+    const targetIdx = state.fcOrder.findIndex((fc) => fc.id === id);
+    if (targetIdx >= 0) {
+      state.fcIndex = targetIdx;
+      renderFlashcard();
+      const card = document.getElementById('flashcard');
+      if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  window.goToSummary = function (summaryId) {
+    const id = Number(summaryId);
+    if (!Number.isFinite(id)) return;
+    const summary = SUMMARIES.find((s) => s.id === id);
+    if (!summary) return;
+
+    setActiveSection('summaries');
+    const input = document.getElementById('search-input');
+    if (input) input.value = summary.title;
+    renderSummaries(summary.title);
+
+    setTimeout(() => {
+      const target = [...document.querySelectorAll('.summary-card')].find((card) => {
+        const title = card.querySelector('.summary-title');
+        return title && title.textContent === summary.title;
+      });
+      if (target) {
+        target.classList.add('open');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 30);
+  };
+
+  window.goToLab = function (labId) {
+    const id = Number(labId);
+    if (!Number.isFinite(id)) return;
+    const lab = LABS.find((l) => l.id === id);
+    if (!lab) return;
+
+    setActiveSection('labs');
+    state.labsDomain = 0;
+    state.labsDiff = 0;
+    document.querySelectorAll('[data-lab-domain]').forEach((btn) => btn.classList.remove('active'));
+    document.querySelectorAll('[data-lab-diff]').forEach((btn) => btn.classList.remove('active'));
+    const allDomainBtn = document.querySelector('[data-lab-domain="0"]');
+    const allDiffBtn = document.querySelector('[data-lab-diff="0"]');
+    if (allDomainBtn) allDomainBtn.classList.add('active');
+    if (allDiffBtn) allDiffBtn.classList.add('active');
+    state.labsOpen[id] = true;
+    renderLabs();
+
+    setTimeout(() => {
+      const target = document.querySelector(`[data-lab-id="${id}"]`);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 30);
+  };
+
+  window.goToGlossary = function (termRaw) {
+    const term = String(termRaw || '').trim();
+    if (!term) return;
+
+    setActiveSection('glossary');
+    state.glossaryDomain = 0;
+    state.glossaryRelevance = 'all';
+    document.querySelectorAll('[data-glossary-domain]').forEach((btn) => btn.classList.remove('active'));
+    document.querySelectorAll('[data-glossary-relevance]').forEach((btn) => btn.classList.remove('active'));
+    const allDomainBtn = document.querySelector('[data-glossary-domain="0"]');
+    const allRelBtn = document.querySelector('[data-glossary-relevance="all"]');
+    if (allDomainBtn) allDomainBtn.classList.add('active');
+    if (allRelBtn) allRelBtn.classList.add('active');
+
+    const input = document.getElementById('glossary-search-input');
+    if (input) input.value = term;
+    state.glossarySearch = term;
+    renderGlossary();
+
+    setTimeout(() => {
+      const target = [...document.querySelectorAll('.glossary-card')].find((el) => (el.dataset.term || '').toLowerCase() === term.toLowerCase());
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 30);
+  };
 
   // ─── Dashboard ──────────────────────────────────────────────────────────────
   function updateDashboard() {
@@ -710,11 +861,12 @@
   function selectQuizAnswer(selected, q) {
     if (state.quizAnswered) return;
     state.quizAnswered = true;
+    const isCorrect = selected === q.correct;
 
     const options = document.querySelectorAll('#quiz-options .quiz-option');
     options.forEach((o) => o.classList.add('disabled'));
 
-    if (selected === q.correct) {
+    if (isCorrect) {
       options[selected].classList.add('correct');
       state.quizScore += 1;
       state.stats.correct += 1;
@@ -735,7 +887,8 @@
     saveStats();
 
     const expl = document.getElementById('quiz-explanation');
-    expl.innerHTML = `<strong>💡 Explicación:</strong> ${formatText(q.explanation)}`;
+    const relatedHtml = !isCorrect ? renderRelatedContentBlock(q) : '';
+    expl.innerHTML = `<strong>💡 Explicación:</strong> ${formatText(q.explanation)}${relatedHtml}`;
     expl.style.display = 'block';
 
     if (state.quizIndex < state.quizQuestions.length - 1) document.getElementById('quiz-next-btn').style.display = 'inline-flex';
@@ -749,22 +902,45 @@
     const pct = Math.round((state.quizScore / total) * 100);
     const pass = pct >= 70;
 
+    // Record module quiz result if coming from learning path
+    recordModuleQuizResult();
+
     const results = document.getElementById('quiz-results');
     results.style.display = 'block';
+
+    const backToModuleBtn = (state.lpModuleContext && state.lpModuleContext.type === 'quiz')
+      ? `<button class="btn btn-secondary" id="quiz-back-module-btn" style="margin-left:0.5rem">Volver al módulo</button>`
+      : '';
+
     results.innerHTML = `
       <div style="text-align:center;padding:2rem 0">
         <div class="results-score ${pass ? 'pass' : 'fail'}">${pct}%</div>
         <div class="results-status ${pass ? 'pass' : 'fail'}">${pass ? '¡Aprobado! 🎉' : 'Necesitas repasar 📚'}</div>
         <p style="color:var(--text-secondary);margin-bottom:1.5rem">${state.quizScore} de ${total} correctas</p>
         <button class="btn btn-primary" id="quiz-repeat-btn">Hacer otro Quiz</button>
+        ${backToModuleBtn}
       </div>
     `;
 
     const repeatBtn = document.getElementById('quiz-repeat-btn');
     if (repeatBtn) {
       repeatBtn.addEventListener('click', () => {
+        state.lpModuleContext = null;
+        const banner = document.querySelector('.lp-quiz-banner');
+        if (banner) banner.remove();
         document.getElementById('quiz-results').style.display = 'none';
         document.getElementById('quiz-empty').style.display = 'block';
+      });
+    }
+
+    const backModBtn = document.getElementById('quiz-back-module-btn');
+    if (backModBtn && state.lpModuleContext) {
+      const modId = state.lpModuleContext.moduleId;
+      backModBtn.addEventListener('click', () => {
+        state.lpModuleContext = null;
+        const banner = document.querySelector('.lp-quiz-banner');
+        if (banner) banner.remove();
+        openModuleDetail(modId);
       });
     }
   }
@@ -786,6 +962,7 @@
     if (state.fcFlipped) {
       state.stats.fcReviewed += 1;
       saveStats();
+      recordModuleFlashcardReview();
     }
   });
 
@@ -1614,6 +1791,7 @@
     state.examQuestions.forEach((q, i) => {
       const userAnswer = state.examAnswers[i];
       const ok = isExamAnswerCorrect(q, userAnswer);
+      const relatedHtml = !ok ? renderRelatedContentBlock(q) : '';
 
       html += `
         <div style="margin-bottom:1.1rem;padding:1rem;border-radius:var(--radius-sm);border:1px solid ${ok ? 'rgba(16,185,129,0.2)' : 'rgba(239,68,68,0.2)'};background:${ok ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)'}">
@@ -1623,6 +1801,7 @@
           <div style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.3rem;"><strong>Tu respuesta:</strong> ${formatExamAnswer(q, userAnswer)}</div>
           <div style="font-size:0.85rem;color:var(--accent-green);margin-bottom:0.3rem;"><strong>Respuesta correcta:</strong> ${formatExamAnswer(q, q.questionType === 'order' ? q.correctOrder : q.correct)}</div>
           <div style="margin-top:0.45rem;font-size:0.83rem;color:var(--text-secondary);">${formatText(q.explanation)}</div>
+          ${relatedHtml}
         </div>
       `;
     });
@@ -1734,11 +1913,12 @@
   function selectReviewAnswer(selected, q) {
     if (reviewState.answered) return;
     reviewState.answered = true;
+    const isCorrect = selected === q.correct;
 
     const options = document.querySelectorAll('#review-options .quiz-option');
     options.forEach((o) => o.classList.add('disabled'));
 
-    if (selected === q.correct) {
+    if (isCorrect) {
       options[selected].classList.add('correct');
       reviewState.score += 1;
       delete state.stats.wrongQuestions[q.id];
@@ -1755,7 +1935,8 @@
     saveStats();
 
     const expl = document.getElementById('review-explanation');
-    expl.innerHTML = `<strong>💡 Explicación:</strong> ${formatText(q.explanation)}`;
+    const relatedHtml = !isCorrect ? renderRelatedContentBlock(q) : '';
+    expl.innerHTML = `<strong>💡 Explicación:</strong> ${formatText(q.explanation)}${relatedHtml}`;
     expl.style.display = 'block';
 
     if (reviewState.index < reviewState.questions.length - 1) document.getElementById('review-next-btn').style.display = 'inline-flex';
@@ -2489,6 +2670,566 @@
     });
   }
 
+  // ─── Learning Path ─────────────────────────────────────────────────────────
+
+  const DOMAIN_NAMES_LP = { 0: 'General', 1: 'Preparar Datos', 2: 'Mantener Solución', 3: 'Modelos Semánticos' };
+
+  function getCurriculumProgress() {
+    return state.stats.curriculumProgress || {};
+  }
+
+  function saveCurriculumProgress(progress) {
+    state.stats.curriculumProgress = progress;
+    saveStats();
+  }
+
+  function getModuleQuestions(mod) {
+    if (!mod.questionSubtopics || mod.questionSubtopics.length === 0) return [];
+    return ALL_QUESTIONS.filter(function (q) {
+      return mod.questionSubtopics.indexOf(q.subtopic) >= 0;
+    });
+  }
+
+  function getModuleFlashcards(mod) {
+    if (!mod.flashcardIds || mod.flashcardIds.length === 0) return [];
+    return FLASHCARDS.filter(function (fc) {
+      return mod.flashcardIds.indexOf(fc.id) >= 0;
+    });
+  }
+
+  function getModuleProgress(mod) {
+    var cp = getCurriculumProgress();
+    var mp = cp[mod.id] || {};
+    var summariesRead = mp.summariesRead || [];
+    var flashcardsReviewed = mp.flashcardsReviewed || [];
+    var questionsCorrect = mp.questionsCorrect || 0;
+    var questionsTotal = mp.questionsAnswered || 0;
+    var labsDone = mp.labsCompleted || false;
+
+    var totalSummaries = mod.summaryIds.length;
+    var totalFlashcards = mod.flashcardIds.length;
+    var totalQuestions = getModuleQuestions(mod).length;
+    var totalLabs = mod.labIds.length;
+
+    var hasLabs = totalLabs > 0;
+
+    var weights = { summaries: 0.15, flashcards: 0.15, questions: 0.50, labs: 0.20 };
+    if (!hasLabs) {
+      weights = { summaries: 0.20, flashcards: 0.20, questions: 0.60, labs: 0 };
+    }
+
+    var summaryPct = totalSummaries > 0 ? Math.min(1, summariesRead.length / totalSummaries) : 1;
+    var flashcardPct = totalFlashcards > 0 ? Math.min(1, flashcardsReviewed.length / totalFlashcards) : 1;
+    var questionAccuracy = questionsTotal > 0 ? questionsCorrect / questionsTotal : 0;
+    var questionCompletion = totalQuestions > 0 ? Math.min(1, questionsTotal / totalQuestions) : 1;
+    var questionPct = questionCompletion * (questionAccuracy >= 0.7 ? 1 : questionAccuracy / 0.7);
+    var labPct = hasLabs ? (labsDone ? 1 : 0) : 0;
+
+    var overall = (summaryPct * weights.summaries) + (flashcardPct * weights.flashcards) + (questionPct * weights.questions) + (labPct * weights.labs);
+    var isCompleted = summaryPct >= 1 && flashcardPct >= 1 && (questionsTotal >= totalQuestions && questionAccuracy >= 0.7) && (!hasLabs || labsDone);
+
+    if (mod.id === 20) {
+      var allOther = CURRICULUM.filter(function (m) { return m.id !== 20; });
+      var completedCount = allOther.filter(function (m) { return getModuleProgress(m).isCompleted; }).length;
+      overall = completedCount / allOther.length;
+      isCompleted = completedCount === allOther.length;
+    }
+
+    return {
+      overall: Math.min(1, overall),
+      isCompleted: isCompleted,
+      isStarted: summariesRead.length > 0 || flashcardsReviewed.length > 0 || questionsTotal > 0,
+      summaryPct: summaryPct,
+      flashcardPct: flashcardPct,
+      questionAccuracy: questionAccuracy,
+      questionCompletion: questionCompletion,
+      labPct: labPct,
+      summariesRead: summariesRead.length,
+      totalSummaries: totalSummaries,
+      flashcardsReviewed: flashcardsReviewed.length,
+      totalFlashcards: totalFlashcards,
+      questionsAnswered: questionsTotal,
+      questionsCorrect: questionsCorrect,
+      totalQuestions: totalQuestions,
+      labsDone: labsDone,
+      totalLabs: totalLabs
+    };
+  }
+
+  function getGlobalProgress() {
+    var total = 0;
+    var completed = 0;
+    CURRICULUM.forEach(function (mod) {
+      total++;
+      var p = getModuleProgress(mod);
+      if (p.isCompleted) completed++;
+    });
+    return { completed: completed, total: total, pct: total > 0 ? Math.round((completed / total) * 100) : 0 };
+  }
+
+  function getCurrentModule() {
+    for (var i = 0; i < CURRICULUM.length; i++) {
+      var p = getModuleProgress(CURRICULUM[i]);
+      if (!p.isCompleted) return CURRICULUM[i];
+    }
+    return CURRICULUM[CURRICULUM.length - 1];
+  }
+
+  function renderLearningPath() {
+    var container = document.getElementById('lp-phases-container');
+    if (!container) return;
+
+    var gp = getGlobalProgress();
+    var globalPctEl = document.getElementById('lp-global-pct');
+    var globalBarEl = document.getElementById('lp-global-bar');
+    var globalDetailEl = document.getElementById('lp-global-detail');
+    if (globalPctEl) globalPctEl.textContent = gp.pct + '%';
+    if (globalBarEl) globalBarEl.style.width = gp.pct + '%';
+    if (globalDetailEl) globalDetailEl.textContent = 'Módulos completados: ' + gp.completed + '/' + gp.total;
+
+    var html = '';
+    CURRICULUM_PHASES.forEach(function (phase) {
+      html += '<div class="lp-phase">';
+      html += '<h2 class="lp-phase-title"><span class="lp-phase-icon">' + phase.icon + '</span> Fase ' + phase.id + ' — ' + escapeHtml(phase.title) + '</h2>';
+      html += '<div class="lp-modules-grid">';
+
+      phase.modules.forEach(function (modId) {
+        var mod = CURRICULUM.find(function (m) { return m.id === modId; });
+        if (!mod) return;
+        var p = getModuleProgress(mod);
+        var pct = Math.round(p.overall * 100);
+
+        var statusClass = 'lp-module-pending';
+        var statusIcon = '⬜';
+        if (p.isCompleted) { statusClass = 'lp-module-completed'; statusIcon = '✅'; }
+        else if (p.isStarted) { statusClass = 'lp-module-active'; statusIcon = '🔵'; }
+
+        var current = getCurrentModule();
+        var isCurrent = current && current.id === mod.id;
+
+        html += '<div class="card lp-module-card ' + statusClass + (isCurrent ? ' lp-module-current' : '') + '" data-module-id="' + mod.id + '">';
+        html += '<div class="lp-module-header">';
+        html += '<div class="lp-module-icon">' + mod.icon + '</div>';
+        html += '<div class="lp-module-title-wrap">';
+        html += '<div class="lp-module-title">' + statusIcon + ' ' + mod.id + '. ' + escapeHtml(mod.title) + '</div>';
+        html += '<div class="lp-module-meta">';
+        if (mod.domain > 0) html += '<span class="badge badge-d' + mod.domain + '">' + escapeHtml(DOMAIN_NAMES_LP[mod.domain]) + '</span> ';
+        html += '<span class="lp-module-weight">Peso: ' + mod.examWeight + '</span>';
+        html += ' · <span>~' + mod.estimatedMinutes + ' min</span>';
+        html += '</div></div>';
+        html += '<div class="lp-module-pct">' + pct + '%</div>';
+        html += '</div>';
+
+        html += '<div class="lp-module-bar-container"><div class="lp-module-bar ' + statusClass + '" style="width:' + pct + '%"></div></div>';
+
+        if (p.isStarted || p.isCompleted) {
+          html += '<div class="lp-module-details">';
+          html += '<span>📄 ' + p.summariesRead + '/' + p.totalSummaries + ' resúmenes</span>';
+          html += '<span>🃏 ' + p.flashcardsReviewed + '/' + p.totalFlashcards + ' flashcards</span>';
+          html += '<span>' + (p.questionsAnswered > 0 && p.questionAccuracy >= 0.7 ? '✅' : '❓') + ' ' + p.questionsAnswered + '/' + p.totalQuestions + ' preguntas</span>';
+          if (p.totalLabs > 0) html += '<span>' + (p.labsDone ? '✅' : '🔬') + ' ' + (p.labsDone ? '1' : '0') + '/' + p.totalLabs + ' lab</span>';
+          html += '</div>';
+        }
+
+        if (isCurrent) {
+          html += '<div class="lp-module-actions"><button class="btn btn-primary lp-continue-btn" data-module-id="' + mod.id + '">▶ Continuar Módulo</button></div>';
+        }
+
+        html += '</div>';
+      });
+
+      html += '</div></div>';
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.lp-module-card').forEach(function (card) {
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('.lp-continue-btn')) return;
+        var modId = Number(card.dataset.moduleId);
+        openModuleDetail(modId);
+      });
+    });
+
+    container.querySelectorAll('.lp-continue-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var modId = Number(btn.dataset.moduleId);
+        openModuleDetail(modId);
+      });
+    });
+  }
+
+  function openModuleDetail(modId) {
+    var mod = CURRICULUM.find(function (m) { return m.id === modId; });
+    if (!mod) return;
+
+    state.currentModuleId = modId;
+
+    var p = getModuleProgress(mod);
+    var pct = Math.round(p.overall * 100);
+    var container = document.getElementById('module-detail-content');
+
+    var html = '';
+    html += '<div class="lp-detail-header">';
+    html += '<button class="btn btn-secondary lp-back-btn" id="lp-back-btn">← Volver a Mi Ruta</button>';
+    html += '</div>';
+
+    html += '<div class="card lp-detail-card">';
+    html += '<div class="lp-detail-title-row">';
+    html += '<span class="lp-detail-icon">' + mod.icon + '</span>';
+    html += '<div>';
+    html += '<h2 class="lp-detail-title">Módulo ' + mod.id + ': ' + escapeHtml(mod.title) + '</h2>';
+    html += '<p class="lp-detail-desc">' + escapeHtml(mod.description) + '</p>';
+    html += '<div class="lp-detail-meta">';
+    if (mod.domain > 0) html += '<span class="badge badge-d' + mod.domain + '">' + escapeHtml(DOMAIN_NAMES_LP[mod.domain]) + '</span> ';
+    html += 'Peso en examen: <strong>' + mod.examWeight + '</strong> · ~' + mod.estimatedMinutes + ' min';
+    html += '</div></div></div>';
+
+    // Module 20 is special — exam prep
+    if (mod.id === 20) {
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">1</span> Repasa tus debilidades</div>';
+      html += '<p>Revisa la sección de <strong>Errores</strong> y la sección de <strong>Analíticas</strong> para identificar tus áreas débiles.</p>';
+      html += '<div class="lp-step-actions">';
+      html += '<button class="btn btn-secondary lp-action-btn" data-action="goto-review">Ir a Errores</button>';
+      html += '<button class="btn btn-secondary lp-action-btn" data-action="goto-analytics">Ir a Analíticas</button>';
+      html += '</div></div>';
+
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">2</span> Haz un Simulacro de Examen</div>';
+      html += '<p>Realiza un examen completo de 50 preguntas en 100 minutos. Intenta superar 700/1000.</p>';
+      html += '<div class="lp-step-actions">';
+      html += '<button class="btn btn-primary lp-action-btn" data-action="goto-exam">Ir al Simulador de Examen</button>';
+      html += '</div></div>';
+
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">3</span> Revisa el Glosario completo</div>';
+      html += '<p>Asegúrate de conocer todos los términos clave del examen.</p>';
+      html += '<div class="lp-step-actions">';
+      html += '<button class="btn btn-secondary lp-action-btn" data-action="goto-glossary">Ir al Glosario</button>';
+      html += '</div></div>';
+
+    } else {
+      // Step 1: Summaries
+      var summaryStatus = p.summaryPct >= 1 ? '✅ hecho' : (p.summariesRead > 0 ? '🔵 ' + p.summariesRead + '/' + p.totalSummaries : '⬜ pendiente');
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">1</span> Lee los resúmenes <span class="lp-step-status">' + summaryStatus + '</span></div>';
+
+      mod.summaryIds.forEach(function (sId) {
+        var summary = SUMMARIES.find(function (s) { return s.id === sId; });
+        if (!summary) return;
+        var cp = getCurriculumProgress();
+        var mp = cp[mod.id] || {};
+        var isRead = (mp.summariesRead || []).indexOf(sId) >= 0;
+        html += '<div class="lp-summary-inline card' + (isRead ? ' lp-summary-read' : '') + '" data-summary-id="' + sId + '" data-module-id="' + mod.id + '">';
+        html += '<div class="lp-summary-title">' + (isRead ? '✅' : '📄') + ' ' + escapeHtml(summary.title) + '</div>';
+        html += '<div class="lp-summary-body">';
+        html += '<p>' + formatText(summary.summary) + '</p>';
+        if (summary.keyPoints && summary.keyPoints.length > 0) {
+          html += '<ul class="lp-key-points">';
+          summary.keyPoints.forEach(function (kp) {
+            html += '<li>' + formatText(kp) + '</li>';
+          });
+          html += '</ul>';
+        }
+        if (summary.link) {
+          html += '<a href="' + escapeHtml(summary.link) + '" target="_blank" rel="noopener" class="lp-mslearn-link">📎 MS Learn →</a>';
+        }
+        html += '</div>';
+        if (!isRead) {
+          html += '<button class="btn btn-secondary lp-mark-read-btn" data-summary-id="' + sId + '" data-module-id="' + mod.id + '">Marcar como leído</button>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+
+      // Step 2: Flashcards
+      var fcStatus = p.flashcardPct >= 1 ? '✅ hecho' : '🔵 ' + p.flashcardsReviewed + '/' + p.totalFlashcards;
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">2</span> Repasa las flashcards <span class="lp-step-status">' + fcStatus + '</span></div>';
+      html += '<div class="lp-step-actions">';
+      html += '<button class="btn btn-primary lp-action-btn" data-action="open-flashcards" data-module-id="' + mod.id + '">Abrir flashcards del módulo</button>';
+      html += '</div></div>';
+
+      // Step 3: Questions
+      var qStatus = (p.questionsAnswered >= p.totalQuestions && p.questionAccuracy >= 0.7) ? '✅ ' + p.questionsAnswered + '/' + p.totalQuestions : '❓ ' + p.questionsAnswered + '/' + p.totalQuestions;
+      if (p.questionsAnswered > 0) qStatus += ' (' + Math.round(p.questionAccuracy * 100) + '% acierto)';
+      html += '<div class="lp-detail-step">';
+      html += '<div class="lp-step-header"><span class="lp-step-num">3</span> Pon a prueba tu conocimiento <span class="lp-step-status">' + qStatus + '</span></div>';
+      html += '<p class="lp-step-hint">Umbral de dominio: ≥70% para completar</p>';
+      html += '<div class="lp-step-actions">';
+      html += '<button class="btn btn-primary lp-action-btn" data-action="open-quiz" data-module-id="' + mod.id + '">Iniciar quiz del módulo</button>';
+      html += '</div></div>';
+
+      // Step 4: Labs (if any)
+      if (mod.labIds.length > 0) {
+        var labStatus = p.labsDone ? '✅ completado' : '⬜ pendiente';
+        html += '<div class="lp-detail-step">';
+        html += '<div class="lp-step-header"><span class="lp-step-num">4</span> Práctica hands-on <span class="lp-step-status">' + labStatus + '</span></div>';
+        mod.labIds.forEach(function (labId) {
+          var lab = LABS.find(function (l) { return l.id === labId; });
+          if (!lab) return;
+          html += '<div class="lp-step-actions">';
+          html += '<button class="btn btn-secondary lp-action-btn" data-action="open-lab" data-lab-id="' + labId + '">🔬 ' + escapeHtml(lab.title) + '</button>';
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
+      // Bonus: Glossary terms
+      if (mod.glossaryTerms && mod.glossaryTerms.length > 0) {
+        html += '<div class="lp-detail-step lp-bonus-step">';
+        html += '<div class="lp-step-header"><span class="lp-step-num">📖</span> Términos del glosario</div>';
+        html += '<div class="lp-glossary-terms">';
+        mod.glossaryTerms.forEach(function (term) {
+          html += '<span class="lp-glossary-chip" data-term="' + escapeHtml(term) + '">' + escapeHtml(term) + '</span>';
+        });
+        html += '</div></div>';
+      }
+    }
+
+    // Progress bar
+    html += '<div class="lp-detail-progress">';
+    html += '<div class="lp-detail-progress-label">Progreso del módulo: ' + pct + '%</div>';
+    html += '<div class="lp-module-bar-container"><div class="lp-module-bar ' + (p.isCompleted ? 'lp-module-completed' : 'lp-module-active') + '" style="width:' + pct + '%"></div></div>';
+    html += '</div>';
+
+    // Navigation
+    html += '<div class="lp-detail-nav">';
+    if (mod.id > 1) {
+      var prev = CURRICULUM.find(function (m) { return m.id === mod.id - 1; });
+      if (prev) html += '<button class="btn btn-secondary lp-nav-btn" data-nav-module="' + prev.id + '">◀ ' + escapeHtml(prev.title) + '</button>';
+    } else {
+      html += '<span></span>';
+    }
+    if (mod.id < 20) {
+      var next = CURRICULUM.find(function (m) { return m.id === mod.id + 1; });
+      if (next) html += '<button class="btn btn-primary lp-nav-btn" data-nav-module="' + next.id + '">' + escapeHtml(next.title) + ' ▶</button>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    container.innerHTML = html;
+
+    // Wire up events
+    var backBtn = document.getElementById('lp-back-btn');
+    if (backBtn) backBtn.addEventListener('click', function () { setActiveSection('learning-path'); });
+
+    container.querySelectorAll('.lp-mark-read-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var sId = Number(btn.dataset.summaryId);
+        var mId = Number(btn.dataset.moduleId);
+        markSummaryRead(mId, sId);
+        openModuleDetail(mId);
+      });
+    });
+
+    container.querySelectorAll('.lp-summary-inline').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var sId = Number(el.dataset.summaryId);
+        var mId = Number(el.dataset.moduleId);
+        markSummaryRead(mId, sId);
+        var readBtn = el.querySelector('.lp-mark-read-btn');
+        if (readBtn) readBtn.remove();
+        el.classList.add('lp-summary-read');
+        var titleEl = el.querySelector('.lp-summary-title');
+        if (titleEl) titleEl.innerHTML = titleEl.innerHTML.replace('📄', '✅');
+      });
+    });
+
+    container.querySelectorAll('.lp-action-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var action = btn.dataset.action;
+        var mId = Number(btn.dataset.moduleId) || state.currentModuleId;
+        var mod2 = CURRICULUM.find(function (m) { return m.id === mId; });
+
+        if (action === 'open-flashcards' && mod2) {
+          state.lpModuleContext = { moduleId: mId, type: 'flashcards' };
+          state.fcDomain = 0;
+          document.querySelectorAll('[data-fc-domain]').forEach(function (b) { b.classList.remove('active'); });
+          var allBtn2 = document.querySelector('[data-fc-domain="0"]');
+          if (allBtn2) allBtn2.classList.add('active');
+
+          state.fcOrder = getModuleFlashcards(mod2);
+          state.fcIndex = 0;
+          state.fcFlipped = false;
+          renderFlashcard();
+          setActiveSection('flashcards');
+          updateFlashcardModuleBanner();
+        } else if (action === 'open-quiz' && mod2) {
+          state.lpModuleContext = { moduleId: mId, type: 'quiz' };
+          var modQuestions = getModuleQuestions(mod2);
+          if (modQuestions.length === 0) { alert('No hay preguntas para este módulo.'); return; }
+          state.quizQuestions = shuffle(modQuestions).slice(0, Math.min(10, modQuestions.length));
+          state.quizIndex = 0;
+          state.quizScore = 0;
+          state.quizAnswered = false;
+
+          setActiveSection('quiz');
+          document.getElementById('quiz-empty').style.display = 'none';
+          document.getElementById('quiz-results').style.display = 'none';
+          document.getElementById('quiz-content').style.display = 'block';
+          renderQuizQuestion();
+          updateQuizModuleBanner();
+        } else if (action === 'open-lab') {
+          var labId = Number(btn.dataset.labId);
+          window.goToLab(labId);
+        } else if (action === 'goto-review') {
+          setActiveSection('review');
+        } else if (action === 'goto-analytics') {
+          setActiveSection('analytics');
+        } else if (action === 'goto-exam') {
+          setActiveSection('exam');
+        } else if (action === 'goto-glossary') {
+          setActiveSection('glossary');
+        }
+      });
+    });
+
+    container.querySelectorAll('.lp-nav-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var navModId = Number(btn.dataset.navModule);
+        openModuleDetail(navModId);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    container.querySelectorAll('.lp-glossary-chip').forEach(function (chip) {
+      chip.addEventListener('click', function (e) {
+        e.stopPropagation();
+        window.goToGlossary(chip.dataset.term);
+      });
+    });
+
+    setActiveSection('module-detail');
+  }
+
+  function markSummaryRead(moduleId, summaryId) {
+    var cp = getCurriculumProgress();
+    if (!cp[moduleId]) cp[moduleId] = {};
+    if (!cp[moduleId].summariesRead) cp[moduleId].summariesRead = [];
+    if (cp[moduleId].summariesRead.indexOf(summaryId) < 0) {
+      cp[moduleId].summariesRead.push(summaryId);
+    }
+    saveCurriculumProgress(cp);
+  }
+
+  function updateQuizModuleBanner() {
+    if (!state.lpModuleContext || state.lpModuleContext.type !== 'quiz') return;
+    var mod = CURRICULUM.find(function (m) { return m.id === state.lpModuleContext.moduleId; });
+    if (!mod) return;
+    var existing = document.querySelector('.lp-quiz-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'lp-quiz-banner';
+    banner.innerHTML = '<span>🎓 Quiz del Módulo ' + mod.id + ': ' + escapeHtml(mod.title) + '</span><button class="btn btn-secondary lp-banner-back-btn">Volver al módulo</button>';
+    var quizArea = document.getElementById('quiz-area');
+    if (quizArea) quizArea.parentElement.insertBefore(banner, quizArea);
+    banner.querySelector('.lp-banner-back-btn').addEventListener('click', function () {
+      state.lpModuleContext = null;
+      openModuleDetail(mod.id);
+    });
+  }
+
+  function updateFlashcardModuleBanner() {
+    if (!state.lpModuleContext || state.lpModuleContext.type !== 'flashcards') return;
+    var mod = CURRICULUM.find(function (m) { return m.id === state.lpModuleContext.moduleId; });
+    if (!mod) return;
+    var existing = document.querySelector('.lp-fc-banner');
+    if (existing) existing.remove();
+    var banner = document.createElement('div');
+    banner.className = 'lp-fc-banner';
+    banner.innerHTML = '<span>🎓 Flashcards del Módulo ' + mod.id + ': ' + escapeHtml(mod.title) + '</span><button class="btn btn-secondary lp-banner-back-btn">Volver al módulo</button>';
+    var fcContainer = document.getElementById('flashcard-container');
+    if (fcContainer) fcContainer.parentElement.insertBefore(banner, fcContainer);
+    banner.querySelector('.lp-banner-back-btn').addEventListener('click', function () {
+      state.lpModuleContext = null;
+      openModuleDetail(mod.id);
+    });
+  }
+
+  function recordModuleQuizResult() {
+    if (!state.lpModuleContext || state.lpModuleContext.type !== 'quiz') return;
+    var mId = state.lpModuleContext.moduleId;
+    var cp = getCurriculumProgress();
+    if (!cp[mId]) cp[mId] = {};
+    cp[mId].questionsAnswered = (cp[mId].questionsAnswered || 0) + state.quizQuestions.length;
+    cp[mId].questionsCorrect = (cp[mId].questionsCorrect || 0) + state.quizScore;
+    saveCurriculumProgress(cp);
+  }
+
+  function recordModuleFlashcardReview() {
+    if (!state.lpModuleContext || state.lpModuleContext.type !== 'flashcards') return;
+    var mId = state.lpModuleContext.moduleId;
+    var mod = CURRICULUM.find(function (m) { return m.id === mId; });
+    if (!mod) return;
+    var cp = getCurriculumProgress();
+    if (!cp[mId]) cp[mId] = {};
+    if (!cp[mId].flashcardsReviewed) cp[mId].flashcardsReviewed = [];
+    var currentFc = state.fcOrder[state.fcIndex];
+    if (currentFc && cp[mId].flashcardsReviewed.indexOf(currentFc.id) < 0) {
+      cp[mId].flashcardsReviewed.push(currentFc.id);
+      saveCurriculumProgress(cp);
+    }
+  }
+
+  function updateDashboardLPCard() {
+    var card = document.getElementById('dashboard-lp-card');
+    if (!card) return;
+    var gp = getGlobalProgress();
+    if (state.stats.curriculumStarted || gp.completed > 0) {
+      card.style.display = 'block';
+      var current = getCurrentModule();
+      var moduleEl = document.getElementById('lp-dashboard-module');
+      var progressEl = document.getElementById('lp-dashboard-progress');
+      if (moduleEl && current) moduleEl.textContent = 'Módulo actual: ' + current.id + '. ' + current.title;
+      if (progressEl) progressEl.textContent = 'Progreso general: ' + gp.pct + '%';
+    } else {
+      card.style.display = 'none';
+    }
+  }
+
+  function showOnboardingModal() {
+    var overlay = document.getElementById('lp-onboarding-overlay');
+    if (!overlay) return;
+    if (state.stats.answered > 0 || state.stats.curriculumStarted) return;
+    overlay.style.display = 'flex';
+  }
+
+  // Dashboard continue button
+  var lpDashContinue = document.getElementById('lp-dashboard-continue-btn');
+  if (lpDashContinue) {
+    lpDashContinue.addEventListener('click', function () {
+      var current = getCurrentModule();
+      if (current) openModuleDetail(current.id);
+      else setActiveSection('learning-path');
+    });
+  }
+
+  // Onboarding modal buttons
+  var lpOnboardingPath = document.getElementById('lp-onboarding-path-btn');
+  if (lpOnboardingPath) {
+    lpOnboardingPath.addEventListener('click', function () {
+      document.getElementById('lp-onboarding-overlay').style.display = 'none';
+      state.stats.curriculumStarted = true;
+      saveStats();
+      openModuleDetail(1);
+    });
+  }
+
+  var lpOnboardingDashboard = document.getElementById('lp-onboarding-dashboard-btn');
+  if (lpOnboardingDashboard) {
+    lpOnboardingDashboard.addEventListener('click', function () {
+      document.getElementById('lp-onboarding-overlay').style.display = 'none';
+      state.stats.curriculumStarted = true;
+      saveStats();
+    });
+  }
+
   // ─── Utilities ──────────────────────────────────────────────────────────────
   function shuffle(arr) {
     const a = [...arr];
@@ -2536,6 +3277,7 @@
   syncQuizSubtopicOptions();
   fillNoteSubtopicOptions(1, '');
   updateDashboard();
+  updateDashboardLPCard();
   initFlashcards();
   renderSummaries();
   renderLabs();
@@ -2545,5 +3287,6 @@
   renderAnalytics();
   updateNavBadges();
   checkBadges();
+  showOnboardingModal();
 
 })();

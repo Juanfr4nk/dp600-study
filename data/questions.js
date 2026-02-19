@@ -1,14 +1,24 @@
-// DP-600 Question Bank — Domain 1: Preparar Datos (45-50%)
 const QUESTIONS_DOMAIN_1 = [
   {
-    id: 1, domain: 1, difficulty: 1, subtopic: "Delta Lake",
+    id: 1,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Delta Lake",
     question: "¿Qué formato de almacenamiento se usa de forma nativa en un Lakehouse de Microsoft Fabric?",
-    options: ["Parquet estándar", "Delta Lake (Parquet + logs)", "CSV comprimido", "Avro"],
+    options: [
+      "Parquet estándar",
+      "Delta Lake (Parquet + logs)",
+      "CSV comprimido",
+      "Avro"
+    ],
     correct: 1,
     explanation: "Los Lakehouses en Fabric usan Delta Lake, que combina archivos Parquet con un log de transacciones que proporciona ACID, time travel y schema enforcement."
   },
   {
-    id: 2, domain: 1, difficulty: 1, subtopic: "Lakehouse",
+    id: 2,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Lakehouse",
     question: "¿Cuál es la diferencia principal entre un Lakehouse y un Data Warehouse en Fabric?",
     options: [
       "El Lakehouse solo admite datos estructurados",
@@ -20,21 +30,40 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "El Lakehouse combina la flexibilidad de un lago de datos (archivos no estructurados, semi-estructurados y estructurados) con capacidades analíticas. El Data Warehouse está optimizado exclusivamente para datos estructurados con T-SQL."
   },
   {
-    id: 3, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 3,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "Al crear una vista en un Data Warehouse de Fabric, ¿qué lenguaje se utiliza?",
-    options: ["DAX", "KQL", "T-SQL", "PySpark"],
+    options: [
+      "DAX",
+      "KQL",
+      "T-SQL",
+      "PySpark"
+    ],
     correct: 2,
     explanation: "El Data Warehouse de Fabric usa T-SQL para crear vistas, funciones y procedimientos almacenados, similar a Azure SQL o SQL Server."
   },
   {
-    id: 4, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 4,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Qué componente de Fabric se usa para orquestar y programar tareas de ingesta de datos?",
-    options: ["Flujos de datos Gen2", "Canalizaciones (Pipelines)", "Cuadernos Spark", "Eventhouse"],
+    options: [
+      "Flujos de datos Gen2",
+      "Canalizaciones (Pipelines)",
+      "Cuadernos Spark",
+      "Eventhouse"
+    ],
     correct: 1,
     explanation: "Las canalizaciones (Pipelines) de Data Factory en Fabric permiten orquestar tareas de ingesta y transformación, programar ejecuciones y definir dependencias entre actividades."
   },
   {
-    id: 5, domain: 1, difficulty: 1, subtopic: "Dataflows Gen2",
+    id: 5,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué son los flujos de datos Gen2 en Microsoft Fabric?",
     options: [
       "Scripts de Python para ETL",
@@ -46,14 +75,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Los flujos de datos Gen2 usan Power Query Online para crear visualmente procesos de ingesta y transformación de datos en múltiples pasos, sin necesidad de código."
   },
   {
-    id: 6, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 6,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Qué comando SQL se usa para agregar datos de forma incremental a una tabla Delta en un Warehouse?",
-    options: ["INSERT INTO ... SELECT", "MERGE INTO", "COPY INTO", "BULK INSERT"],
+    options: [
+      "INSERT INTO ... SELECT",
+      "MERGE INTO",
+      "COPY INTO",
+      "BULK INSERT"
+    ],
     correct: 1,
     explanation: "MERGE INTO permite realizar upserts (insert + update) de forma atómica, ideal para cargas incrementales donde necesitas actualizar registros existentes e insertar nuevos."
   },
   {
-    id: 7, domain: 1, difficulty: 3, subtopic: "Shortcuts",
+    id: 7,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Shortcuts",
     question: "¿Cuál es la ventaja principal de usar shortcuts en un Lakehouse?",
     options: [
       "Mejoran la velocidad de las consultas automáticamente",
@@ -65,7 +105,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Los shortcuts permiten crear referencias a datos en ubicaciones externas (ADLS Gen2, S3, otros Lakehouses) sin duplicar los datos, reduciendo costes y manteniendo una sola fuente de verdad."
   },
   {
-    id: 8, domain: 1, difficulty: 2, subtopic: "Lakehouse",
+    id: 8,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Lakehouse",
     question: "En Fabric, ¿dónde se procesan las consultas T-SQL sobre tablas Delta de un Lakehouse?",
     options: [
       "En un motor Spark dedicado",
@@ -77,7 +120,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Cada Lakehouse tiene un SQL Analytics Endpoint que permite ejecutar consultas T-SQL de solo lectura sobre las tablas Delta, sin necesidad de un Data Warehouse separado."
   },
   {
-    id: 9, domain: 1, difficulty: 1, subtopic: "Lakehouse",
+    id: 9,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Lakehouse",
     question: "¿Qué tipo de datos puede almacenar la sección 'Files' de un Lakehouse?",
     options: [
       "Solo archivos Parquet",
@@ -89,14 +135,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "La sección Files del Lakehouse acepta cualquier tipo de archivo. Es un almacenamiento basado en OneLake que funciona como un data lake completo."
   },
   {
-    id: 10, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 10,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Qué operación de mantenimiento se recomienda ejecutar periódicamente en tablas Delta grandes?",
-    options: ["TRUNCATE TABLE", "OPTIMIZE y VACUUM", "DROP y recrear la tabla", "REBUILD INDEX"],
+    options: [
+      "TRUNCATE TABLE",
+      "OPTIMIZE y VACUUM",
+      "DROP y recrear la tabla",
+      "REBUILD INDEX"
+    ],
     correct: 1,
     explanation: "OPTIMIZE compacta archivos pequeños en archivos más grandes para mejorar el rendimiento de lectura. VACUUM elimina archivos antiguos que ya no son referenciados por el log de transacciones."
   },
   {
-    id: 11, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 11,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué es un Eventhouse en Microsoft Fabric?",
     options: [
       "Un almacén de eventos de seguridad",
@@ -108,7 +165,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Eventhouse es el componente de Real-Time Intelligence en Fabric que permite ingerir, almacenar y consultar datos de streaming usando KQL (Kusto Query Language)."
   },
   {
-    id: 12, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 12,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Cuál es el propósito de una KQL Queryset en Fabric?",
     options: [
       "Definir pipelines de datos",
@@ -120,7 +180,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Una KQL Queryset es un artefacto donde puedes escribir, guardar y ejecutar consultas KQL contra las bases de datos dentro de un Eventhouse para análisis de datos en tiempo real."
   },
   {
-    id: 13, domain: 1, difficulty: 1, subtopic: "Dataflows Gen2",
+    id: 13,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué conector se usa en flujos de datos Gen2 para conectarse a una base de datos SQL Server on-premises?",
     options: [
       "Conector web",
@@ -132,7 +195,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Para acceder a fuentes on-premises desde Fabric se necesita un On-premises data gateway que actúe como puente entre la nube y la red local."
   },
   {
-    id: 14, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 14,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "Al diseñar un ETL en Fabric, ¿cuándo es preferible usar una canalización sobre un flujo de datos Gen2?",
     options: [
       "Siempre, las canalizaciones son superiores",
@@ -144,7 +210,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Las canalizaciones son mejores para orquestación compleja: ejecutar múltiples actividades en paralelo o secuencia, manejar errores/reintentos, y coordinar diferentes tipos de procesamiento (Spark, dataflows, stored procedures)."
   },
   {
-    id: 15, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 15,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Qué función tiene la actividad 'Copy Data' en una canalización de Fabric?",
     options: [
       "Transforma datos usando Power Query",
@@ -156,7 +225,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "La actividad Copy Data mueve datos de un origen (SQL, archivos, APIs) a un destino (Lakehouse, Warehouse) con soporte para mapeo de columnas y transformaciones básicas."
   },
   {
-    id: 16, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 16,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Cuál es la diferencia entre V-Order y Z-Order en la optimización de tablas Delta?",
     options: [
       "Son lo mismo con nombres diferentes",
@@ -168,14 +240,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "V-Order es una optimización automática de Fabric que mejora la compresión y lectura de archivos Parquet. Z-Order (OPTIMIZE ... ZORDER BY) reorganiza datos físicamente para acelerar consultas que filtran por columnas específicas."
   },
   {
-    id: 17, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 17,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué operador KQL se usa para filtrar filas en una consulta?",
-    options: ["SELECT", "where", "FILTER", "HAVING"],
+    options: [
+      "SELECT",
+      "where",
+      "FILTER",
+      "HAVING"
+    ],
     correct: 1,
     explanation: "En KQL, el operador 'where' filtra filas según una condición. KQL usa una sintaxis de pipe (|) diferente a SQL: Tabla | where columna == 'valor'."
   },
   {
-    id: 18, domain: 1, difficulty: 1, subtopic: "OneLake",
+    id: 18,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake",
     question: "¿Cuál es el rol de OneLake en Microsoft Fabric?",
     options: [
       "Es el motor de procesamiento de consultas",
@@ -187,7 +270,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "OneLake es la capa de almacenamiento unificada de Fabric. Todos los datos (Lakehouses, Warehouses, etc.) se almacenan en OneLake, facilitando compartir datos entre diferentes cargas de trabajo sin duplicación."
   },
   {
-    id: 19, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 19,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Cómo se manejan los esquemas evolutivos (schema evolution) en tablas Delta del Lakehouse?",
     options: [
       "No es posible, se debe recrear la tabla",
@@ -199,35 +285,70 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Delta Lake soporta schema evolution con las opciones mergeSchema (añade nuevas columnas) y overwriteSchema (reemplaza el esquema completo) en operaciones de escritura."
   },
   {
-    id: 20, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 20,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "En una canalización de Fabric, ¿qué actividad se usa para ejecutar un cuaderno Spark?",
-    options: ["Script Activity", "Notebook Activity", "Spark Job Activity", "Web Activity"],
+    options: [
+      "Script Activity",
+      "Notebook Activity",
+      "Spark Job Activity",
+      "Web Activity"
+    ],
     correct: 1,
     explanation: "La Notebook Activity permite ejecutar cuadernos de Spark como paso de una canalización, pasando parámetros y capturando resultados para orquestación."
   },
   {
-    id: 21, domain: 1, difficulty: 2, subtopic: "Lakehouse",
+    id: 21,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Lakehouse",
     question: "¿Qué tipo de tabla se crea al arrastrar un archivo CSV a la sección Tables de un Lakehouse?",
-    options: ["Tabla temporal", "Tabla externa", "Tabla Delta gestionada (managed)", "Vista materializada"],
+    options: [
+      "Tabla temporal",
+      "Tabla externa",
+      "Tabla Delta gestionada (managed)",
+      "Vista materializada"
+    ],
     correct: 2,
     explanation: "Al cargar archivos en la sección Tables, Fabric crea automáticamente tablas Delta gestionadas, convirtiendo los datos a formato Delta Lake."
   },
   {
-    id: 22, domain: 1, difficulty: 3, subtopic: "Medallion Architecture",
+    id: 22,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Medallion Architecture",
     question: "¿Qué patrón de arquitectura de datos implementa Microsoft Fabric de forma nativa?",
-    options: ["Lambda Architecture", "Kappa Architecture", "Medallion Architecture (Bronze/Silver/Gold)", "Todas las anteriores son posibles"],
+    options: [
+      "Lambda Architecture",
+      "Kappa Architecture",
+      "Medallion Architecture (Bronze/Silver/Gold)",
+      "Todas las anteriores son posibles"
+    ],
     correct: 3,
     explanation: "Fabric soporta cualquier arquitectura, pero promueve especialmente la Medallion Architecture (Bronze=raw, Silver=cleansed, Gold=curated) usando múltiples Lakehouses organizados por nivel de refinamiento."
   },
   {
-    id: 23, domain: 1, difficulty: 1, subtopic: "Notebooks/Spark",
+    id: 23,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué lenguaje usan los cuadernos de Fabric para procesar datos a gran escala?",
-    options: ["Solo T-SQL", "Solo DAX", "PySpark, Scala, SQL Spark y R", "Solo Python estándar"],
+    options: [
+      "Solo T-SQL",
+      "Solo DAX",
+      "PySpark, Scala, SQL Spark y R",
+      "Solo Python estándar"
+    ],
     correct: 2,
     explanation: "Los cuadernos de Fabric soportan múltiples lenguajes: PySpark (Python + Spark), Scala, SparkSQL y R. Nota: PySpark se ha movido al DP-700 en 2026, pero SQL Spark y los conceptos siguen en DP-600."
   },
   {
-    id: 24, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 24,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué significa que OneLake tenga un 'espacio de nombres jerárquico'?",
     options: [
       "Los datos se organizan numéricamente",
@@ -239,7 +360,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "OneLake usa un espacio de nombres jerárquico (HNS) que organiza los datos como un sistema de archivos con carpetas y subcarpetas, permitiendo navegación intuitiva y permisos granulares."
   },
   {
-    id: 25, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 25,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "Al usar COPY INTO en un Data Warehouse de Fabric, ¿cuál es su ventaja sobre INSERT INTO?",
     options: [
       "Soporta más tipos de datos",
@@ -251,7 +375,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "COPY INTO está optimizado para cargas masivas (bulk load) desde archivos en almacenamiento externo, ofreciendo un rendimiento significativamente mejor que INSERT INTO para volúmenes grandes de datos."
   },
   {
-    id: 26, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 26,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué es un Eventstream en Fabric?",
     options: [
       "Un log de auditoría del workspace",
@@ -263,7 +390,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Eventstream permite capturar datos de streaming de fuentes como Azure Event Hubs, IoT Hub o cambios de base de datos, transformarlos y enrutarlos a destinos como Eventhouse o Lakehouse."
   },
   {
-    id: 27, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 27,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Para qué sirve la función UNPIVOT en T-SQL dentro de un Warehouse de Fabric?",
     options: [
       "Convierte filas en columnas",
@@ -275,14 +405,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "UNPIVOT transforma columnas en filas, útil cuando datos fuente tienen valores en columnas separadas (ej: Ene, Feb, Mar) y necesitas normalizarlos en una columna Mes + Valor."
   },
   {
-    id: 28, domain: 1, difficulty: 1, subtopic: "OneLake",
+    id: 28,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake",
     question: "¿Cuántos OneLakes existen por tenant de Microsoft Fabric?",
-    options: ["Uno por workspace", "Uno por usuario", "Uno por tenant (organización)", "Ilimitados"],
+    options: [
+      "Uno por workspace",
+      "Uno por usuario",
+      "Uno por tenant (organización)",
+      "Ilimitados"
+    ],
     correct: 2,
     explanation: "Existe un único OneLake por tenant. Todos los workspaces y sus datos comparten este almacenamiento unificado, similar al concepto de un 'OneDrive para datos organizacionales'."
   },
   {
-    id: 29, domain: 1, difficulty: 3, subtopic: "Real-Time Intelligence",
+    id: 29,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué estrategia se recomienda para manejar datos tardíos (late arriving data) en un pipeline de streaming?",
     options: [
       "Ignorar los datos tardíos",
@@ -294,7 +435,10 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Los watermarks definen cuánto tiempo esperar por datos tardíos antes de cerrar una ventana temporal. Esto permite manejar datos que llegan fuera de orden sin reprocesar todo ni perder información."
   },
   {
-    id: 30, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 30,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Qué tipo de transformación realiza la función PIVOT en T-SQL?",
     options: [
       "Convierte filas en columnas (desnormaliza datos largos a formato ancho)",
@@ -306,14 +450,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "PIVOT convierte valores únicos de una columna en múltiples columnas, creando una tabla cruzada. Es el inverso de UNPIVOT y útil para crear reportes con categorías como columnas."
   },
   {
-    id: 31, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 31,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué protocolo usa OneLake para acceder a datos de forma compatible con herramientas existentes?",
-    options: ["FTP", "ABFS (Azure Blob File System)", "SMB", "NFS"],
+    options: [
+      "FTP",
+      "ABFS (Azure Blob File System)",
+      "SMB",
+      "NFS"
+    ],
     correct: 1,
     explanation: "OneLake es compatible con ABFS, el mismo protocolo usado por Azure Data Lake Storage Gen2, lo que permite que herramientas existentes se conecten sin modificaciones."
   },
   {
-    id: 32, domain: 1, difficulty: 3, subtopic: "Lakehouse",
+    id: 32,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Lakehouse",
     question: "¿Cuál es el beneficio de usar tablas particionadas en un Lakehouse de Fabric?",
     options: [
       "Simplifica las consultas SQL",
@@ -325,14 +480,25 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "El particionamiento organiza datos en subcarpetas por valores de columna (ej: por fecha). Las consultas que filtran por la columna de partición leen solo los archivos relevantes, reduciendo drásticamente el tiempo y coste."
   },
   {
-    id: 33, domain: 1, difficulty: 1, subtopic: "Dataflows Gen2",
+    id: 33,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué destino NO es válido para un flujo de datos Gen2 en Fabric?",
-    options: ["Lakehouse", "Data Warehouse", "Azure SQL Database externo directamente", "KQL Database"],
+    options: [
+      "Lakehouse",
+      "Data Warehouse",
+      "Azure SQL Database externo directamente",
+      "KQL Database"
+    ],
     correct: 2,
     explanation: "Los flujos de datos Gen2 pueden enviar datos a destinos dentro de Fabric como Lakehouses y Warehouses. Para cargar a Azure SQL externo necesitarías una canalización con actividad Copy Data."
   },
   {
-    id: 34, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 34,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Qué función tiene el Time Travel en Delta Lake?",
     options: [
       "Permite consultar versiones históricas de los datos en un punto específico del tiempo",
@@ -344,25 +510,43 @@ const QUESTIONS_DOMAIN_1 = [
     explanation: "Time Travel permite consultar datos tal como estaban en un momento anterior usando VERSION AS OF o TIMESTAMP AS OF, útil para auditoría, debugging y recuperación de datos."
   },
   {
-    id: 35, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 35,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué operador KQL se usa para agrupar y agregar datos?",
-    options: ["group by", "summarize", "aggregate", "collect"],
+    options: [
+      "group by",
+      "summarize",
+      "aggregate",
+      "collect"
+    ],
     correct: 1,
     explanation: "En KQL, 'summarize' es el operador que agrupa y agrega datos: Tabla | summarize count() by columna. Es el equivalente al GROUP BY de SQL pero con sintaxis KQL."
   }
 ];
 
-// Domain 2: Mantener Solución de Análisis (25-30%)
 const QUESTIONS_DOMAIN_2 = [
   {
-    id: 36, domain: 2, difficulty: 1, subtopic: "Workspace Security",
+    id: 36,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Workspace Security",
     question: "¿Qué nivel de seguridad controla quién puede acceder a un workspace en Fabric?",
-    options: ["Row-Level Security", "Workspace roles (Admin, Member, Contributor, Viewer)", "Object-Level Security", "Sensitivity labels"],
+    options: [
+      "Row-Level Security",
+      "Workspace roles (Admin, Member, Contributor, Viewer)",
+      "Object-Level Security",
+      "Sensitivity labels"
+    ],
     correct: 1,
     explanation: "Los roles de workspace (Admin, Member, Contributor, Viewer) controlan el acceso y las acciones que los usuarios pueden realizar dentro de un workspace."
   },
   {
-    id: 37, domain: 2, difficulty: 2, subtopic: "RLS/CLS/OLS",
+    id: 37,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Qué implementa Row-Level Security (RLS) en un modelo semántico?",
     options: [
       "Oculta columnas específicas a ciertos usuarios",
@@ -374,7 +558,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "RLS aplica filtros DAX basados en la identidad del usuario, asegurando que cada persona solo vea las filas de datos que le corresponden (ej: un vendedor solo ve sus propias ventas)."
   },
   {
-    id: 38, domain: 2, difficulty: 2, subtopic: "Deployment Pipelines",
+    id: 38,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Deployment Pipelines",
     question: "¿Qué son los Deployment Pipelines en Fabric?",
     options: [
       "Pipelines ETL para mover datos",
@@ -386,14 +573,25 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Los Deployment Pipelines permiten gestionar el ciclo de vida del contenido de Fabric (informes, modelos, etc.) promoviendo cambios desde Desarrollo a Pruebas y Producción de forma controlada."
   },
   {
-    id: 39, domain: 2, difficulty: 1, subtopic: "Workspace Security",
+    id: 39,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Workspace Security",
     question: "¿Qué rol de workspace permite publicar contenido pero NO gestionar accesos?",
-    options: ["Admin", "Member", "Contributor", "Viewer"],
+    options: [
+      "Admin",
+      "Member",
+      "Contributor",
+      "Viewer"
+    ],
     correct: 2,
     explanation: "El rol Contributor puede crear, editar y eliminar contenido en el workspace, pero no puede gestionar permisos ni añadir otros usuarios. Admin y Member sí pueden gestionar accesos."
   },
   {
-    id: 40, domain: 2, difficulty: 3, subtopic: "RLS/CLS/OLS",
+    id: 40,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Qué es Object-Level Security (OLS) en un modelo semántico?",
     options: [
       "Seguridad a nivel de fila",
@@ -405,7 +603,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "OLS permite ocultar tablas o columnas enteras en un modelo semántico para roles específicos. A diferencia de RLS (que filtra filas), OLS hace que ciertos objetos sean completamente invisibles."
   },
   {
-    id: 41, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 41,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Para qué sirven las etiquetas de sensibilidad (sensitivity labels) en Fabric?",
     options: [
       "Para clasificar y proteger datos según su nivel de confidencialidad",
@@ -417,21 +618,40 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Las etiquetas de sensibilidad de Microsoft Purview clasifican el contenido (Público, Confidencial, Altamente Confidencial) y pueden aplicar protección como cifrado y restricciones de exportación."
   },
   {
-    id: 42, domain: 2, difficulty: 2, subtopic: "Deployment Pipelines",
+    id: 42,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Deployment Pipelines",
     question: "¿Cuántas etapas tiene un Deployment Pipeline en Fabric por defecto?",
-    options: ["2 (Dev, Prod)", "3 (Development, Test, Production)", "4 (Dev, QA, Staging, Prod)", "Configurable sin límite"],
+    options: [
+      "2 (Dev, Prod)",
+      "3 (Development, Test, Production)",
+      "4 (Dev, QA, Staging, Prod)",
+      "Configurable sin límite"
+    ],
     correct: 1,
     explanation: "Por defecto, un Deployment Pipeline tiene 3 etapas: Development, Test y Production. Cada etapa se asocia a un workspace diferente."
   },
   {
-    id: 43, domain: 2, difficulty: 1, subtopic: "Monitoring",
+    id: 43,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Monitoring",
     question: "¿Qué herramienta de Fabric permite monitorizar el uso y rendimiento de un workspace?",
-    options: ["Admin Portal", "Monitoring Hub", "Capacity Metrics App", "Todas las anteriores"],
+    options: [
+      "Admin Portal",
+      "Monitoring Hub",
+      "Capacity Metrics App",
+      "Todas las anteriores"
+    ],
     correct: 3,
     explanation: "Fabric ofrece múltiples herramientas: el Admin Portal para configuración, el Monitoring Hub para ver actividades en curso, y la Capacity Metrics App para analizar el consumo de recursos."
   },
   {
-    id: 44, domain: 2, difficulty: 3, subtopic: "Workspace Security",
+    id: 44,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Workspace Security",
     question: "¿Qué diferencia hay entre permisos de workspace y permisos de item en Fabric?",
     options: [
       "No hay diferencia, son lo mismo",
@@ -443,7 +663,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Los permisos de workspace aplican a todo su contenido. Los permisos de item permiten compartir elementos específicos (un informe, un modelo) con usuarios que no tienen acceso al workspace completo."
   },
   {
-    id: 45, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 45,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué es una Capacity en Microsoft Fabric?",
     options: [
       "El número máximo de usuarios",
@@ -455,7 +678,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Una Capacity es un conjunto de recursos computacionales con un tamaño específico (F2, F4, F64, etc.) que se asigna a workspaces. Define la potencia de procesamiento disponible para todas las cargas de trabajo."
   },
   {
-    id: 46, domain: 2, difficulty: 2, subtopic: "Git Integration",
+    id: 46,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Git Integration",
     question: "¿Qué mecanismo permite integrar Fabric con Git para control de versiones?",
     options: [
       "Export/Import manual de archivos",
@@ -467,14 +693,25 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Fabric tiene integración Git nativa que permite conectar un workspace a un repositorio en Azure DevOps o GitHub, habilitando control de versiones, branching y colaboración."
   },
   {
-    id: 47, domain: 2, difficulty: 1, subtopic: "Workspace Security",
+    id: 47,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Workspace Security",
     question: "¿Qué rol de workspace tiene permisos completos incluyendo eliminar el workspace?",
-    options: ["Viewer", "Contributor", "Member", "Admin"],
+    options: [
+      "Viewer",
+      "Contributor",
+      "Member",
+      "Admin"
+    ],
     correct: 3,
     explanation: "Solo el rol Admin puede eliminar el workspace, gestionar todos los permisos y configurar la integración con git y deployment pipelines."
   },
   {
-    id: 48, domain: 2, difficulty: 3, subtopic: "Governance",
+    id: 48,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Governance",
     question: "¿Qué estrategia se recomienda para organizar workspaces en un escenario empresarial?",
     options: [
       "Un solo workspace para todo",
@@ -486,7 +723,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "La práctica recomendada es organizar workspaces por dominio de negocio (Ventas, RRHH, Finanzas) y por entorno (Dev, Test, Prod), facilitando governance, seguridad y deployment pipelines."
   },
   {
-    id: 49, domain: 2, difficulty: 2, subtopic: "RLS/CLS/OLS",
+    id: 49,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Qué es Column-Level Security (CLS) en un Data Warehouse de Fabric?",
     options: [
       "Seguridad que filtra filas según el usuario",
@@ -498,7 +738,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "CLS usa sentencias T-SQL GRANT y DENY para controlar qué usuarios pueden leer columnas específicas de una tabla en el Data Warehouse. Ejemplo: DENY SELECT ON tabla(columna_salario) TO rol_basico."
   },
   {
-    id: 50, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 50,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué sucede si se revoca la licencia de Fabric de un tenant?",
     options: [
       "Los datos se eliminan inmediatamente",
@@ -510,7 +753,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Al expirar la licencia hay un periodo de retención durante el cual los datos se mantienen pero con funcionalidad limitada (solo lectura). Pasado ese periodo, los datos pueden eliminarse."
   },
   {
-    id: 51, domain: 2, difficulty: 3, subtopic: "RLS/CLS/OLS",
+    id: 51,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Cómo se implementa Dynamic Row-Level Security para que cada vendedor vea solo sus datos?",
     options: [
       "Creando un informe separado para cada vendedor",
@@ -522,7 +768,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Dynamic RLS usa la función DAX USERPRINCIPALNAME() para capturar el email del usuario actual y filtrarlo contra una tabla de mapeo usuario→datos, eliminando la necesidad de crear un rol por persona."
   },
   {
-    id: 52, domain: 2, difficulty: 1, subtopic: "Deployment Pipelines",
+    id: 52,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Deployment Pipelines",
     question: "¿Dónde se configuran los Deployment Pipelines en Fabric?",
     options: [
       "En Azure DevOps exclusivamente",
@@ -534,7 +783,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Los Deployment Pipelines se crean y gestionan directamente desde el portal web de Fabric, donde puedes asignar workspaces a cada etapa y comparar cambios entre etapas."
   },
   {
-    id: 53, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 53,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué permite la función de 'Endorsement' en Fabric?",
     options: [
       "Firmar digitalmente los informes",
@@ -546,7 +798,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Endorsement permite marcar items como 'Promoted' (promovido por el autor) o 'Certified' (certificado por un administrador), ayudando a los usuarios a encontrar contenido confiable y de calidad."
   },
   {
-    id: 54, domain: 2, difficulty: 3, subtopic: "Networking",
+    id: 54,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Networking",
     question: "¿Qué son las Managed Private Endpoints en Fabric?",
     options: [
       "URLs privadas para informes",
@@ -558,7 +813,10 @@ const QUESTIONS_DOMAIN_2 = [
     explanation: "Las Managed Private Endpoints permiten que Fabric se conecte a fuentes de datos en Azure (SQL, Storage, etc.) a través del backbone privado de Azure, sin exponer tráfico a internet público."
   },
   {
-    id: 55, domain: 2, difficulty: 1, subtopic: "Governance",
+    id: 55,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Governance",
     question: "¿Qué es el Admin Portal de Microsoft Fabric?",
     options: [
       "El portal para desarrollar informes",
@@ -571,10 +829,12 @@ const QUESTIONS_DOMAIN_2 = [
   }
 ];
 
-// Domain 3: Implementar y Gestionar Modelos Semánticos (25-30%)
 const QUESTIONS_DOMAIN_3 = [
   {
-    id: 56, domain: 3, difficulty: 1, subtopic: "Storage Modes",
+    id: 56,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Storage Modes",
     question: "¿Qué es un modelo semántico en Microsoft Fabric/Power BI?",
     options: [
       "Una base de datos relacional",
@@ -586,14 +846,25 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Un modelo semántico (antes 'dataset') define las tablas, relaciones, medidas DAX y jerarquías que Power BI usa para responder preguntas de negocio. Es la capa lógica entre los datos y los informes."
   },
   {
-    id: 57, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 57,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Qué modo de almacenamiento carga todos los datos en memoria para máximo rendimiento?",
-    options: ["DirectQuery", "Import", "Dual", "Direct Lake"],
+    options: [
+      "DirectQuery",
+      "Import",
+      "Dual",
+      "Direct Lake"
+    ],
     correct: 1,
     explanation: "El modo Import carga todos los datos en la memoria del motor VertiPaq, proporcionando el rendimiento más rápido para consultas pero requiriendo refresco periódico para actualizar datos."
   },
   {
-    id: 58, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 58,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Qué es Direct Lake y cuál es su ventaja principal?",
     options: [
       "Un tipo de lago de datos",
@@ -605,14 +876,25 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Direct Lake es un modo exclusivo de Fabric que lee datos directamente de archivos Delta/Parquet en OneLake. Combina el rendimiento cercano a Import con la frescura de DirectQuery, sin proceso de importación."
   },
   {
-    id: 59, domain: 3, difficulty: 1, subtopic: "Star Schema",
+    id: 59,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Star Schema",
     question: "¿Qué patrón de modelado de datos se recomienda para modelos semánticos analíticos?",
-    options: ["Modelo normalizado (3NF)", "Esquema en estrella (Star Schema)", "Modelo en red (Network)", "Modelo jerárquico"],
+    options: [
+      "Modelo normalizado (3NF)",
+      "Esquema en estrella (Star Schema)",
+      "Modelo en red (Network)",
+      "Modelo jerárquico"
+    ],
     correct: 1,
     explanation: "El esquema en estrella, con tablas de hechos centrales rodeadas de tablas de dimensión, es el patrón recomendado porque optimiza tanto el rendimiento de VertiPaq como la usabilidad para los usuarios."
   },
   {
-    id: 60, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 60,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué función DAX calcula un total acumulado (running total)?",
     options: [
       "TOTALYTD()",
@@ -624,7 +906,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "No existe RUNNINGTOTAL() nativo en DAX. Se construye combinando CALCULATE() con funciones de filtro como FILTER(ALL(Dates), Dates[Date] <= MAX(Dates[Date])) para acumular valores."
   },
   {
-    id: 61, domain: 3, difficulty: 3, subtopic: "Calculation Groups",
+    id: 61,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Calculation Groups",
     question: "¿Qué son los Calculation Groups en un modelo semántico?",
     options: [
       "Grupos de columnas calculadas",
@@ -636,7 +921,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Los Calculation Groups permiten definir 'items de cálculo' reutilizables (como YTD, Prior Year, Moving Average) que se aplican dinámicamente a cualquier medida, evitando duplicar medidas con variaciones temporales."
   },
   {
-    id: 62, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 62,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Qué es el Incremental Refresh y para qué sirve?",
     options: [
       "Refrescar el modelo cada hora automáticamente",
@@ -648,14 +936,25 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Incremental Refresh configura políticas para refrescar solo las particiones con datos nuevos/modificados, reduciendo drásticamente el tiempo de refresco y la carga en el origen de datos."
   },
   {
-    id: 63, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 63,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué función DAX devuelve el contexto de filtro actual para una columna?",
-    options: ["FILTER()", "HASONEVALUE()", "VALUES()", "SELECTEDVALUE()"],
+    options: [
+      "FILTER()",
+      "HASONEVALUE()",
+      "VALUES()",
+      "SELECTEDVALUE()"
+    ],
     correct: 2,
     explanation: "VALUES() devuelve una tabla con los valores distintos visibles en el contexto de filtro actual. SELECTEDVALUE() devuelve un único valor si hay exactamente uno seleccionado."
   },
   {
-    id: 64, domain: 3, difficulty: 3, subtopic: "DAX Core",
+    id: 64,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Core",
     question: "¿Qué hace la función CALCULATE en DAX?",
     options: [
       "Realiza cálculos matemáticos básicos",
@@ -667,7 +966,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "CALCULATE es la función más importante de DAX. Toma una expresión (medida) y uno o más filtros que modifican el contexto de evaluación. Permite calcular valores en contextos diferentes al actual."
   },
   {
-    id: 65, domain: 3, difficulty: 1, subtopic: "DAX Core",
+    id: 65,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Core",
     question: "¿Cuál es la diferencia entre una medida y una columna calculada en DAX?",
     options: [
       "No hay diferencia práctica",
@@ -679,14 +981,25 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Las columnas calculadas se evalúan fila por fila durante el refresco y se almacenan en memoria. Las medidas se calculan dinámicamente al consultar según el contexto de filtro. Medidas son preferibles cuando es posible."
   },
   {
-    id: 66, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 66,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Qué herramienta permite analizar el rendimiento de consultas DAX?",
-    options: ["Power Query Editor", "DAX Studio y Performance Analyzer de Power BI", "SQL Server Profiler", "Azure Monitor"],
+    options: [
+      "Power Query Editor",
+      "DAX Studio y Performance Analyzer de Power BI",
+      "SQL Server Profiler",
+      "Azure Monitor"
+    ],
     correct: 1,
     explanation: "DAX Studio permite analizar y optimizar consultas DAX en detalle. Power BI Desktop incluye Performance Analyzer para ver el tiempo de cada visual. Ambos son esenciales para optimización."
   },
   {
-    id: 67, domain: 3, difficulty: 3, subtopic: "Star Schema",
+    id: 67,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Star Schema",
     question: "¿Qué es la cardinalidad en una relación de modelo semántico y cuál es la más común?",
     options: [
       "El número de tablas; many-to-many",
@@ -698,14 +1011,25 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "La cardinalidad define cómo se relacionan las tablas. One-to-many (1:N) es la más común: una dimensión (1) conecta a una tabla de hechos (N). Many-to-many debe evitarse cuando sea posible."
   },
   {
-    id: 68, domain: 3, difficulty: 2, subtopic: "DAX Time Intelligence",
+    id: 68,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Time Intelligence",
     question: "¿Qué función DAX se usa para calcular el total del año hasta la fecha (YTD)?",
-    options: ["SUMYTD()", "TOTALYTD()", "DATESYTD()", "Tanto TOTALYTD() como DATESYTD() con CALCULATE()"],
+    options: [
+      "SUMYTD()",
+      "TOTALYTD()",
+      "DATESYTD()",
+      "Tanto TOTALYTD() como DATESYTD() con CALCULATE()"
+    ],
     correct: 3,
     explanation: "TOTALYTD(expresion, columna_fecha) es un atajo que calcula directamente el YTD. Alternativamente, CALCULATE(medida, DATESYTD(columna_fecha)) logra lo mismo con más flexibilidad."
   },
   {
-    id: 69, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 69,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Cuándo conviene usar DirectQuery en lugar de Import?",
     options: [
       "Siempre, es superior en todo",
@@ -717,7 +1041,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "DirectQuery es apropiado cuando: los datos cambian frecuentemente y se necesita información en tiempo real, el volumen excede los límites de Import, o existen requisitos de seguridad que impiden copiar datos."
   },
   {
-    id: 70, domain: 3, difficulty: 2, subtopic: "DAX Time Intelligence",
+    id: 70,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Time Intelligence",
     question: "¿Qué es una tabla de fecha (Date table) y por qué es importante en un modelo semántico?",
     options: [
       "Cualquier tabla con una columna de tipo fecha",
@@ -729,7 +1056,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Una tabla de fecha es una dimensión con una fila por día (sin gaps), marcada como Date Table en el modelo. Es requisito para que las funciones de Time Intelligence DAX (YTD, MTD, SAMEPERIODLASTYEAR) funcionen correctamente."
   },
   {
-    id: 71, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 71,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué hace la función REMOVEFILTERS() en DAX?",
     options: [
       "Elimina filas de una tabla",
@@ -741,7 +1071,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "REMOVEFILTERS() limpia filtros del contexto de evaluación. Usada dentro de CALCULATE, permite ignorar filtros de slicers o visuales para calcular totales generales o porcentajes del total."
   },
   {
-    id: 72, domain: 3, difficulty: 1, subtopic: "Star Schema",
+    id: 72,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Star Schema",
     question: "¿Qué es una jerarquía en un modelo semántico?",
     options: [
       "El orden de las tablas",
@@ -753,7 +1086,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Una jerarquía define niveles anidados en una dimensión (como Año → Trimestre → Mes → Día en fechas, o País → Región → Ciudad en geografía), permitiendo drill-down/up en visuales."
   },
   {
-    id: 73, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 73,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué optimización ofrece VertiPaq para columnas con pocos valores distintos?",
     options: [
       "Las ignora para ahorrar espacio",
@@ -765,7 +1101,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "VertiPaq usa Value Encoding y Dictionary Encoding para comprimir datos eficientemente. Columnas con baja cardinalidad (pocos valores distintos) se comprimen extremadamente bien con run-length encoding."
   },
   {
-    id: 74, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 74,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Qué sucede cuando un modelo Direct Lake hace 'fallback' a DirectQuery?",
     options: [
       "El modelo deja de funcionar",
@@ -777,7 +1116,10 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Cuando Direct Lake no puede servir una consulta desde el cache en memoria (ej: excede límites de memoria, datos no en caché), hace fallback a DirectQuery contra el SQL endpoint, con rendimiento menor."
   },
   {
-    id: 75, domain: 3, difficulty: 2, subtopic: "Composite Models",
+    id: 75,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Composite Models",
     question: "¿Cómo se crea un modelo semántico compuesto (composite model)?",
     options: [
       "Combinando solo tablas Import",
@@ -789,35 +1131,70 @@ const QUESTIONS_DOMAIN_3 = [
     explanation: "Un modelo compuesto permite mezclar tablas Import (alto rendimiento) con tablas DirectQuery (datos en tiempo real) en el mismo modelo, optimizando el balance entre rendimiento y frescura."
   },
   {
-    id: 76, domain: 3, difficulty: 1, subtopic: "Star Schema",
+    id: 76,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Star Schema",
     question: "¿Qué dirección de filtro cruzado se recomienda para la mayoría de las relaciones?",
-    options: ["Bidireccional siempre", "Single (unidireccional) de dimensión a hechos", "No usar filtros cruzados", "Depende del tipo de dato"],
+    options: [
+      "Bidireccional siempre",
+      "Single (unidireccional) de dimensión a hechos",
+      "No usar filtros cruzados",
+      "Depende del tipo de dato"
+    ],
     correct: 1,
     explanation: "La dirección Single (unidireccional) desde la tabla de dimensión hacia la tabla de hechos es la recomendada. Las relaciones bidireccionales pueden causar ambigüedad y problemas de rendimiento."
   },
   {
-    id: 77, domain: 3, difficulty: 3, subtopic: "DAX Time Intelligence",
+    id: 77,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Time Intelligence",
     question: "¿Qué función DAX se usa para comparar un valor con el mismo periodo del año anterior?",
-    options: ["PREVIOUSYEAR()", "SAMEPERIODLASTYEAR()", "DATEADD(dates, -1, YEAR)", "Tanto B como C son válidas"],
+    options: [
+      "PREVIOUSYEAR()",
+      "SAMEPERIODLASTYEAR()",
+      "DATEADD(dates, -1, YEAR)",
+      "Tanto B como C son válidas"
+    ],
     correct: 3,
     explanation: "SAMEPERIODLASTYEAR(dates) desplaza un periodo un año atrás. DATEADD(dates, -1, YEAR) logra lo mismo con más flexibilidad (permite especificar el número de periodos y la unidad)."
   },
   {
-    id: 78, domain: 3, difficulty: 2, subtopic: "XMLA/Tabular Model",
+    id: 78,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Qué comando de XMLA endpoint permite administrar modelos semánticos programáticamente?",
-    options: ["Solo PowerShell", "TMSL (Tabular Model Scripting Language) y TOM (Tabular Object Model)", "Solo T-SQL", "Solo REST API"],
+    options: [
+      "Solo PowerShell",
+      "TMSL (Tabular Model Scripting Language) y TOM (Tabular Object Model)",
+      "Solo T-SQL",
+      "Solo REST API"
+    ],
     correct: 1,
     explanation: "El XMLA endpoint permite usar TMSL (scripts JSON) y TOM (.NET) para gestionar modelos semánticos programáticamente: crear particiones, refrescar datos, modificar medidas, etc."
   },
   {
-    id: 79, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 79,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué función DAX es más apropiada para contar filas distintas?",
-    options: ["COUNT()", "COUNTA()", "DISTINCTCOUNT()", "COUNTROWS()"],
+    options: [
+      "COUNT()",
+      "COUNTA()",
+      "DISTINCTCOUNT()",
+      "COUNTROWS()"
+    ],
     correct: 2,
     explanation: "DISTINCTCOUNT(columna) cuenta el número de valores únicos en una columna. COUNT() cuenta valores no vacíos, COUNTA() cuenta no blancos, y COUNTROWS() cuenta filas de una tabla."
   },
   {
-    id: 80, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 80,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Qué es el 'framing' en Direct Lake y cómo afecta a la frescura de datos?",
     options: [
       "Un tipo de visualización",
@@ -830,10 +1207,12 @@ const QUESTIONS_DOMAIN_3 = [
   }
 ];
 
-// ─── Domain 1 — Hard: T-SQL Optimization (IDs 81-90) ───
 const QUESTIONS_TSQL_HARD = [
   {
-    id: 81, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 81,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "En un Data Warehouse de Fabric, ¿qué vista del sistema debes consultar para obtener el plan de ejecución de una query T-SQL reciente?",
     options: [
       "sys.dm_exec_requests",
@@ -845,7 +1224,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "Fabric Warehouse expone las vistas queryinsights.exec_requests_history (historial de queries) y queryinsights.frequently_run_queries (queries frecuentes). Estas son la forma correcta de monitorizar y optimizar el rendimiento en Fabric, en lugar de sys.dm_exec_requests que pertenece a SQL Server."
   },
   {
-    id: 82, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 82,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Cuál es el efecto de ejecutar CREATE STATISTICS manualmente en una tabla de Fabric Warehouse?",
     options: [
       "Crea un índice columnstore adicional",
@@ -857,7 +1239,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "CREATE STATISTICS actualiza los histogramas del optimizador de consultas. Aunque Fabric crea estadísticas automáticas, crearlas manualmente sobre columnas con sesgos de datos o joins frecuentes puede mejorar significativamente los planes de ejecución."
   },
   {
-    id: 83, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 83,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "Al escribir una query con múltiples JOINs en Fabric Warehouse, ¿cuál de las siguientes estrategias tiene mayor impacto en el rendimiento?",
     options: [
       "Usar NOLOCK en todas las tablas",
@@ -869,7 +1254,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "Filtrar pronto reduce la cardinalidad de los conjuntos intermedios. El optimizador distribuido de Fabric se beneficia enormemente de predicados tempranos, ya que minimizan el movimiento de datos entre nodos en operaciones de JOIN. Fabric redistribuye datos (shuffle) para JOINs, y menos filas = menos shuffle."
   },
   {
-    id: 84, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 84,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Qué hace la instrucción TRUNCATE TABLE vs DELETE FROM en términos de rendimiento en Fabric Warehouse?",
     options: [
       "Son equivalentes en rendimiento",
@@ -881,7 +1269,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "TRUNCATE TABLE es una operación DDL que elimina todos los datos de una tabla de forma masiva sin generar un log de transacciones por cada fila eliminada, siendo órdenes de magnitud más rápida que DELETE FROM para vaciar tablas completas."
   },
   {
-    id: 85, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 85,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "En Fabric Warehouse, ¿cómo se pueden materializar resultados intermedios costosos para reutilizarlos en múltiples partes de una query compleja?",
     options: [
       "Con índices secundarios sobre las columnas de JOIN",
@@ -893,7 +1284,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "En Fabric Warehouse, las tablas de staging (tablas reales o CTAS — CREATE TABLE AS SELECT) materializan resultados intermedios. Las CTEs son lógicas y el optimizador puede o no materializarlas. Para resultados costosos reutilizados múltiples veces, CTAS en una tabla temporal o de staging ofrece la mejor garantía de rendimiento."
   },
   {
-    id: 86, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 86,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Qué tipo de columnar format utiliza internamente Fabric Warehouse y qué ventaja de rendimiento ofrece para cargas analíticas?",
     options: [
       "Row-store con índices B-tree: óptimo para OLTP",
@@ -905,7 +1299,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "Fabric Warehouse usa columnstore como formato subyacente. Los columnstore indexes comprimen columnas individualmente y el motor puede saltar rowgroups enteros que no cumplen predicados (segment/partition elimination), lo que reduce drásticamente el I/O en queries analíticas que sólo necesitan pocas columnas de tablas grandes."
   },
   {
-    id: 87, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 87,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Cuándo es recomendable usar CTAS (CREATE TABLE AS SELECT) en lugar de INSERT INTO ... SELECT en Fabric Warehouse?",
     options: [
       "Cuando se quieren añadir filas a una tabla existente sin perder los datos previos",
@@ -917,7 +1314,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "CTAS crea la tabla y carga los datos en una sola operación paralela optimizada, aprovechando al máximo la arquitectura distribuida de Fabric. Es la forma más eficiente de crear tablas derivadas o transformadas. INSERT INTO ... SELECT es mejor cuando necesitas añadir datos incrementalmente a una tabla ya existente."
   },
   {
-    id: 88, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 88,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "En una pipeline de Fabric, tienes una actividad Copy Data que carga 100 millones de filas en una tabla Lakehouse. ¿Qué configuración mejora más el rendimiento?",
     options: [
       "Reducir el batch size a 100 filas para menor presión de memoria",
@@ -929,7 +1329,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "Usar PolyBase staging + formato Parquet o staging en Blob es una práctica estándar para cargas masivas. El formato Parquet ofrece compresión columnar y es el formato nativo de Delta Lake. El staging descompone la carga en lectura paralela + escritura masiva, evitando inserciones fila a fila."
   },
   {
-    id: 89, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 89,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Qué consulta T-SQL permite ver el tiempo de ejecución promedio y número de ejecuciones de las queries más frecuentes en Fabric Warehouse?",
     options: [
       "SELECT * FROM sys.dm_exec_query_stats ORDER BY total_elapsed_time DESC",
@@ -941,7 +1344,10 @@ const QUESTIONS_TSQL_HARD = [
     explanation: "En Fabric Warehouse, la vista queryinsights.frequently_run_queries muestra las queries ejecutadas con mayor frecuencia junto con métricas de rendimiento agregadas. Es la herramienta correcta para Fabric, a diferencia de sys.dm_exec_query_stats que es específica de SQL Server/Azure SQL."
   },
   {
-    id: 90, domain: 1, difficulty: 3, subtopic: "Dataflows Gen2",
+    id: 90,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué es el 'query folding' en el contexto de Flujos de Datos Gen2 (Power Query) en Fabric y por qué es crucial para el rendimiento?",
     options: [
       "La capacidad de combinar múltiples consultas en un solo archivo de configuración",
@@ -954,10 +1360,12 @@ const QUESTIONS_TSQL_HARD = [
   }
 ];
 
-// ─── Domain 3 — Hard: Direct Lake (IDs 91-100) ───
 const QUESTIONS_DIRECT_LAKE_HARD = [
   {
-    id: 91, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 91,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Cuál es la diferencia fundamental entre Direct Lake mode e Import mode en un modelo semántico de Fabric?",
     options: [
       "Import carga datos en memoria una sola vez; Direct Lake lee archivos Delta directamente sin importar, con rendimiento in-memory bajo demanda",
@@ -969,7 +1377,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Import mode copia los datos en la caché in-memory del modelo semántico (Vertipaq). Direct Lake lee los archivos Parquet/Delta de OneLake directamente, cargando columnas en memoria solo cuando son necesarias (transcoding), ofreciendo la velocidad de Import sin necesidad de un proceso de actualización y con datos siempre frescos."
   },
   {
-    id: 92, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 92,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿En qué situación un modelo Direct Lake realiza un 'fallback' automático a DirectQuery?",
     options: [
       "Cuando el usuario no tiene permisos de Workspace Contributor",
@@ -981,7 +1392,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Direct Lake hace fallback a DirectQuery cuando: (1) los datos superan los límites de la capacidad de Fabric, (2) se usan features incompatibles como calculated tables nativas o certain DAX functions, (3) los datos vienen de shortcuts no compatibles. El fallback es automático y transparente pero impacta el rendimiento."
   },
   {
-    id: 93, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 93,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "Para un modelo Direct Lake, ¿cuál es el origen de datos compatible?",
     options: [
       "Cualquier fuente que se pueda conectar desde Power BI Desktop",
@@ -993,7 +1407,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Direct Lake requiere tablas Delta almacenadas en OneLake. Pueden estar en cualquier Lakehouse o Warehouse del mismo tenant de Fabric, no necesariamente del mismo workspace. No puede conectarse a fuentes externas como Azure SQL, ni a archivos CSV/JSON directamente."
   },
   {
-    id: 94, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 94,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Qué es el proceso de 'framing' en Direct Lake y cuándo se produce?",
     options: [
       "La visualización del modelo en pantalla completa",
@@ -1005,7 +1422,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Framing es el proceso por el cual Direct Lake identifica y 'bloquea' el snapshot de los archivos Delta del momento actual (similar al mecanismo de snapshot isolation de Delta). Hasta que ocurra un nuevo framing, el modelo ve los mismos datos. El framing ocurre automáticamente en ciertos eventos y se puede forzar con el comando de actualización del modelo."
   },
   {
-    id: 95, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 95,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "En un modelo Direct Lake, ¿cómo se implementa Row-Level Security (RLS)?",
     options: [
       "No es posible usar RLS en Direct Lake, hay que migrar a Import",
@@ -1017,7 +1437,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Direct Lake soporta RLS estándar con roles definidos en DAX, igual que Import mode. Los filtros DAX se aplican sobre las columnas cargadas en memoria. Sin embargo, si el modelo hace fallback a DirectQuery por algún motivo, el RLS del modelo semántico sigue funcionando."
   },
   {
-    id: 96, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 96,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Qué impacto tiene la ejecución de OPTIMIZE en las tablas Delta del Lakehouse sobre un modelo Direct Lake que apunta a esas tablas?",
     options: [
       "Ninguno; Direct Lake solo lee datos, no se ve afectado por operaciones de mantenimiento",
@@ -1029,7 +1452,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Cuando OPTIMIZE compacta los archivos Delta, los archivos físicos cambian. El modelo Direct Lake tiene un framing que apunta a los archivos anteriores. Al detectar que los archivos han cambiado en el próximo framing, recarga las columnas necesarias. Esto es controlado y esperado, pero puede causar una breve latencia en la primera query post-optimización."
   },
   {
-    id: 97, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 97,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Cuál es el límite de tamaño de tabla en Direct Lake según la capacidad de Fabric?",
     options: [
       "1 GB por tabla independientemente de la capacidad",
@@ -1041,7 +1467,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Los límites de Direct Lake escalan con el SKU de la capacidad de Fabric. Capacidades más pequeñas (F2, F4) tienen límites inferiores de filas por tabla y de cardinality. Capacidades premium (F64+) permiten tablas mucho más grandes. Cuando se superan los límites del SKU, el modelo hace fallback automático a DirectQuery."
   },
   {
-    id: 98, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 98,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Cómo afecta la partición de tablas Delta al rendimiento de un modelo Direct Lake?",
     options: [
       "Las particiones siempre degradan el rendimiento de Direct Lake",
@@ -1053,7 +1482,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "La partición de tablas Delta es beneficiosa para Direct Lake cuando los reports filtran por la columna de partición (típicamente fecha). Direct Lake aplica partition pruning: solo transcoda (carga en memoria) los archivos de las particiones que contienen datos relevantes para la query, reduciendo la memoria necesaria y acelerando la respuesta."
   },
   {
-    id: 99, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 99,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "Un modelo Direct Lake experimenta lentitud progresiva durante el día aunque los datos del Lakehouse no cambien. ¿Cuál es la causa más probable?",
     options: [
       "Los archivos Delta se corrompen durante el día",
@@ -1065,7 +1497,10 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
     explanation: "Direct Lake usa VertiPaq en memoria como caché. A medida que se ejecutan queries con distintas columnas, la caché se llena. Cuando la capacidad de la caché se agota, el motor expulsa (evict) columnas menos usadas. Las queries que necesitan esas columnas expulsadas deben re-transcodarlas desde los archivos Delta, causando latencia variable. Esto se gestiona con la configuración de la capacidad y el tamaño del modelo."
   },
   {
-    id: 100, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 100,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Cuál es la diferencia entre 'Keep current data' y 'Drop and recreate' al actualizar un modelo semántico Direct Lake en Fabric?",
     options: [
       "Son opciones de compresión de archivos en el Lakehouse",
@@ -1078,12 +1513,12 @@ const QUESTIONS_DIRECT_LAKE_HARD = [
   }
 ];
 
-// ─── NEW Questions (IDs 101-300) ───
-
 const NEW_QUESTIONS_D1 = [
-  // === Direct Lake in D1 context (101-110) ===
   {
-    id: 101, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 101,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Qué comando se usa para consultar una versión anterior de una tabla Delta en un Lakehouse?",
     options: [
       "SELECT * FROM tabla WHERE version = 5",
@@ -1095,7 +1530,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Delta Lake soporta time travel con la sintaxis VERSION AS OF N o TIMESTAMP AS OF 'fecha'. Esto permite consultar un snapshot histórico sin modificar los datos actuales. Es útil para auditoría y recuperación."
   },
   {
-    id: 102, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 102,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Cuál es la diferencia entre schema enforcement y schema evolution en Delta Lake?",
     options: [
       "Son sinónimos del mismo concepto",
@@ -1107,7 +1545,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Schema enforcement (por defecto) rechaza escrituras que no coincidan con el esquema de la tabla, protegiendo la integridad. Schema evolution (habilitada con mergeSchema=true) permite que nuevas columnas se añadan automáticamente durante la escritura. Ambos mecanismos coexisten según la configuración."
   },
   {
-    id: 103, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 103,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Qué sucede si ejecutas VACUUM con un umbral de retención de 0 horas en una tabla Delta?",
     options: [
       "No tiene efecto",
@@ -1119,7 +1560,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "VACUUM con retención 0 elimina todos los archivos que no son parte del snapshot actual, destruyendo la capacidad de time travel. Por defecto Delta Lake requiere un mínimo de 168 horas (7 días) de retención. Para usar 0 hay que desactivar la comprobación con delta.retentionDurationCheck.enabled = false."
   },
   {
-    id: 104, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 104,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Qué patrón MERGE se usa para implementar un Slowly Changing Dimension Type 2 (SCD2) en Delta Lake?",
     options: [
       "MERGE con solo UPDATE SET",
@@ -1131,7 +1575,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "SCD Type 2 mantiene historial de cambios. Con MERGE: cuando un registro coincide por clave pero tiene atributos diferentes, se actualiza el registro existente (cerrando su fecha de fin) y se inserta una nueva fila con los datos actualizados y fecha de inicio actual. MERGE permite expresar ambas operaciones atómicamente."
   },
   {
-    id: 105, domain: 1, difficulty: 1, subtopic: "Delta Lake",
+    id: 105,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Delta Lake",
     question: "¿Qué archivo especial mantiene Delta Lake para gestionar las transacciones?",
     options: [
       "Un archivo .metadata en cada carpeta",
@@ -1143,7 +1590,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Delta Lake mantiene un directorio _delta_log con archivos JSON numerados secuencialmente que registran cada transacción (add/remove files, metadata changes). Cada 10 transacciones se crea un checkpoint en formato Parquet para acelerar la lectura del log."
   },
   {
-    id: 106, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 106,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Cuál es la estrategia recomendada de particionamiento para tablas Delta en un Lakehouse de Fabric?",
     options: [
       "Particionar por todas las columnas de la tabla",
@@ -1155,7 +1605,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "El particionamiento funciona mejor con columnas de baja cardinalidad (pocos valores distintos) que se usan frecuentemente como filtro. Particionar por columnas de alta cardinalidad (como un ID) crea demasiados archivos pequeños. Columnas como año, mes, país o región son candidatas ideales."
   },
   {
-    id: 107, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 107,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "En un Notebook de Fabric, ¿qué configuración de Spark permite habilitar schema evolution al escribir en una tabla Delta?",
     options: [
       "spark.conf.set('delta.schemaEvolution', 'true')",
@@ -1167,7 +1620,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "En PySpark/Spark se usa .option('mergeSchema', 'true') al escribir un DataFrame para permitir que nuevas columnas se añadan automáticamente al esquema de la tabla Delta existente. También se puede configurar globalmente con spark.databricks.delta.schema.autoMerge.enabled."
   },
   {
-    id: 108, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 108,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Qué ventaja ofrece el comando OPTIMIZE ... ZORDER BY sobre un OPTIMIZE simple en tablas Delta?",
     options: [
       "ZORDER solo compacta archivos, igual que OPTIMIZE",
@@ -1178,9 +1634,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Z-Order es una técnica de co-localidad de datos multidimensional. Organiza físicamente los datos para que valores similares de las columnas ZORDER BY estén agrupados en los mismos archivos. Esto permite data skipping eficiente: al filtrar por esas columnas, el motor puede saltar archivos enteros que no contienen datos relevantes."
   },
-  // === T-SQL avanzado en Warehouse (111-122) ===
   {
-    id: 109, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 109,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Qué cláusula T-SQL permite realizar un UPSERT (actualizar si existe, insertar si no) en Fabric Warehouse?",
     options: [
       "INSERT OR UPDATE",
@@ -1192,7 +1650,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "MERGE INTO es la instrucción T-SQL estándar para upserts. Permite definir una condición de coincidencia (ON) y acciones diferenciadas para filas que coinciden (UPDATE/DELETE) y las que no (INSERT). Es fundamental para cargas incrementales en el Data Warehouse."
   },
   {
-    id: 110, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 110,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Qué función de ventana (window function) T-SQL se usa para asignar un número secuencial a cada fila dentro de una partición?",
     options: [
       "RANK()",
@@ -1204,7 +1665,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "ROW_NUMBER() asigna un número único y secuencial a cada fila dentro de su partición, sin gaps ni repeticiones. RANK() deja gaps en caso de empates, y DENSE_RANK() no deja gaps pero puede repetir números. ROW_NUMBER es ideal para deduplicación: WHERE rn = 1."
   },
   {
-    id: 111, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 111,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "En Fabric Warehouse, ¿cuál es la sintaxis correcta para crear un stored procedure?",
     options: [
       "CREATE FUNCTION dbo.MiProceso AS BEGIN ... END",
@@ -1216,7 +1680,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Fabric Warehouse soporta stored procedures T-SQL con la sintaxis estándar CREATE PROCEDURE. Pueden contener lógica condicional, bucles, tablas temporales y múltiples sentencias SQL. Son útiles para encapsular lógica de transformación compleja."
   },
   {
-    id: 112, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 112,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Cómo se implementa una deduplicación de datos usando Window Functions en T-SQL?",
     options: [
       "SELECT DISTINCT * FROM tabla",
@@ -1228,7 +1695,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "El patrón CTE + ROW_NUMBER es estándar para deduplicación: WITH cte AS (SELECT *, ROW_NUMBER() OVER(PARTITION BY clave ORDER BY fecha DESC) AS rn FROM tabla) SELECT * FROM cte WHERE rn = 1. Esto selecciona el registro más reciente para cada clave, eliminando duplicados."
   },
   {
-    id: 113, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 113,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Qué tipo de vista en Fabric Warehouse permite encapsular lógica compleja de transformación sin materializar datos?",
     options: [
       "Vista materializada (indexed view)",
@@ -1240,7 +1710,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Las vistas estándar en Fabric Warehouse no materializan datos — la consulta subyacente se ejecuta cada vez que se consulta la vista. Son ideales para encapsular transformaciones, joins complejos y lógica de negocio reutilizable sin consumir almacenamiento adicional."
   },
   {
-    id: 114, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 114,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "¿Cuál es el propósito de la cláusula CROSS APPLY en T-SQL y cuándo se usa?",
     options: [
       "Es equivalente a un INNER JOIN estándar",
@@ -1252,7 +1725,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "CROSS APPLY evalúa la expresión de la derecha para cada fila de la izquierda, permitiendo usar valores de la fila actual como parámetros. Es como un JOIN lateral. OUTER APPLY es la variante que incluye filas sin coincidencia (como LEFT JOIN). Útil para desanidar JSON, split de strings, o TVFs parametrizadas."
   },
   {
-    id: 115, domain: 1, difficulty: 1, subtopic: "Data Warehouse",
+    id: 115,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Data Warehouse",
     question: "¿Qué tipo de tabla se crea con CREATE TABLE en un Data Warehouse de Fabric?",
     options: [
       "Tabla temporal que se elimina al cerrar la sesión",
@@ -1264,7 +1740,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "CREATE TABLE en Fabric Warehouse crea una tabla gestionada persistente. Los datos se almacenan automáticamente en OneLake en formato Delta/Parquet, con todas las ventajas de Delta Lake (ACID, versionado). La tabla persiste hasta que se elimina explícitamente."
   },
   {
-    id: 116, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 116,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Qué permite hacer un cross-database query en Fabric?",
     options: [
       "Consultar bases de datos en Azure SQL externo",
@@ -1276,7 +1755,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Cross-database queries permiten hacer JOINs entre tablas de diferentes Warehouses y SQL Endpoints de Lakehouses dentro del mismo workspace usando la notación de tres partes: NombreDB.esquema.tabla. Esto facilita consultas federadas sin mover datos."
   },
   {
-    id: 117, domain: 1, difficulty: 3, subtopic: "Data Warehouse",
+    id: 117,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Data Warehouse",
     question: "En un Warehouse de Fabric, ¿cómo se gestiona la seguridad a nivel de columna (CLS)?",
     options: [
       "Usando RLS con filtros DAX",
@@ -1288,7 +1770,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "CLS en Fabric Warehouse usa el mecanismo estándar T-SQL de permisos granulares: DENY SELECT ON dbo.Empleados(Salario) TO rol_basico. Esto impide que los usuarios del rol vean los valores de esa columna específica, devolviendo NULL o error según la configuración."
   },
   {
-    id: 118, domain: 1, difficulty: 2, subtopic: "Data Warehouse",
+    id: 118,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Data Warehouse",
     question: "¿Para qué se usa la expresión de tabla común (CTE - Common Table Expression) en T-SQL?",
     options: [
       "Para crear tablas permanentes con nombre",
@@ -1299,9 +1784,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Una CTE (WITH nombre AS (SELECT ...)) define un resultado temporal con nombre que existe solo durante la ejecución de la sentencia. Mejora la legibilidad de queries complejas, permite recursividad y se puede referenciar múltiples veces en la query principal. No materializa datos — es lógica."
   },
-  // === PySpark/SparkSQL en notebooks (119-128) ===
   {
-    id: 119, domain: 1, difficulty: 1, subtopic: "Notebooks/Spark",
+    id: 119,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué comando PySpark se usa para leer una tabla Delta de un Lakehouse en un notebook de Fabric?",
     options: [
       "pd.read_csv('tabla')",
@@ -1313,7 +1800,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "En notebooks de Fabric, las tablas Delta del Lakehouse se leen con spark.read.format('delta').load() indicando la ruta, o directamente con spark.sql() usando SparkSQL. Las tablas del Lakehouse montado están disponibles automáticamente en el catálogo."
   },
   {
-    id: 120, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 120,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué magic command se usa en un notebook de Fabric para cambiar el lenguaje de una celda a SQL?",
     options: [
       "%python",
@@ -1325,7 +1815,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los notebooks de Fabric soportan magic commands para cambiar el lenguaje de celdas individuales: %%sql para SparkSQL, %%pyspark para Python, %%scala para Scala, %%r para R. El lenguaje por defecto del notebook se define al crearlo."
   },
   {
-    id: 121, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 121,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "¿Cómo se escribe un DataFrame de PySpark como tabla Delta en un Lakehouse de Fabric?",
     options: [
       "df.to_csv('tabla.csv')",
@@ -1337,7 +1830,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "saveAsTable() registra la tabla en el catálogo del Lakehouse además de escribir los datos en formato Delta. .mode() controla el comportamiento: 'overwrite' reemplaza datos, 'append' añade filas, 'errorifexists' falla si la tabla ya existe."
   },
   {
-    id: 122, domain: 1, difficulty: 3, subtopic: "Notebooks/Spark",
+    id: 122,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué hace el método .groupBy().agg() en PySpark y cuándo se usa?",
     options: [
       "Solo cuenta filas por grupo",
@@ -1349,7 +1845,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "groupBy().agg() es el equivalente PySpark de GROUP BY con múltiples agregaciones: df.groupBy('region').agg(F.sum('ventas').alias('total'), F.avg('precio').alias('precio_medio'), F.count('id').alias('num_transacciones')). Es más flexible que groupBy().sum() porque permite múltiples agregaciones con alias."
   },
   {
-    id: 123, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 123,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "En un notebook de Fabric, ¿cómo se realiza un JOIN entre dos DataFrames de PySpark?",
     options: [
       "df1.merge(df2, on='id')",
@@ -1361,7 +1860,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "PySpark usa .join() con tres argumentos: el DataFrame derecho, la condición de join, y el tipo ('inner', 'left', 'right', 'full', 'cross', 'semi', 'anti'). También se puede usar SparkSQL con spark.sql() después de registrar los DataFrames como vistas temporales."
   },
   {
-    id: 124, domain: 1, difficulty: 3, subtopic: "Notebooks/Spark",
+    id: 124,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué es una UDF (User Defined Function) en PySpark y cuándo se recomienda evitarla?",
     options: [
       "Una función integrada de Spark que siempre es eficiente",
@@ -1373,7 +1875,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Las UDFs de PySpark ejecutan código Python fila a fila, requiriendo serialización/deserialización entre la JVM de Spark y el intérprete de Python. Esto elimina las optimizaciones del motor Catalyst y Tungsten. Siempre que sea posible, usar funciones integradas de pyspark.sql.functions que se ejecutan nativamente en la JVM."
   },
   {
-    id: 125, domain: 1, difficulty: 1, subtopic: "Notebooks/Spark",
+    id: 125,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué hace el método .display() en un notebook de Fabric?",
     options: [
       "Exporta datos a un archivo PDF",
@@ -1385,7 +1890,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "display() es un método especial de Fabric/Databricks que renderiza DataFrames como tablas interactivas con opciones de visualización integradas (gráficos de barras, líneas, etc.). Es más rico que .show() que solo muestra texto plano en la salida."
   },
   {
-    id: 126, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 126,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "¿Cómo se ejecuta una operación MERGE en una tabla Delta desde un notebook PySpark?",
     options: [
       "df.merge(tabla_delta)",
@@ -1397,7 +1905,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "En PySpark se usa la API de DeltaTable: from delta.tables import DeltaTable; dt = DeltaTable.forName(spark, 'tabla'); dt.alias('t').merge(source.alias('s'), 't.id = s.id').whenMatchedUpdate(...).whenNotMatchedInsert(...).execute(). También se puede usar %%sql con MERGE INTO directamente."
   },
   {
-    id: 127, domain: 1, difficulty: 3, subtopic: "Notebooks/Spark",
+    id: 127,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué diferencia hay entre una transformación y una acción en PySpark?",
     options: [
       "Son lo mismo, ambas ejecutan operaciones inmediatamente",
@@ -1409,7 +1920,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "PySpark usa evaluación lazy: las transformaciones (filter, select, groupBy, join) construyen un plan lógico sin ejecutar nada. Solo cuando se invoca una acción (collect, count, show, write, display) se ejecuta todo el plan. Esto permite al optimizador Catalyst reorganizar y optimizar las operaciones."
   },
   {
-    id: 128, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 128,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "¿Cómo se pasan parámetros a un notebook cuando se ejecuta desde una Pipeline de Fabric?",
     options: [
       "No es posible pasar parámetros a notebooks",
@@ -1420,9 +1934,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Los notebooks de Fabric soportan parametrización: se crea una celda marcada como 'parameters' con variables con valores por defecto. Al invocar el notebook desde una pipeline, la actividad Notebook permite especificar valores que sobrescriben los valores por defecto. Esto permite reutilizar notebooks con diferentes configuraciones."
   },
-  // === Pipelines avanzados (129-138) ===
   {
-    id: 129, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 129,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Qué actividad de una Pipeline de Fabric permite ejecutar una acción para cada elemento de una lista?",
     options: [
       "Loop Activity",
@@ -1434,7 +1950,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "ForEach Activity itera sobre una colección (array) y ejecuta las actividades internas una vez por cada elemento. Soporta ejecución secuencial o paralela (batch count configurable). Es ideal para procesar múltiples archivos, tablas o particiones."
   },
   {
-    id: 130, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 130,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Cómo se implementa lógica condicional (si/entonces) en una Pipeline de Fabric?",
     options: [
       "Con un Switch Activity que evalúa expresiones",
@@ -1446,7 +1965,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "If Condition Activity evalúa una expresión booleana (usando expression language de pipelines) y ejecuta diferentes actividades según el resultado: rama 'True' si la condición se cumple, rama 'False' si no. También existe Switch Activity para múltiples opciones basadas en un valor."
   },
   {
-    id: 131, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 131,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "¿Qué son las expresiones dinámicas en Pipelines de Fabric y qué formato usan?",
     options: [
       "Consultas SQL embebidas en la pipeline",
@@ -1458,7 +1980,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Las expresiones dinámicas usan la sintaxis @{expresion} y permiten construir valores en tiempo de ejecución: @pipeline().parameters.nombre, @activity('CopyData').output.rowsCopied, @utcnow(), @concat(), etc. Permiten pipelines paramétricos y reutilizables."
   },
   {
-    id: 132, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 132,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Cómo se configura el manejo de errores en una Pipeline de Fabric?",
     options: [
       "No hay manejo de errores, la pipeline siempre se detiene",
@@ -1470,7 +1995,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Las pipelines permiten definir el flujo de control con 4 tipos de dependencia: Success (ejecutar si éxito), Failure (ejecutar si fallo — ideal para logging/alertas), Completion (ejecutar siempre — para cleanup), Skip (si se saltó). Cada actividad también tiene reintentos configurables."
   },
   {
-    id: 133, domain: 1, difficulty: 1, subtopic: "Pipelines",
+    id: 133,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Pipelines",
     question: "¿Qué actividad de Pipeline se usa para copiar datos de una fuente externa a un Lakehouse?",
     options: [
       "Dataflow Activity",
@@ -1482,7 +2010,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Copy Data Activity mueve datos de un origen a un destino con configuración visual de mapeo de columnas, formato de archivo y comportamiento de escritura. Soporta 80+ conectores incluyendo bases de datos, APIs, archivos y servicios cloud."
   },
   {
-    id: 134, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 134,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "¿Cómo se parametriza una Pipeline para ejecutarla con diferentes configuraciones sin duplicarla?",
     options: [
       "Creando una pipeline diferente para cada configuración",
@@ -1494,7 +2025,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los parámetros de pipeline se definen con nombre, tipo (String, Int, Bool, etc.) y valor por defecto. Se referencian en cualquier campo con @pipeline().parameters.NombreParametro. Permiten reutilizar la misma pipeline con diferentes tablas, fechas, rutas, etc. Los valores se pasan al disparar la ejecución."
   },
   {
-    id: 135, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 135,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Para qué sirve la actividad 'Set Variable' en una Pipeline de Fabric?",
     options: [
       "Para crear nuevas tablas en el Warehouse",
@@ -1506,7 +2040,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Set Variable asigna un valor (estático o dinámico mediante expresiones) a una variable de pipeline previamente declarada. Las variables mantienen estado entre actividades, útil para acumular contadores, almacenar resultados intermedios o construir valores dinámicos a lo largo del pipeline."
   },
   {
-    id: 136, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 136,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "¿Qué actividad permite invocar una pipeline desde otra pipeline (composición)?",
     options: [
       "No es posible, cada pipeline es independiente",
@@ -1518,7 +2055,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Execute Pipeline Activity permite invocar una pipeline hijo desde una pipeline padre, pasando parámetros. Soporta ejecución síncrona (wait: true — espera a que termine) o asíncrona (wait: false — continúa sin esperar). Facilita la modularización y reutilización de lógica de orquestación."
   },
   {
-    id: 137, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 137,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Cómo se programa la ejecución automática de una Pipeline de Fabric?",
     options: [
       "Solo mediante ejecución manual desde el portal",
@@ -1529,9 +2069,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Las pipelines soportan triggers de programación donde se configura: frecuencia (cada N minutos/horas/días/semanas), hora de inicio, zona horaria y ventana de actividad. También pueden dispararse manualmente o invocarse desde otras pipelines o APIs REST."
   },
-  // === Dataflows Gen2 (138-145) ===
   {
-    id: 138, domain: 1, difficulty: 1, subtopic: "Dataflows Gen2",
+    id: 138,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Dataflows Gen2",
     question: "¿En qué lenguaje se basan las transformaciones de los Dataflows Gen2 en Fabric?",
     options: [
       "Python",
@@ -1543,7 +2085,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los Dataflows Gen2 usan Power Query M como lenguaje subyacente. La interfaz visual genera código M automáticamente, pero también se puede editar manualmente para transformaciones avanzadas. M es un lenguaje funcional orientado a transformación de datos."
   },
   {
-    id: 139, domain: 1, difficulty: 2, subtopic: "Dataflows Gen2",
+    id: 139,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Dataflows Gen2",
     question: "¿Cuál es la diferencia entre staging y destino (destination) en un Dataflow Gen2?",
     options: [
       "Son lo mismo, ambos almacenan el resultado final",
@@ -1555,7 +2100,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "En Dataflows Gen2, el staging es un área temporal en el Lakehouse del workspace donde se cargan los datos antes de procesarlos (habilitando escalado con Spark). El destino (data destination) es donde se escriben los datos finales: un Lakehouse, Warehouse, u otro almacén de Fabric."
   },
   {
-    id: 140, domain: 1, difficulty: 2, subtopic: "Dataflows Gen2",
+    id: 140,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué indica el icono de 'query folding' verde en el editor de Power Query de un Dataflow Gen2?",
     options: [
       "Que la consulta ha finalizado correctamente",
@@ -1567,7 +2115,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "El indicador verde de query folding significa que ese paso de Power Query se 'pliega' al origen: se traduce a SQL nativo (u otro lenguaje del origen) y se ejecuta en el servidor fuente. Esto es mucho más eficiente que descargar todos los datos y procesarlos en Fabric. Los pasos que rompen el folding se procesan localmente."
   },
   {
-    id: 141, domain: 1, difficulty: 3, subtopic: "Dataflows Gen2",
+    id: 141,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué transformación de Power Query M se usa para 'despivotar' columnas en un Dataflow Gen2?",
     options: [
       "Table.Transpose",
@@ -1579,7 +2130,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Table.UnpivotOtherColumns(tabla, columnasFijas, nombreAtributo, nombreValor) convierte columnas de datos en filas, normalizando tablas anchas. Es el equivalente M de UNPIVOT en T-SQL. En la interfaz visual se accede desde 'Transform > Unpivot Columns'."
   },
   {
-    id: 142, domain: 1, difficulty: 2, subtopic: "Dataflows Gen2",
+    id: 142,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Dataflows Gen2",
     question: "¿Cuál es el destino de datos más común para un Dataflow Gen2 en Fabric?",
     options: [
       "Azure SQL Database externo",
@@ -1591,7 +2145,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "El destino más común es una tabla Delta en un Lakehouse. Los Dataflows Gen2 también pueden escribir en tablas de Warehouse de Fabric. La escritura en Lakehouse es directa y los datos quedan disponibles inmediatamente para Spark, SQL y modelos semánticos."
   },
   {
-    id: 143, domain: 1, difficulty: 3, subtopic: "Dataflows Gen2",
+    id: 143,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Dataflows Gen2",
     question: "¿Cómo se configura la actualización incremental (incremental refresh) en un Dataflow Gen2?",
     options: [
       "Se activa automáticamente sin configuración",
@@ -1603,7 +2160,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Para incremental refresh en Dataflows Gen2, se filtran los datos origen usando los parámetros especiales RangeStart y RangeEnd que Power Query reconoce. Fabric automatiza la creación de particiones y solo refresca los datos dentro del rango de tiempo actual, reduciendo drásticamente el procesamiento."
   },
   {
-    id: 144, domain: 1, difficulty: 1, subtopic: "Dataflows Gen2",
+    id: 144,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué ventaja ofrece un Dataflow Gen2 sobre un notebook Spark para transformaciones simples?",
     options: [
       "Mayor rendimiento con datos grandes",
@@ -1614,9 +2174,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Los Dataflows Gen2 ofrecen una experiencia visual sin código basada en Power Query, ideal para analistas y usuarios de negocio. Los notebooks requieren conocimiento de PySpark/SQL y son más apropiados para transformaciones complejas, ML, o procesamiento de datos a escala masiva."
   },
-  // === Real-Time Intelligence (145-154) ===
   {
-    id: 145, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 145,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué fuentes de datos puede capturar un Eventstream en Fabric?",
     options: [
       "Solo bases de datos SQL",
@@ -1628,7 +2190,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Eventstream soporta múltiples fuentes de streaming: Azure Event Hubs (eventos), IoT Hub (dispositivos IoT), Custom App (SDK de Fabric para aplicaciones propias), Database CDC (captura de cambios), y datos de ejemplo para desarrollo. Permite transformar y enrutar los datos visualmente."
   },
   {
-    id: 146, domain: 1, difficulty: 3, subtopic: "Real-Time Intelligence",
+    id: 146,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué función de windowing en KQL agrupa eventos en ventanas de tiempo de 5 minutos?",
     options: [
       "GROUP BY bin(timestamp, 5m)",
@@ -1640,7 +2205,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "En KQL, bin() redondea valores a intervalos. Combinado con summarize, agrupa eventos en ventanas temporales: Tabla | summarize count() by bin(Timestamp, 5m) cuenta eventos por intervalos de 5 minutos. Esto es esencial para análisis de series temporales y detección de patrones."
   },
   {
-    id: 147, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 147,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué es Data Activator (Reflex) en Fabric?",
     options: [
       "Un motor de procesamiento de datos batch",
@@ -1652,7 +2220,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Data Activator (Reflex) permite definir reglas sobre datos en tiempo real: si la temperatura supera 80°C, si las ventas caen un 20%, etc. Cuando se detecta la condición, dispara acciones automáticas como enviar emails, mensajes de Teams, o ejecutar flujos de Power Automate."
   },
   {
-    id: 148, domain: 1, difficulty: 3, subtopic: "Real-Time Intelligence",
+    id: 148,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué consulta KQL busca anomalías en una serie temporal de datos de sensores?",
     options: [
       "Tabla | where valor > promedio",
@@ -1664,7 +2235,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "KQL tiene funciones integradas de análisis de series temporales: make-series crea series regulares, y series_decompose_anomalies() detecta puntos anómalos usando descomposición estacional. Es una capacidad avanzada de Eventhouse para monitorización y detección de outliers."
   },
   {
-    id: 149, domain: 1, difficulty: 1, subtopic: "Real-Time Intelligence",
+    id: 149,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Real-Time Intelligence",
     question: "¿A qué destinos puede enviar datos un Eventstream?",
     options: [
       "Solo a Eventhouse",
@@ -1676,7 +2250,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Eventstream enruta datos procesados a múltiples destinos: Eventhouse/KQL Database para análisis de streaming, Lakehouse para persistencia en Delta, Reflex/Data Activator para alertas automáticas, y Custom App para aplicaciones propias vía SDK."
   },
   {
-    id: 150, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 150,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué operador KQL se usa para añadir una columna calculada a la consulta sin modificar la tabla original?",
     options: [
       "ALTER TABLE ADD",
@@ -1688,7 +2265,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "El operador 'extend' añade columnas calculadas al resultado: Tabla | extend DuracionMinutos = Duracion / 60. A diferencia de 'project', extend mantiene todas las columnas existentes y añade las nuevas. 'project' selecciona solo las columnas especificadas."
   },
   {
-    id: 151, domain: 1, difficulty: 3, subtopic: "Real-Time Intelligence",
+    id: 151,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Intelligence",
     question: "¿Cómo se implementa un JOIN temporal entre dos tablas en KQL?",
     options: [
       "JOIN ... ON columna = columna (igual que SQL)",
@@ -1700,7 +2280,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "KQL soporta JOINs temporales usando la función between en la condición de join para correlacionar eventos dentro de una ventana de tiempo. Esto es esencial para IoT y telemetría: correlacionar lecturas de diferentes sensores que ocurren dentro de un margen temporal."
   },
   {
-    id: 152, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 152,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué política de retención se puede configurar en una base de datos KQL de Eventhouse?",
     options: [
       "No hay políticas de retención, los datos se mantienen indefinidamente",
@@ -1711,9 +2294,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Eventhouse permite configurar: HotCachePeriod (tiempo que los datos permanecen en caché SSD para consultas rápidas, ej: 30 días) y SoftDeletePeriod (periodo total de retención, ej: 365 días). Los datos fuera del hot cache se mueven a almacenamiento frío pero siguen siendo consultables con mayor latencia."
   },
-  // === Medallion Architecture (153-160) ===
   {
-    id: 153, domain: 1, difficulty: 1, subtopic: "Medallion Architecture",
+    id: 153,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Medallion Architecture",
     question: "¿Qué tipo de datos se almacenan en la capa Bronze de la Medallion Architecture?",
     options: [
       "Datos completamente transformados y listos para reportes",
@@ -1725,7 +2310,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La capa Bronze almacena datos raw exactamente como llegan de las fuentes origen: sin limpieza, sin transformaciones, preservando el formato original. Sirve como 'zona de landing' y fuente de verdad para reprocesamiento. Se implementa típicamente como un Lakehouse dedicado."
   },
   {
-    id: 154, domain: 1, difficulty: 2, subtopic: "Medallion Architecture",
+    id: 154,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Medallion Architecture",
     question: "¿Qué transformaciones se realizan típicamente en la capa Silver?",
     options: [
       "Solo carga de datos sin transformación",
@@ -1737,7 +2325,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La capa Silver contiene datos limpios, validados y conformados: tipos correctos, NULLs tratados, duplicados eliminados, formatos estandarizados. Es la capa 'enterprise-grade' que conforma las dimensiones y hechos. Los datos de Silver ya son confiables para análisis, pero pueden necesitar agregación para casos específicos."
   },
   {
-    id: 155, domain: 1, difficulty: 2, subtopic: "Medallion Architecture",
+    id: 155,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Medallion Architecture",
     question: "¿Qué contiene la capa Gold de la Medallion Architecture?",
     options: [
       "Datos sin procesar en formato original",
@@ -1749,7 +2340,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La capa Gold contiene datos modelados para consumo final: star schemas para Power BI, tablas agregadas para dashboards, métricas de negocio precalculadas. Es la capa que consume directamente el modelo semántico (Direct Lake o Import) y los usuarios de negocio."
   },
   {
-    id: 156, domain: 1, difficulty: 3, subtopic: "Medallion Architecture",
+    id: 156,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Medallion Architecture",
     question: "¿Cómo se implementa la Medallion Architecture en Fabric usando múltiples Lakehouses?",
     options: [
       "Todo en un solo Lakehouse con carpetas diferentes",
@@ -1761,7 +2355,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La práctica recomendada es usar un Lakehouse por capa: LH_Bronze (datos raw), LH_Silver (datos limpios), LH_Gold (datos curados). Las pipelines y notebooks mueven datos entre capas. Shortcuts pueden dar visibilidad cross-lakehouse. Cada uno tiene su SQL endpoint para consultas."
   },
   {
-    id: 157, domain: 1, difficulty: 2, subtopic: "Medallion Architecture",
+    id: 157,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Medallion Architecture",
     question: "¿Qué estrategia de calidad de datos se aplica en la transición de Bronze a Silver?",
     options: [
       "No se valida nada, solo se cambia el formato",
@@ -1773,7 +2370,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La transición Bronze→Silver incluye: validación de esquema (reject o quarantine filas con formato incorrecto), manejo de NULLs (fill, drop, o flag), deduplicación (con ROW_NUMBER o MERGE), casting a tipos correctos, y separación de filas que no pasan validación en una tabla de cuarentena para revisión."
   },
   {
-    id: 158, domain: 1, difficulty: 3, subtopic: "Medallion Architecture",
+    id: 158,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Medallion Architecture",
     question: "¿Cuál es el patrón recomendado para la carga incremental de datos en cada capa de la Medallion Architecture?",
     options: [
       "Full refresh diario de todas las capas",
@@ -1784,9 +2384,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "El patrón eficiente: Bronze append-only (nuevos datos se añaden con marca temporal de ingesta), Silver usa MERGE para upsert (actualiza existentes, inserta nuevos, evita duplicados), Gold se reconstruye o actualiza incrementalmente según el tipo de tabla (agregaciones pueden requerir recálculo completo, dimensiones SCD son incrementales)."
   },
-  // === Shortcuts (159-164) ===
   {
-    id: 159, domain: 1, difficulty: 1, subtopic: "Shortcuts",
+    id: 159,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Shortcuts",
     question: "¿Qué tipos de shortcuts se pueden crear en un Lakehouse de Fabric?",
     options: [
       "Solo shortcuts a otros Lakehouses",
@@ -1798,7 +2400,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los shortcuts soportan destinos internos (otros items de OneLake como Lakehouses y Warehouses en el mismo o diferente workspace) y externos (ADLS Gen2, Amazon S3, Google Cloud Storage, Dataverse). Los datos permanecen en el origen y se acceden a través del shortcut como si fueran locales."
   },
   {
-    id: 160, domain: 1, difficulty: 2, subtopic: "Shortcuts",
+    id: 160,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Shortcuts",
     question: "¿Qué limitación importante tienen los shortcuts en relación con los modelos Direct Lake?",
     options: [
       "Los shortcuts no se pueden usar con modelos semánticos",
@@ -1810,7 +2415,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Direct Lake necesita leer archivos Delta/Parquet nativos de OneLake. Los shortcuts a fuentes externas pueden provocar que Direct Lake haga fallback a DirectQuery si los archivos no están en formato compatible o si hay latencia de acceso. Los shortcuts internos (OneLake a OneLake) generalmente funcionan bien con Direct Lake."
   },
   {
-    id: 161, domain: 1, difficulty: 2, subtopic: "Shortcuts",
+    id: 161,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Shortcuts",
     question: "¿En qué sección de un Lakehouse se pueden crear shortcuts?",
     options: [
       "Solo en la sección Tables",
@@ -1822,7 +2430,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los shortcuts se pueden crear en ambas secciones: en Tables para referenciar tablas Delta de otros Lakehouses/Warehouses, y en Files para referenciar carpetas de archivos de cualquier tipo. Esto permite componer un Lakehouse virtual con datos distribuidos en múltiples ubicaciones."
   },
   {
-    id: 162, domain: 1, difficulty: 3, subtopic: "Shortcuts",
+    id: 162,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Shortcuts",
     question: "¿Cómo se gestionan los permisos de acceso a datos referenciados mediante shortcuts?",
     options: [
       "El shortcut hereda los permisos del Lakehouse donde se crea",
@@ -1833,9 +2444,11 @@ const NEW_QUESTIONS_D1 = [
     correct: 1,
     explanation: "Los shortcuts requieren autorización en dos niveles: (1) permiso para acceder al Lakehouse que contiene el shortcut, y (2) permisos en el recurso de destino (credenciales ADLS Gen2, IAM de S3, o permisos de workspace de OneLake). Si falta alguno, el shortcut muestra error de acceso."
   },
-  // === OneLake y Cross-queries (163-170) ===
   {
-    id: 163, domain: 1, difficulty: 1, subtopic: "OneLake",
+    id: 163,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake",
     question: "¿Qué herramienta permite explorar y gestionar archivos de OneLake desde un PC con Windows?",
     options: [
       "Power BI Desktop",
@@ -1847,7 +2460,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "OneLake File Explorer es una aplicación que se integra con el Explorador de archivos de Windows, sincronizando archivos de OneLake como si fueran una carpeta local. Permite arrastrar y soltar archivos, navegar por workspaces y Lakehouses, todo desde el explorador de Windows."
   },
   {
-    id: 164, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 164,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué es 'Mirroring' en Microsoft Fabric?",
     options: [
       "Crear copias de seguridad manuales",
@@ -1859,7 +2475,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Mirroring replica datos de fuentes externas (Azure SQL Database, Azure Cosmos DB, Snowflake, etc.) a OneLake en formato Delta de forma continua y casi en tiempo real. Los datos replicados se pueden consultar con SQL endpoint, Spark, o usar en modelos Direct Lake sin crear pipelines manuales."
   },
   {
-    id: 165, domain: 1, difficulty: 3, subtopic: "OneLake",
+    id: 165,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "OneLake",
     question: "¿Qué son los Data Domains de OneLake y para qué se usan?",
     options: [
       "Los nombres DNS de los endpoints de Fabric",
@@ -1871,7 +2490,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Los Domains en Fabric permiten agrupar workspaces por área de negocio, facilitando la governance descentralizada (cada dominio puede tener sus propias políticas) y el descubrimiento de datos (los usuarios pueden navegar por dominio para encontrar datos relevantes). Es una implementación del concepto de Data Mesh."
   },
   {
-    id: 166, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 166,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué protocolo de acceso permite que herramientas como Azure Databricks o Apache Spark accedan directamente a datos en OneLake?",
     options: [
       "HTTP/HTTPS estándar",
@@ -1883,7 +2505,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "OneLake usa el protocolo ABFS (Azure Blob File System), el mismo que ADLS Gen2. La URL sigue el formato abfss://workspace@onelake.dfs.fabric.microsoft.com/item/path. Esto permite que cualquier herramienta compatible con ADLS Gen2 (Databricks, HDInsight, etc.) acceda a datos de OneLake directamente."
   },
   {
-    id: 167, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 167,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué es OneLake Data Hub en el portal de Fabric?",
     options: [
       "El dashboard de administración de storage",
@@ -1895,7 +2520,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "OneLake Data Hub es el catálogo de datos de Fabric: permite buscar datasets, ver metadatos, explorar tablas, ver endorsement y sensitivity labels, consultar linaje (de dónde vienen los datos) y crear shortcuts a datos descubiertos. Es el punto central de descubrimiento de datos."
   },
   {
-    id: 168, domain: 1, difficulty: 3, subtopic: "OneLake",
+    id: 168,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "OneLake",
     question: "¿Cómo se pueden consultar datos de un Lakehouse Y un Warehouse en la misma query T-SQL?",
     options: [
       "No es posible combinar datos de Lakehouse y Warehouse",
@@ -1907,7 +2535,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "Cross-database queries en Fabric permiten hacer JOINs entre el SQL endpoint de un Lakehouse y un Data Warehouse usando la notación de tres partes (database.schema.table). Ambos deben estar en el mismo workspace. Esto facilita consultas federadas sin mover datos entre almacenes."
   },
   {
-    id: 169, domain: 1, difficulty: 1, subtopic: "OneLake",
+    id: 169,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake",
     question: "¿Cuál es la unidad mínima de almacenamiento en la estructura de OneLake?",
     options: [
       "Tenant",
@@ -1919,7 +2550,10 @@ const NEW_QUESTIONS_D1 = [
     explanation: "La jerarquía de OneLake es: Tenant → Workspace → Item. Cada item (Lakehouse, Warehouse, Eventhouse, etc.) tiene su propio espacio en OneLake con una estructura de carpetas definida. Los workspaces contienen items, y un tenant tiene un único OneLake."
   },
   {
-    id: 170, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 170,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué ventaja ofrece Mirroring sobre una Pipeline con Copy Data para replicar datos de Azure SQL?",
     options: [
       "Mirroring es más barato porque no consume capacity",
@@ -1929,14 +2563,459 @@ const NEW_QUESTIONS_D1 = [
     ],
     correct: 1,
     explanation: "Mirroring proporciona replicación continua y automática usando Change Data Capture (CDC) del origen. Los cambios se propagan a OneLake casi en tiempo real, sin intervención. Las Pipelines con Copy Data requieren programación (cada X minutos/horas) y siempre hay un gap entre actualizaciones."
+  },
+  {
+    id: 331,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake Catalog",
+    question: "¿Para qué se usa principalmente OneLake Catalog en Fabric?",
+    options: [
+      "Para descubrir activos de datos (lakehouses, warehouses, modelos, etc.) con filtros y señales de confianza",
+      "Para monitorizar jobs Spark en tiempo real",
+      "Para ejecutar scripts T-SQL",
+      "Para reemplazar Deployment Pipelines"
+    ],
+    correct: 0,
+    explanation: "OneLake Catalog está orientado al descubrimiento y reutilización de datos dentro del tenant. Permite encontrar rápidamente activos por tipo, dominio o endorsement. No es una herramienta de monitorización operativa ni de despliegue CI/CD.",
+    relatedContent: {
+      flashcards: [
+        131,
+        133
+      ],
+      summaries: [
+        34
+      ],
+      labs: [
+        9
+      ],
+      glossary: [
+        "OneLake Catalog",
+        "Certified",
+        "Endorsement"
+      ]
+    }
+  },
+  {
+    id: 332,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake Catalog",
+    question: "Un analista necesita localizar un dataset certificado de ventas para reutilizarlo. ¿Qué opción es más adecuada?",
+    options: [
+      "OneLake Catalog filtrando por endorsement Certified y dominio de negocio",
+      "Monitoring Hub del workspace",
+      "Capacidad Metrics App",
+      "Solo el navegador de archivos local"
+    ],
+    correct: 0,
+    explanation: "El catálogo centraliza descubrimiento y permite filtrar por señales de gobernanza como Certified o Promoted. Monitoring Hub muestra ejecuciones, no inventario semántico de activos. En examen, este tipo de escenario suele mapear directamente a capacidades de data discovery.",
+    relatedContent: {
+      flashcards: [
+        131,
+        133
+      ],
+      summaries: [
+        34
+      ],
+      labs: [
+        9
+      ],
+      glossary: [
+        "OneLake Catalog",
+        "Certified",
+        "Endorsement"
+      ]
+    }
+  },
+  {
+    id: 333,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake Catalog",
+    question: "¿Qué diferencia clave hay entre OneLake Catalog y el workspace browser tradicional?",
+    options: [
+      "Catalog ofrece búsqueda transversal con metadatos de gobernanza; workspace browser se limita al contenido del workspace actual",
+      "Workspace browser muestra más metadatos de confianza que Catalog",
+      "Catalog solo funciona para Eventhouse",
+      "No existe diferencia funcional"
+    ],
+    correct: 0,
+    explanation: "El browser de workspace es útil para navegar un contenedor concreto, pero no para descubrimiento transversal. OneLake Catalog añade señales de confianza, filtros globales y mejor experiencia de autoservicio. Esa distinción es recurrente en preguntas de gobierno de datos.",
+    relatedContent: {
+      flashcards: [
+        131,
+        133
+      ],
+      summaries: [
+        34
+      ],
+      labs: [
+        9
+      ],
+      glossary: [
+        "OneLake Catalog",
+        "Certified",
+        "Endorsement"
+      ]
+    }
+  },
+  {
+    id: 334,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Real-Time Hub",
+    question: "¿Cuál es el objetivo principal de Real-Time Hub?",
+    options: [
+      "Descubrir y trabajar con streams/eventos disponibles para casos de analítica en tiempo real",
+      "Gestionar permisos de workspace",
+      "Editar modelos semánticos en XMLA",
+      "Reemplazar OneLake Catalog"
+    ],
+    correct: 0,
+    explanation: "Real-Time Hub se centra en activos de streaming y experiencias de tiempo real. Permite identificar fuentes de eventos y conectar escenarios de Eventstream/Eventhouse. No sustituye funciones de seguridad ni administración tabular.",
+    relatedContent: {
+      flashcards: [
+        132,
+        133
+      ],
+      summaries: [
+        35
+      ],
+      labs: [
+        15
+      ],
+      glossary: [
+        "Real-Time Hub",
+        "Eventstream",
+        "Monitoring Hub"
+      ]
+    }
+  },
+  {
+    id: 335,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Hub",
+    question: "¿Qué diferencia describe mejor Real-Time Hub frente a Monitoring Hub?",
+    options: [
+      "Real-Time Hub se orienta al descubrimiento/consumo de streams; Monitoring Hub al estado de ejecuciones operativas",
+      "Monitoring Hub reemplaza Eventstream",
+      "Real-Time Hub sirve solo para permisos RLS",
+      "Son exactamente el mismo servicio con distinto nombre"
+    ],
+    correct: 0,
+    explanation: "Real-Time Hub ayuda a encontrar y consumir datos de eventos en tiempo real. Monitoring Hub supervisa ejecuciones de pipelines, notebooks, refreshes y jobs. Confundir ambos es un distractor típico porque los nombres son parecidos pero las responsabilidades son distintas.",
+    relatedContent: {
+      flashcards: [
+        132,
+        133
+      ],
+      summaries: [
+        35
+      ],
+      labs: [
+        15
+      ],
+      glossary: [
+        "Real-Time Hub",
+        "Eventstream",
+        "Monitoring Hub"
+      ]
+    }
+  },
+  {
+    id: 336,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Hub",
+    question: "El equipo IoT quiere saber qué streams de sensores están disponibles y suscribirse. ¿Dónde debería empezar?",
+    options: [
+      "Real-Time Hub, desde donde puede descubrir streams e iniciar integraciones con Eventstream",
+      "Solo en la sección de notas personales",
+      "En Deployment Pipeline",
+      "En la configuración de badges"
+    ],
+    correct: 0,
+    explanation: "Real-Time Hub está diseñado para ese caso: descubrimiento y consumo de flujos de eventos. A partir de ahí, se conecta con componentes de real-time analytics para procesar y enrutar eventos. Las otras opciones no ofrecen inventario funcional de streams.",
+    relatedContent: {
+      flashcards: [
+        132,
+        133
+      ],
+      summaries: [
+        35
+      ],
+      labs: [
+        15
+      ],
+      glossary: [
+        "Real-Time Hub",
+        "Eventstream",
+        "Monitoring Hub"
+      ]
+    }
+  },
+  {
+    id: 337,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "OneLake Catalog",
+    question: "¿Cuál es una implicación de gobernanza al usar OneLake Catalog?",
+    options: [
+      "La visibilidad de activos depende de permisos y políticas, no todo usuario ve todo",
+      "Todos los usuarios del tenant ven todos los datos sin excepciones",
+      "El catálogo ignora endorsement y certificación",
+      "No soporta filtrado por dominio"
+    ],
+    correct: 0,
+    explanation: "El catálogo respeta controles de acceso y no rompe el principio de mínimo privilegio. También aprovecha metadatos como dominio y endorsement para facilitar consumo responsable. En examen, la gobernanza siempre prevalece sobre la simple capacidad técnica de búsqueda.",
+    relatedContent: {
+      flashcards: [
+        131,
+        133
+      ],
+      summaries: [
+        34
+      ],
+      labs: [
+        9
+      ],
+      glossary: [
+        "OneLake Catalog",
+        "Certified",
+        "Endorsement"
+      ]
+    }
+  },
+  {
+    id: 338,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "OneLake Catalog",
+    question: "¿Qué etiqueta suele usar una organización para señalar contenido validado de alta confianza en Catalog?",
+    options: [
+      "Certified",
+      "Draft",
+      "Archived",
+      "Experimental"
+    ],
+    correct: 0,
+    explanation: "Certified identifica contenido que pasó revisión de calidad según políticas de la organización. Esa señal guía a los analistas hacia fuentes confiables para autoservicio. Promoted también ayuda, pero Certified suele representar un nivel más estricto.",
+    relatedContent: {
+      flashcards: [
+        131,
+        133
+      ],
+      summaries: [
+        34
+      ],
+      labs: [
+        9
+      ],
+      glossary: [
+        "OneLake Catalog",
+        "Certified",
+        "Endorsement"
+      ]
+    }
+  },
+  {
+    id: 339,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Hub",
+    question: "¿Qué integración es habitual después de descubrir un stream en Real-Time Hub?",
+    options: [
+      "Conectarlo a Eventstream para transformar/enrutar eventos hacia destinos analíticos",
+      "Convertirlo directamente en un archivo .pbip",
+      "Aplicar VACUUM al stream",
+      "Crear un rol RLS en el hub"
+    ],
+    correct: 0,
+    explanation: "Eventstream es el componente natural para enrutar, transformar y distribuir eventos descubiertos en tiempo real. Real-Time Hub actúa como puerta de descubrimiento; Eventstream y destinos asociados materializan el procesamiento. VACUUM y RLS no son mecanismos de orquestación de eventos.",
+    relatedContent: {
+      flashcards: [
+        132,
+        133
+      ],
+      summaries: [
+        35
+      ],
+      labs: [
+        15
+      ],
+      glossary: [
+        "Real-Time Hub",
+        "Eventstream",
+        "Monitoring Hub"
+      ]
+    }
+  },
+  {
+    id: 340,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Hub",
+    question: "En un caso de auditoría, ¿qué argumento respalda usar Real-Time Hub para data discovery de eventos?",
+    options: [
+      "Centraliza la visibilidad de activos de streaming y acelera la identificación de fuentes reutilizables",
+      "Reemplaza completamente políticas de seguridad de tenant",
+      "Elimina necesidad de documentación técnica",
+      "Convierte automáticamente todos los streams en tablas Delta gobernadas"
+    ],
+    correct: 0,
+    explanation: "El valor principal es centralizar descubrimiento de streams y reducir dependencia de conocimiento tribal. Eso mejora productividad y reduce duplicación de ingestas en equipos distintos. Sin embargo, sigue siendo necesario mantener políticas de seguridad y documentación del dato.",
+    relatedContent: {
+      flashcards: [
+        132,
+        133
+      ],
+      summaries: [
+        35
+      ],
+      labs: [
+        15
+      ],
+      glossary: [
+        "Real-Time Hub",
+        "Eventstream",
+        "Monitoring Hub"
+      ]
+    }
+  },
+  {
+    id: 351,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Visual Query Editor",
+    question: "¿Qué es Visual Query Editor en Fabric?",
+    options: [
+      "Una interfaz visual para construir consultas SQL (seleccionar, filtrar, agrupar, unir) sin escribir código completo",
+      "Un editor para diseñar dashboards de Power BI",
+      "Una herramienta para crear roles RLS",
+      "Un reemplazo de Git Integration"
+    ],
+    correct: 0,
+    explanation: "Visual Query Editor permite componer consultas de forma guiada, útil para perfiles menos técnicos en SQL. Facilita tareas comunes de exploración y preparación de datos. Para lógica avanzada, sigue siendo necesario escribir SQL manual.",
+    relatedContent: {
+      flashcards: [
+        142
+      ],
+      summaries: [
+        40
+      ],
+      labs: [
+        4
+      ],
+      glossary: [
+        "Visual Query Editor",
+        "Lakehouse",
+        "Warehouse"
+      ]
+    }
+  },
+  {
+    id: 352,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Visual Query Editor",
+    question: "¿Qué tipo de usuario suele beneficiarse más de Visual Query Editor?",
+    options: [
+      "Analistas de negocio que necesitan consultas operativas sin dominio profundo de SQL",
+      "Solo administradores de tenant",
+      "Solo ingenieros de seguridad de red",
+      "Usuarios que no trabajan con datos"
+    ],
+    correct: 0,
+    explanation: "La herramienta reduce barreras para analistas que conocen el negocio pero no manejan SQL avanzado. Acelera autoservicio con menor dependencia del equipo de ingeniería para consultas básicas. No sustituye perfiles técnicos en escenarios complejos.",
+    relatedContent: {
+      flashcards: [
+        142
+      ],
+      summaries: [
+        40
+      ],
+      labs: [
+        4
+      ],
+      glossary: [
+        "Visual Query Editor",
+        "Lakehouse",
+        "Warehouse"
+      ]
+    }
+  },
+  {
+    id: 353,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Visual Query Editor",
+    question: "¿Cuál es un caso donde Visual Query Editor NO suele ser suficiente?",
+    options: [
+      "Consultas complejas con CTEs múltiples, optimizaciones avanzadas o lógica procedural",
+      "Seleccionar columnas y aplicar filtros básicos",
+      "Hacer un join simple de dos tablas",
+      "Agrupar y calcular sumas por categoría"
+    ],
+    correct: 0,
+    explanation: "El editor visual cubre bien operaciones estándar, pero se queda corto ante SQL avanzado y patrones sofisticados de rendimiento. En esos casos conviene pasar a editor SQL completo. El examen distingue entre autoservicio guiado y desarrollo experto.",
+    relatedContent: {
+      flashcards: [
+        142
+      ],
+      summaries: [
+        40
+      ],
+      labs: [
+        4
+      ],
+      glossary: [
+        "Visual Query Editor",
+        "Lakehouse",
+        "Warehouse"
+      ]
+    }
+  },
+  {
+    id: 354,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Visual Query Editor",
+    question: "¿Qué afirmación refleja mejor una buena práctica con Visual Query Editor?",
+    options: [
+      "Usarlo para prototipos y consultas estándar, y migrar a SQL manual cuando la complejidad lo requiera",
+      "Forzarlo para todos los casos incluso con lógica avanzada",
+      "Evitarlo porque siempre genera SQL inválido",
+      "Usarlo solo en producción y nunca en desarrollo"
+    ],
+    correct: 0,
+    explanation: "Visual Query Editor acelera iteraciones tempranas y trabajo de autoservicio, pero no pretende cubrir todos los escenarios. Escalar a SQL manual cuando aumenta la complejidad mantiene calidad técnica y rendimiento. Esa transición gradual es la práctica recomendada.",
+    relatedContent: {
+      flashcards: [
+        142
+      ],
+      summaries: [
+        40
+      ],
+      labs: [
+        4
+      ],
+      glossary: [
+        "Visual Query Editor",
+        "Lakehouse",
+        "Warehouse"
+      ]
+    }
   }
 ];
 
-
 const NEW_QUESTIONS_D1_PART2 = [
-  // === Lakehouse advanced (171-175) ===
   {
-    id: 171, domain: 1, difficulty: 2, subtopic: "Lakehouse",
+    id: 171,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Lakehouse",
     question: "¿Qué sucede cuando se elimina un archivo de la sección Files de un Lakehouse?",
     options: [
       "Se mueve a una papelera de reciclaje de OneLake",
@@ -1948,7 +3027,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Al eliminar archivos de la sección Files del Lakehouse, se eliminan permanentemente de OneLake. No hay papelera de reciclaje. Para tablas Delta, las versiones anteriores pueden recuperarse con time travel (si no se ha ejecutado VACUUM), pero los archivos en Files no tienen versionado automático."
   },
   {
-    id: 172, domain: 1, difficulty: 3, subtopic: "Lakehouse",
+    id: 172,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Lakehouse",
     question: "¿Cuál es la diferencia entre tablas managed y external (unmanaged) en un Lakehouse?",
     options: [
       "No hay tablas external en Fabric",
@@ -1960,7 +3042,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Las tablas managed (gestionadas) almacenan datos dentro del Lakehouse en OneLake — Fabric gestiona su ciclo de vida completo. Las tablas external (no gestionadas) se crean sobre datos que residen fuera del Lakehouse (via shortcuts o rutas externas) — solo los metadatos se registran, los datos no se mueven."
   },
   {
-    id: 173, domain: 1, difficulty: 1, subtopic: "Lakehouse",
+    id: 173,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Lakehouse",
     question: "¿Cómo se carga un archivo CSV manualmente a un Lakehouse desde el portal de Fabric?",
     options: [
       "Solo mediante pipelines",
@@ -1972,7 +3057,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "El portal de Fabric permite subir archivos directamente al Lakehouse: Upload en Files (mantiene el formato original) o Upload en Tables (convierte automáticamente a tabla Delta). También se puede arrastrar y soltar archivos. Para cargas programáticas, se usan pipelines, notebooks o dataflows."
   },
   {
-    id: 174, domain: 1, difficulty: 2, subtopic: "Lakehouse",
+    id: 174,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Lakehouse",
     question: "¿Qué lenguajes de consulta están disponibles en el SQL Analytics Endpoint de un Lakehouse?",
     options: [
       "T-SQL completo con escritura (INSERT, UPDATE, DELETE)",
@@ -1983,9 +3071,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "El SQL Analytics Endpoint es de solo lectura para datos: permite SELECT, CREATE VIEW, CREATE FUNCTION y consultas cross-database. NO permite INSERT, UPDATE, DELETE ni CREATE TABLE directos. Para escritura en tablas Lakehouse se usan notebooks Spark, pipelines o dataflows."
   },
-  // === Notebooks avanzados (175-178) ===
   {
-    id: 175, domain: 1, difficulty: 3, subtopic: "Notebooks/Spark",
+    id: 175,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Notebooks/Spark",
     question: "¿Qué son los Spark pools en Fabric y cómo se gestionan?",
     options: [
       "Clusters de Spark que debes crear y gestionar manualmente",
@@ -1997,7 +3087,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Fabric gestiona los Spark pools automáticamente: no hay aprovisionamiento manual de clusters. Al ejecutar un notebook, Fabric asigna recursos de la capacity del workspace. Los pools escalan dinámicamente y se liberan cuando no se usan, optimizando costes. Se puede configurar el tamaño (nodos, cores) pero no se gestiona infraestructura."
   },
   {
-    id: 176, domain: 1, difficulty: 2, subtopic: "Notebooks/Spark",
+    id: 176,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Notebooks/Spark",
     question: "¿Cómo se instalan librerías Python adicionales en un notebook de Fabric?",
     options: [
       "Solo mediante solicitud al administrador del tenant",
@@ -2008,9 +3101,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "En notebooks de Fabric se puede usar %pip install para instalar librerías en la sesión actual. Para persistir dependencias entre sesiones, se crea un Environment de Fabric que define las librerías requeridas y se asocia al workspace. Los Environments garantizan reproducibilidad."
   },
-  // === Dataflows Gen2 avanzados (177-180) ===
   {
-    id: 177, domain: 1, difficulty: 3, subtopic: "Dataflows Gen2",
+    id: 177,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué sucede con los pasos de Power Query que 'rompen' el query folding en un Dataflow Gen2?",
     options: [
       "El Dataflow muestra un error y no permite continuar",
@@ -2022,7 +3117,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Cuando un paso rompe el query folding (por ejemplo, una función M sin equivalente SQL nativo), Fabric ejecuta el folding hasta el último paso soportado, descarga esos datos parcialmente filtrados, y procesa los pasos restantes localmente. Esto puede ser significativamente más lento para orígenes grandes. Por eso es importante ordenar los pasos para maximizar el folding."
   },
   {
-    id: 178, domain: 1, difficulty: 2, subtopic: "Dataflows Gen2",
+    id: 178,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Dataflows Gen2",
     question: "¿Qué modos de actualización soporta el destino de datos (data destination) de un Dataflow Gen2?",
     options: [
       "Solo Replace completo (full refresh)",
@@ -2033,9 +3131,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "El destino de datos de un Dataflow Gen2 soporta dos modos: Replace (elimina todos los datos existentes y escribe los nuevos — full refresh) y Append (añade filas al final sin tocar las existentes — incremental). Para lógica de upsert/merge se necesita una Pipeline o Notebook adicional."
   },
-  // === Pipelines y orquestación avanzada (179-182) ===
   {
-    id: 179, domain: 1, difficulty: 3, subtopic: "Pipelines",
+    id: 179,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Pipelines",
     question: "¿Cómo se implementa un patrón de retry con backoff exponencial en una Pipeline de Fabric?",
     options: [
       "No es posible implementar retry en pipelines",
@@ -2047,7 +3147,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Cada actividad de pipeline tiene configuración de reintentos integrada: Retry (número de intentos), Retry Interval (segundos entre intentos). Fabric soporta hasta 3 reintentos con intervalos configurables. Para backoff exponencial manual, se puede combinar con variables y expresiones dinámicas."
   },
   {
-    id: 180, domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: 180,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Qué actividad de Pipeline se usa para invocar un Dataflow Gen2?",
     options: [
       "Copy Data Activity",
@@ -2058,9 +3161,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "La Dataflow Activity dentro de una Pipeline invoca un Dataflow Gen2 existente como paso de la orquestación. La pipeline espera a que el Dataflow complete su ejecución antes de continuar con la siguiente actividad. Esto permite combinar Dataflows con otras actividades (Copy, Notebook, Script)."
   },
-  // === Delta Lake y mantenimiento avanzado (181-184) ===
   {
-    id: 181, domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: 181,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "¿Qué es el 'small file problem' en Delta Lake y cómo se resuelve?",
     options: [
       "Es cuando los archivos son demasiado grandes para procesarse",
@@ -2072,7 +3177,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Las operaciones de streaming, INSERT frecuentes, o pipelines con muchas particiones generan archivos Parquet muy pequeños (< 128MB). Leer miles de archivos pequeños es ineficiente (overhead de I/O y metadata). OPTIMIZE compacta estos archivos en archivos más grandes (~1GB), restaurando el rendimiento de lectura."
   },
   {
-    id: 182, domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: 182,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "¿Qué información almacena el transaction log (_delta_log) de una tabla Delta?",
     options: [
       "Solo los datos de la tabla en formato JSON",
@@ -2083,9 +3191,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "El _delta_log registra cada transacción como archivos JSON secuenciales: qué archivos Parquet se añadieron/eliminaron, metadatos de la tabla, cambios de schema, estadísticas de columnas por archivo (min, max, nullCount — usadas para data skipping), y configuración (retention, checkpoints). Es la base de todas las features ACID de Delta."
   },
-  // === Real-Time avanzado (183-186) ===
   {
-    id: 183, domain: 1, difficulty: 2, subtopic: "Real-Time Intelligence",
+    id: 183,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué operador KQL se usa para seleccionar solo columnas específicas del resultado?",
     options: [
       "select",
@@ -2097,7 +3207,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "El operador 'project' en KQL selecciona, renombra y calcula columnas: Tabla | project NombreColumna, NuevoNombre = ColumnaOriginal, Calculada = col1 + col2. Es el equivalente de SELECT en SQL pero con la sintaxis de pipe de KQL."
   },
   {
-    id: 184, domain: 1, difficulty: 3, subtopic: "Real-Time Intelligence",
+    id: 184,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Real-Time Intelligence",
     question: "¿Qué función KQL permite contar valores distintos de forma aproximada con alto rendimiento?",
     options: [
       "count_distinct()",
@@ -2108,9 +3221,11 @@ const NEW_QUESTIONS_D1_PART2 = [
     correct: 1,
     explanation: "dcount() es la función KQL para conteo de valores distintos aproximado, usando el algoritmo HyperLogLog. Es mucho más rápido que un conteo exacto para grandes volúmenes. Acepta un parámetro de precisión (0-4). Para conteo exacto se usa count_distinct() pero con mayor consumo de recursos."
   },
-  // === Medallion y Shortcuts final (185-190) ===
   {
-    id: 185, domain: 1, difficulty: 1, subtopic: "Medallion Architecture",
+    id: 185,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Medallion Architecture",
     question: "¿Por qué se recomienda no transformar los datos en la capa Bronze?",
     options: [
       "Porque la capa Bronze no tiene capacidad de procesamiento",
@@ -2122,7 +3237,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Bronze como fuente de verdad inmutable es un principio clave: si descubres un bug en la transformación Silver, puedes reprocesar desde Bronze. Si los requisitos de negocio cambian, puedes re-transformar los datos raw. Eliminar o modificar datos en Bronze elimina esta capacidad de recuperación."
   },
   {
-    id: 186, domain: 1, difficulty: 3, subtopic: "Medallion Architecture",
+    id: 186,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Medallion Architecture",
     question: "¿Cómo se implementa la deduplicación en la capa Silver cuando los datos pueden llegar duplicados desde Bronze?",
     options: [
       "Simplemente usando SELECT DISTINCT en las vistas",
@@ -2134,7 +3252,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "El patrón estándar: (1) En el notebook/pipeline Silver, usar ROW_NUMBER() OVER(PARTITION BY clave_negocio ORDER BY timestamp_ingesta DESC) para identificar la versión más reciente de cada registro. (2) Usar MERGE contra la tabla Silver destino para upsert: actualizar existentes e insertar nuevos. Esto garantiza que Silver siempre tenga una sola versión actualizada por clave."
   },
   {
-    id: 187, domain: 1, difficulty: 2, subtopic: "Shortcuts",
+    id: 187,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Shortcuts",
     question: "¿Qué sucede con un shortcut si el dato de origen se elimina o la conexión se pierde?",
     options: [
       "El shortcut sigue mostrando los datos antiguos en caché",
@@ -2146,7 +3267,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Los shortcuts son referencias virtuales, no copias. Si los datos de origen se eliminan, se mueven, o la conexión se pierde (credenciales expiradas, permisos revocados), las consultas al shortcut fallarán. No hay caché ni copia local — la dependencia del origen es directa."
   },
   {
-    id: 188, domain: 1, difficulty: 2, subtopic: "OneLake",
+    id: 188,
+    domain: 1,
+    difficulty: 2,
+    subtopic: "OneLake",
     question: "¿Qué formato de archivo usan internamente tanto el Lakehouse como el Data Warehouse de Fabric en OneLake?",
     options: [
       "CSV comprimido con gzip",
@@ -2158,7 +3282,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "Tanto el Lakehouse como el Data Warehouse almacenan datos en OneLake usando archivos Parquet con el protocolo Delta Lake. Esta uniformidad permite cross-database queries entre ambos, shortcuts entre ellos, y que ambos sean accesibles desde Spark, SQL y modelos semánticos."
   },
   {
-    id: 189, domain: 1, difficulty: 1, subtopic: "Pipelines",
+    id: 189,
+    domain: 1,
+    difficulty: 1,
+    subtopic: "Pipelines",
     question: "¿Qué actividad de Pipeline permite ejecutar sentencias T-SQL directamente en un Data Warehouse?",
     options: [
       "Notebook Activity",
@@ -2170,7 +3297,10 @@ const NEW_QUESTIONS_D1_PART2 = [
     explanation: "La Script Activity ejecuta sentencias T-SQL contra un Data Warehouse de Fabric como parte de una Pipeline. Permite ejecutar stored procedures, sentencias DDL/DML, o scripts complejos. Es ideal para transformaciones SQL que complementan las actividades Copy Data y Dataflow."
   },
   {
-    id: 190, domain: 1, difficulty: 3, subtopic: "OneLake",
+    id: 190,
+    domain: 1,
+    difficulty: 3,
+    subtopic: "OneLake",
     question: "¿Cómo funciona la facturación de almacenamiento en OneLake?",
     options: [
       "Se factura por workspace, independientemente del uso",
@@ -2183,11 +3313,12 @@ const NEW_QUESTIONS_D1_PART2 = [
   }
 ];
 
-
 const NEW_QUESTIONS_D2 = [
-  // === Governance avanzada (191-198) ===
   {
-    id: 191, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 191,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué es Microsoft Purview Hub en Fabric y qué información proporciona?",
     options: [
       "Un marketplace de datasets públicos",
@@ -2199,7 +3330,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Purview Hub en Fabric muestra métricas de governance: cuántos items tienen sensitivity labels, cuántos están endorsed (certified/promoted), items con datos sensibles sin protección, y compliance status. Ayuda a los administradores a evaluar el estado de governance del tenant."
   },
   {
-    id: 192, domain: 2, difficulty: 3, subtopic: "Governance",
+    id: 192,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Governance",
     question: "¿Qué es el Data Lineage (linaje de datos) en Fabric y dónde se visualiza?",
     options: [
       "El historial de modificaciones de un archivo",
@@ -2211,7 +3345,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Lineage View en Fabric muestra visualmente cómo fluyen los datos: desde la fuente origen, pasando por pipelines/dataflows, almacenamiento (Lakehouse/Warehouse), modelos semánticos, hasta los informes finales. Permite Impact Analysis: antes de modificar una tabla, ver qué informes se verán afectados."
   },
   {
-    id: 193, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 193,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué es Impact Analysis en Fabric?",
     options: [
       "Un test de rendimiento de queries",
@@ -2223,7 +3360,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Impact Analysis muestra las dependencias downstream de un item: si cambias una tabla de Lakehouse, Impact Analysis muestra qué dataflows, modelos semánticos e informes dependen de ella. Es esencial para evaluar el riesgo de cambios y planificar migraciones."
   },
   {
-    id: 194, domain: 2, difficulty: 1, subtopic: "Governance",
+    id: 194,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Governance",
     question: "¿Qué significa que un item esté 'Certified' en Fabric?",
     options: [
       "Que tiene una licencia premium",
@@ -2235,7 +3375,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Certified es un nivel de endorsement que solo pueden otorgar usuarios autorizados por el admin del tenant. Indica que el contenido ha sido revisado y cumple los estándares de calidad. Los items certified aparecen destacados en búsquedas y OneLake Data Hub, facilitando que los usuarios encuentren datos confiables."
   },
   {
-    id: 195, domain: 2, difficulty: 3, subtopic: "Governance",
+    id: 195,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Governance",
     question: "¿Cómo se configuran las políticas de sensitivity labels para que se apliquen automáticamente al contenido de Fabric?",
     options: [
       "Manualmente item por item desde el portal de Fabric",
@@ -2247,7 +3390,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Microsoft Purview permite crear políticas de auto-labeling que escanean contenido en Fabric, detectan información sensible usando sensitive information types (regex, ML, diccionarios) y aplican la etiqueta correspondiente automáticamente. Esto escala la protección de datos sin depender de que cada usuario etiquete manualmente."
   },
   {
-    id: 196, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 196,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué son los Domains en la administración de Fabric?",
     options: [
       "Los nombres DNS de los endpoints",
@@ -2259,7 +3405,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Los Domains permiten agrupar workspaces por área de negocio (Ventas, RRHH, Finanzas) y delegar la governance a los propietarios de cada dominio. Cada dominio puede tener sus propias reglas de endorsement, naming conventions y políticas. Implementa el concepto de Data Mesh con ownership distribuido."
   },
   {
-    id: 197, domain: 2, difficulty: 3, subtopic: "Governance",
+    id: 197,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Governance",
     question: "¿Cómo se aplica la herencia de sensitivity labels en Fabric?",
     options: [
       "Las labels se aplican solo al item donde se configuran",
@@ -2271,7 +3420,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Las sensitivity labels en Fabric se heredan automáticamente en dirección downstream (de los datos hacia los informes). Si una tabla tiene label 'Highly Confidential', los modelos y reports que la consumen heredan al menos ese nivel. Esto garantiza que la protección siga a los datos a lo largo del pipeline."
   },
   {
-    id: 198, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 198,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué información proporciona la vista de Lineage en un workspace de Fabric?",
     options: [
       "Solo las relaciones entre tablas dentro de un modelo",
@@ -2282,9 +3434,11 @@ const NEW_QUESTIONS_D2 = [
     correct: 1,
     explanation: "La vista Lineage del workspace muestra un grafo de dependencias entre todos los items: qué fuentes alimentan qué dataflows, qué lakehouses alimentan qué modelos, y qué modelos alimentan qué informes. Permite entender el flujo completo de datos y las dependencias para planificar cambios."
   },
-  // === Capacity management (199-206) ===
   {
-    id: 199, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 199,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué sucede cuando un workspace consume más recursos de los que su Capacity puede proporcionar?",
     options: [
       "La Capacity se expande automáticamente sin límite",
@@ -2296,7 +3450,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Cuando el consumo excede la Capacity asignada, Fabric aplica throttling progresivo: primero ralentiza las operaciones (smoothing), luego encola requests (queuing), y finalmente puede rechazar operaciones. El admin puede monitorizar con la Capacity Metrics App y ajustar la Capacity o redistribuir workspaces."
   },
   {
-    id: 200, domain: 2, difficulty: 3, subtopic: "Capacity Management",
+    id: 200,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Capacity Management",
     question: "¿Qué es 'smoothing' en el contexto de capacity management de Fabric?",
     options: [
       "Una técnica de limpieza de datos",
@@ -2308,7 +3465,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Smoothing permite que las cargas de trabajo consuman más recursos de los nominales durante periodos cortos, 'pidiendo prestado' del crédito acumulado durante periodos de baja actividad. Fabric evalúa el consumo en ventanas de tiempo (24 horas) y suaviza los picos para evitar throttling innecesario. Es un mecanismo de burstability."
   },
   {
-    id: 201, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 201,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué herramienta se usa para monitorizar el consumo de recursos de una Capacity de Fabric en detalle?",
     options: [
       "Azure Cost Management",
@@ -2320,7 +3480,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "La Capacity Metrics App es una app de Power BI que se instala desde AppSource. Muestra: consumo de CU (Capacity Units) por workspace, por tipo de operación (Spark, SQL, Dataflow), tendencias temporales, y alertas de throttling. Es la herramienta principal para sizing y optimización de capacidad."
   },
   {
-    id: 202, domain: 2, difficulty: 1, subtopic: "Capacity Management",
+    id: 202,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Capacity Management",
     question: "¿Qué unidad mide el consumo de recursos en una Capacity de Fabric?",
     options: [
       "GB de memoria",
@@ -2332,7 +3495,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Fabric mide el consumo en CU (Capacity Units), que normalizan el uso de CPU, memoria e I/O en una única métrica. Cada SKU de Capacity (F2, F4, F64, etc.) tiene una cantidad de CUs por segundo. Todas las cargas de trabajo (Spark, SQL, Dataflow, etc.) consumen CUs."
   },
   {
-    id: 203, domain: 2, difficulty: 3, subtopic: "Capacity Management",
+    id: 203,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Capacity Management",
     question: "¿Qué diferencia hay entre los SKUs F y P en Fabric?",
     options: [
       "No hay diferencia, son lo mismo",
@@ -2344,7 +3510,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "F-SKUs (F2-F2048) son las capacidades nativas de Fabric, compradas en Azure: soportan pause/resume, todas las workloads de Fabric, y son el modelo recomendado. P-SKUs (P1-P5) son el modelo legacy de Power BI Premium que puede acceder a algunas funcionalidades de Fabric pero con limitaciones."
   },
   {
-    id: 204, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 204,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué sucede con los workspaces cuando se pausa una Capacity de Fabric?",
     options: [
       "Los workspaces se eliminan permanentemente",
@@ -2356,7 +3525,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Al pausar una Capacity, los datos en OneLake persisten pero las operaciones computacionales se detienen: no se pueden ejecutar queries, pipelines, notebooks ni refrescos. Los informes no se pueden consultar. Al reanudar, todo vuelve a la normalidad. Pausar es una estrategia de ahorro de costes para entornos no productivos."
   },
   {
-    id: 205, domain: 2, difficulty: 3, subtopic: "Capacity Management",
+    id: 205,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Capacity Management",
     question: "¿Qué es el autoscale en Fabric Capacity y cómo funciona?",
     options: [
       "Escala automáticamente el número de workspaces",
@@ -2368,7 +3540,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Autoscale añade CUs temporales cuando la Capacity original no es suficiente, evitando throttling. Se configura un límite máximo de CUs adicionales. Las CUs extra se facturan por segundo de uso. Es ideal para picos predecibles (fin de mes, reportes masivos) sin necesidad de sobredimensionar la Capacity base."
   },
   {
-    id: 206, domain: 2, difficulty: 1, subtopic: "Capacity Management",
+    id: 206,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Capacity Management",
     question: "¿Quién puede asignar workspaces a una Capacity de Fabric?",
     options: [
       "Cualquier usuario del workspace",
@@ -2379,9 +3554,11 @@ const NEW_QUESTIONS_D2 = [
     correct: 1,
     explanation: "La asignación de workspaces a capacidades es una operación administrativa. Solo los Capacity Admins (asignados al comprar la Capacity) y los Fabric Admins del tenant pueden mover workspaces entre capacidades. Esto previene que usuarios no autorizados consuman recursos de capacidades ajenas."
   },
-  // === CI/CD avanzado (207-214) ===
   {
-    id: 207, domain: 2, difficulty: 2, subtopic: "Git Integration",
+    id: 207,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Git Integration",
     question: "¿Qué items de Fabric se pueden versionar con Git Integration?",
     options: [
       "Solo informes de Power BI",
@@ -2390,10 +3567,34 @@ const NEW_QUESTIONS_D2 = [
       "Todos los datos almacenados en OneLake"
     ],
     correct: 1,
-    explanation: "Git Integration soporta la mayoría de items de Fabric: informes (.pbir), modelos semánticos (.bim), notebooks, pipelines, dataflows, definiciones de Lakehouse y Warehouse. Los DATOS no se versionan en Git — solo las definiciones y configuraciones de los items."
+    explanation: "Git Integration soporta la mayoría de items de Fabric: informes (.pbir), modelos semánticos (.bim), notebooks, pipelines, dataflows, definiciones de Lakehouse y Warehouse. Los DATOS no se versionan en Git — solo las definiciones y configuraciones de los items.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 208, domain: 2, difficulty: 3, subtopic: "Git Integration",
+    id: 208,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Git Integration",
     question: "¿Cuál es el flujo de trabajo recomendado para colaboración con Git en Fabric?",
     options: [
       "Todos trabajan directamente en la rama main",
@@ -2402,10 +3603,34 @@ const NEW_QUESTIONS_D2 = [
       "Solo el admin del workspace puede usar Git"
     ],
     correct: 1,
-    explanation: "El flujo recomendado: (1) Cada dev tiene un workspace conectado a su branch, (2) desarrolla y prueba localmente, (3) crea un Pull Request a main, (4) tras revisión y merge, el workspace de Dev (conectado a main) refleja los cambios, (5) Deployment Pipelines promueven de Dev→Test→Prod."
+    explanation: "El flujo recomendado: (1) Cada dev tiene un workspace conectado a su branch, (2) desarrolla y prueba localmente, (3) crea un Pull Request a main, (4) tras revisión y merge, el workspace de Dev (conectado a main) refleja los cambios, (5) Deployment Pipelines promueven de Dev→Test→Prod.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 209, domain: 2, difficulty: 2, subtopic: "Deployment Pipelines",
+    id: 209,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Deployment Pipelines",
     question: "¿Qué son las 'Deployment Rules' en los Deployment Pipelines de Fabric?",
     options: [
       "Reglas de acceso para quién puede promover contenido",
@@ -2414,10 +3639,34 @@ const NEW_QUESTIONS_D2 = [
       "Políticas de backup antes de la promoción"
     ],
     correct: 1,
-    explanation: "Las Deployment Rules permiten configurar qué cambia al promover contenido entre etapas. Por ejemplo: en Dev el modelo apunta a LH_Dev, en Test a LH_Test, en Prod a LH_Prod. Las rules re-mapean estas conexiones automáticamente durante la promoción, evitando ediciones manuales post-deploy."
+    explanation: "Las Deployment Rules permiten configurar qué cambia al promover contenido entre etapas. Por ejemplo: en Dev el modelo apunta a LH_Dev, en Test a LH_Test, en Prod a LH_Prod. Las rules re-mapean estas conexiones automáticamente durante la promoción, evitando ediciones manuales post-deploy.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 210, domain: 2, difficulty: 3, subtopic: "Deployment Pipelines",
+    id: 210,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Deployment Pipelines",
     question: "¿Qué ocurre cuando se promueve contenido que ya existe en la etapa destino de un Deployment Pipeline?",
     options: [
       "Se crea una copia duplicada",
@@ -2426,10 +3675,34 @@ const NEW_QUESTIONS_D2 = [
       "La promoción se bloquea si el item ya existe"
     ],
     correct: 1,
-    explanation: "Cuando un item ya existe en la etapa destino, Fabric actualiza su contenido con la nueva versión. Antes de promover, muestra una comparación de cambios (nuevos items, modificados, eliminados). El ID del item se mantiene, preservando links, permisos y suscripciones existentes en el destino."
+    explanation: "Cuando un item ya existe en la etapa destino, Fabric actualiza su contenido con la nueva versión. Antes de promover, muestra una comparación de cambios (nuevos items, modificados, eliminados). El ID del item se mantiene, preservando links, permisos y suscripciones existentes en el destino.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 211, domain: 2, difficulty: 2, subtopic: "Git Integration",
+    id: 211,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Git Integration",
     question: "¿Qué sucede cuando hay un conflicto entre los cambios en el workspace y los cambios en el repositorio Git?",
     options: [
       "Los cambios del workspace siempre ganan",
@@ -2438,10 +3711,34 @@ const NEW_QUESTIONS_D2 = [
       "Git Integration se desconecta automáticamente"
     ],
     correct: 1,
-    explanation: "Cuando hay conflictos (cambios simultáneos en workspace y repo), Fabric los detecta al sincronizar y ofrece opciones de resolución: aceptar la versión del workspace, aceptar la versión del repo, o resolver manualmente. Es similar al flujo de resolución de conflictos de Git estándar."
+    explanation: "Cuando hay conflictos (cambios simultáneos en workspace y repo), Fabric los detecta al sincronizar y ofrece opciones de resolución: aceptar la versión del workspace, aceptar la versión del repo, o resolver manualmente. Es similar al flujo de resolución de conflictos de Git estándar.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 212, domain: 2, difficulty: 1, subtopic: "Deployment Pipelines",
+    id: 212,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Deployment Pipelines",
     question: "¿Cuántas etapas puede tener un Deployment Pipeline en Fabric?",
     options: [
       "Solo 2 (Dev y Prod)",
@@ -2450,10 +3747,34 @@ const NEW_QUESTIONS_D2 = [
       "Ilimitadas"
     ],
     correct: 1,
-    explanation: "Los Deployment Pipelines soportan hasta 10 etapas, aunque el patrón más común es 3 (Development, Test, Production). Se pueden personalizar los nombres y añadir etapas intermedias como QA, Staging, UAT según las necesidades de la organización."
+    explanation: "Los Deployment Pipelines soportan hasta 10 etapas, aunque el patrón más común es 3 (Development, Test, Production). Se pueden personalizar los nombres y añadir etapas intermedias como QA, Staging, UAT según las necesidades de la organización.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 213, domain: 2, difficulty: 3, subtopic: "Git Integration",
+    id: 213,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Git Integration",
     question: "¿Qué formato usan los items de Fabric al sincronizarse con Git?",
     options: [
       "Archivos binarios comprimidos (.zip)",
@@ -2462,10 +3783,34 @@ const NEW_QUESTIONS_D2 = [
       "Archivos .pbix binarios de Power BI Desktop"
     ],
     correct: 1,
-    explanation: "Fabric serializa cada item en archivos legibles para Git: los modelos semánticos usan TMDL (Tabular Model Definition Language — archivos de texto), informes usan PBIR (formato JSON), pipelines y notebooks usan JSON. Esto permite diffs significativos, code review y merge en Git."
+    explanation: "Fabric serializa cada item en archivos legibles para Git: los modelos semánticos usan TMDL (Tabular Model Definition Language — archivos de texto), informes usan PBIR (formato JSON), pipelines y notebooks usan JSON. Esto permite diffs significativos, code review y merge en Git.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 214, domain: 2, difficulty: 2, subtopic: "Deployment Pipelines",
+    id: 214,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Deployment Pipelines",
     question: "¿Se pueden configurar aprobaciones automáticas antes de promover contenido entre etapas?",
     options: [
       "Sí, Fabric tiene un sistema de aprobaciones integrado con notificaciones",
@@ -2474,11 +3819,34 @@ const NEW_QUESTIONS_D2 = [
       "Solo los admins pueden promover, eso es suficiente control"
     ],
     correct: 1,
-    explanation: "Los Deployment Pipelines nativos de Fabric no tienen sistema de aprobaciones integrado. Para flujos con aprobaciones, se combina Fabric Git Integration con Azure DevOps/GitHub: se usan Pull Requests con reviewers obligatorios y deployment gates para controlar qué se promueve y cuándo."
+    explanation: "Los Deployment Pipelines nativos de Fabric no tienen sistema de aprobaciones integrado. Para flujos con aprobaciones, se combina Fabric Git Integration con Azure DevOps/GitHub: se usan Pull Requests con reviewers obligatorios y deployment gates para controlar qué se promueve y cuándo.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
-  // === Auditing y Monitoring (215-220) ===
   {
-    id: 215, domain: 2, difficulty: 2, subtopic: "Monitoring",
+    id: 215,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Monitoring",
     question: "¿Qué es el Monitoring Hub de Fabric y qué actividades muestra?",
     options: [
       "Un dashboard de métricas de negocio",
@@ -2490,7 +3858,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Monitoring Hub muestra todas las actividades activas y recientes del workspace: estado de ejecución (en curso, completado, fallido), duración, tipo de operación, submitter, hora de inicio/fin. Permite filtrar por tipo de actividad y ver detalles de errores para troubleshooting."
   },
   {
-    id: 216, domain: 2, difficulty: 3, subtopic: "Monitoring",
+    id: 216,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Monitoring",
     question: "¿Dónde se pueden consultar los logs de auditoría detallados de todas las actividades de Fabric del tenant?",
     options: [
       "Solo en el Monitoring Hub del workspace",
@@ -2502,7 +3873,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "El Unified Audit Log de Microsoft 365 registra TODAS las actividades de Fabric: quién accedió a qué report, quién ejecutó qué pipeline, quién compartió qué item, cambios de permisos, etc. Se accede desde Purview compliance portal o PowerShell. Los logs de audit se retienen 90 días (estándar) o 1 año (con licencia E5)."
   },
   {
-    id: 217, domain: 2, difficulty: 1, subtopic: "Monitoring",
+    id: 217,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Monitoring",
     question: "¿Qué tipo de actividades se pueden ver en el Monitoring Hub?",
     options: [
       "Solo refrescos de modelos semánticos",
@@ -2514,7 +3888,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Monitoring Hub es comprehensivo: muestra refrescos de modelos semánticos, ejecuciones de Data Factory pipelines, trabajos Spark de notebooks, ejecuciones de Dataflows Gen2, actividades de Copy Data, y más. Cada entrada muestra estado, duración, submitter y detalles del error si falló."
   },
   {
-    id: 218, domain: 2, difficulty: 2, subtopic: "Monitoring",
+    id: 218,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Monitoring",
     question: "¿Qué API permite acceder programáticamente a los eventos de actividad de Fabric?",
     options: [
       "Solo la API de Azure Monitor",
@@ -2526,7 +3903,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "La Admin API GetActivityEvents permite extraer programáticamente todos los eventos de actividad de Fabric (accesos, refrescos, cambios) para un rango de fechas. Los datos se pueden ingerir en un Lakehouse para análisis personalizado de uso y seguridad. La O365 Management API ofrece funcionalidad similar."
   },
   {
-    id: 219, domain: 2, difficulty: 3, subtopic: "Monitoring",
+    id: 219,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Monitoring",
     question: "¿Cómo se configura un dashboard de monitorización personalizado para Fabric?",
     options: [
       "Solo usando la Capacity Metrics App sin posibilidad de personalización",
@@ -2538,7 +3918,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "El patrón recomendado: (1) Usar la Admin API (GetActivityEvents, GetGroupUsers, etc.) con un Notebook o Pipeline programado, (2) Ingestar los datos en un Lakehouse, (3) Crear un modelo semántico sobre esos datos, (4) Construir informes personalizados de adopción, uso, seguridad y rendimiento."
   },
   {
-    id: 220, domain: 2, difficulty: 2, subtopic: "Monitoring",
+    id: 220,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Monitoring",
     question: "¿Qué métricas clave muestra la Capacity Metrics App?",
     options: [
       "Solo el coste mensual de la licencia",
@@ -2549,9 +3932,11 @@ const NEW_QUESTIONS_D2 = [
     correct: 1,
     explanation: "La Capacity Metrics App muestra: consumo de CU por workspace y tipo de operación (Spark, SQL, etc.), eventos de throttling y su severidad, las operaciones más costosas, tendencias temporales de consumo, overhead de background operations, y porcentaje de utilización vs capacity disponible."
   },
-  // === Seguridad avanzada (221-228) ===
   {
-    id: 221, domain: 2, difficulty: 3, subtopic: "RLS/CLS/OLS",
+    id: 221,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Cómo se implementa RLS dinámico que soporte managers que ven datos de su equipo completo?",
     options: [
       "Creando un rol por cada manager",
@@ -2560,10 +3945,33 @@ const NEW_QUESTIONS_D2 = [
       "Configurando permisos de workspace por equipo"
     ],
     correct: 1,
-    explanation: "Para RLS jerárquico: (1) crear tabla de empleados con ParentID (jerarquía), (2) usar PATH(ID, ParentID) para generar la cadena jerárquica, (3) en el filtro RLS usar PATHCONTAINS(EmployeePath, LOOKUPVALUE(ID, email, USERPRINCIPALNAME())) que incluye al manager y todos sus subordinados en la cadena."
+    explanation: "Para RLS jerárquico: (1) crear tabla de empleados con ParentID (jerarquía), (2) usar PATH(ID, ParentID) para generar la cadena jerárquica, (3) en el filtro RLS usar PATHCONTAINS(EmployeePath, LOOKUPVALUE(ID, email, USERPRINCIPALNAME())) que incluye al manager y todos sus subordinados en la cadena.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   },
   {
-    id: 222, domain: 2, difficulty: 2, subtopic: "RLS/CLS/OLS",
+    id: 222,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Cómo se prueba (test) un rol RLS configurado en un modelo semántico?",
     options: [
       "Solo publicando el informe y pidiendo a un usuario que lo abra",
@@ -2572,10 +3980,33 @@ const NEW_QUESTIONS_D2 = [
       "No es posible probar RLS antes de publicar"
     ],
     correct: 1,
-    explanation: "Power BI Service y Desktop ofrecen 'View as Role' que permite al desarrollador simular la experiencia de un usuario con un rol RLS específico. Se puede seleccionar el rol y opcionalmente especificar el UPN de un usuario para probar Dynamic RLS. Es esencial para verificar que los filtros funcionan correctamente antes de compartir."
+    explanation: "Power BI Service y Desktop ofrecen 'View as Role' que permite al desarrollador simular la experiencia de un usuario con un rol RLS específico. Se puede seleccionar el rol y opcionalmente especificar el UPN de un usuario para probar Dynamic RLS. Es esencial para verificar que los filtros funcionan correctamente antes de compartir.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   },
   {
-    id: 223, domain: 2, difficulty: 3, subtopic: "Networking",
+    id: 223,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Networking",
     question: "¿Qué es un VNet Gateway en Fabric y cuándo se usa?",
     options: [
       "Un gateway para redes VPN de usuario",
@@ -2587,7 +4018,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "VNet Gateway permite que Fabric acceda a recursos Azure protegidos dentro de una Virtual Network (como Azure SQL con private endpoints, Azure Storage con firewall). A diferencia del On-premises Data Gateway (que requiere una máquina), el VNet Gateway es totalmente gestionado en la nube."
   },
   {
-    id: 224, domain: 2, difficulty: 2, subtopic: "Networking",
+    id: 224,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Networking",
     question: "¿Cuándo se necesita un On-premises Data Gateway en Fabric?",
     options: [
       "Siempre que se use Fabric",
@@ -2599,7 +4033,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "El On-premises Data Gateway actúa como puente entre Fabric (nube) y fuentes de datos on-premises (red corporativa): SQL Server local, archivos compartidos, Oracle, SAP, etc. Se instala en una máquina dentro de la red corporativa que tiene acceso tanto a la fuente de datos como a internet."
   },
   {
-    id: 225, domain: 2, difficulty: 3, subtopic: "Networking",
+    id: 225,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Networking",
     question: "¿Qué es 'Trusted Workspace Access' en Fabric?",
     options: [
       "Un tipo de permiso de workspace",
@@ -2611,20 +4048,45 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Trusted Workspace Access permite configurar Azure Storage con firewall (bloqueando acceso público) pero permitiendo acceso específico desde workspaces de Fabric de confianza. Se basa en managed identity del workspace. Esto elimina la necesidad de abrir puertos o usar VPN mientras mantiene la seguridad."
   },
   {
-    id: 226, domain: 2, difficulty: 2, subtopic: "Workspace Security",
+    id: 226,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Workspace Security",
     question: "¿Qué permiso mínimo necesita un usuario para ver un informe compartido directamente (sin acceso al workspace)?",
     options: [
       "Workspace Contributor",
-      "Permiso de item 'Read' otorgado al compartir el informe, más permiso Build en el modelo semántico subyacente",
+      "Permiso Read en el informe + Read en el modelo semántico subyacente (Build solo si necesita crear contenido nuevo sobre ese modelo)",
       "Workspace Admin",
       "Licencia Fabric Premium per user"
     ],
     correct: 1,
-    explanation: "Para ver un informe compartido fuera del workspace: el usuario necesita permiso Read en el informe (otorgado al compartir) y el modelo semántico subyacente debe tener permisos Read+Build compartidos. Si falta el permiso en el modelo, el usuario verá el informe sin datos."
+    explanation: "Para consumir un informe compartido fuera del workspace se requiere permiso Read sobre el informe. El usuario también necesita acceso de lectura al modelo semántico subyacente para que el informe renderice datos correctamente. Build no es requisito para visualizar; Build se exige cuando el usuario va a crear nuevo contenido (reportes o análisis) sobre ese modelo.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   },
-  // === Tenant settings y DR (227-240) ===
   {
-    id: 227, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 227,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Dónde se configuran las políticas del tenant como 'quién puede crear workspaces' o 'quién puede exportar datos'?",
     options: [
       "En Azure Portal",
@@ -2636,7 +4098,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Los Tenant Settings en el Admin Portal de Fabric controlan funcionalidades a nivel de tenant: quién puede crear workspaces, exportar datos, usar Git integration, publicar apps, etc. Cada setting se puede habilitar/deshabilitar globalmente o para security groups específicos de Azure AD."
   },
   {
-    id: 228, domain: 2, difficulty: 3, subtopic: "Governance",
+    id: 228,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Governance",
     question: "¿Qué tenant setting controla si los usuarios pueden compartir contenido con personas externas a la organización?",
     options: [
       "Allow users to create workspaces",
@@ -2648,7 +4113,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "La configuración 'Share content with external users' y 'Allow Azure AD guest users to access Fabric' controlan el acceso externo. Se pueden restringir a security groups específicos. Si están deshabilitadas, no se puede compartir informes ni datasets con usuarios B2B (invitados de Azure AD)."
   },
   {
-    id: 229, domain: 2, difficulty: 1, subtopic: "Governance",
+    id: 229,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Governance",
     question: "¿Quién tiene acceso al Admin Portal de Microsoft Fabric?",
     options: [
       "Todos los usuarios del tenant",
@@ -2660,7 +4128,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "El Admin Portal es accesible para Global Admins de Microsoft 365 y usuarios con el rol Fabric Administrator (antes Power BI Service Administrator). Estos roles se asignan en Azure AD / Entra ID. Los Capacity Admins solo gestionan su capacity específica, no todo el portal."
   },
   {
-    id: 230, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 230,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué es la 'delegation' en los tenant settings de Fabric?",
     options: [
       "Delegar la administración a consultores externos",
@@ -2672,7 +4143,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Algunos tenant settings en Fabric permiten 'delegation': el admin del tenant puede permitir que los admins de workspace controlen ciertas configuraciones (como Git integration o export settings) a nivel de su workspace. Esto permite governance flexible: políticas centrales con excepciones controladas a nivel de equipo."
   },
   {
-    id: 231, domain: 2, difficulty: 3, subtopic: "Capacity Management",
+    id: 231,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Capacity Management",
     question: "¿Qué consideraciones de disaster recovery (BCDR) aplican en Microsoft Fabric?",
     options: [
       "Fabric no tiene ninguna feature de disaster recovery",
@@ -2684,7 +4158,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Fabric hereda la redundancia del almacenamiento Azure subyacente (LRS/GRS según la region). Para BCDR completo se recomienda: (1) Git Integration para versionar definiciones de items, (2) Exportar datos críticos periódicamente, (3) Documentar configuraciones de workspace y permisos, (4) Considerar workspaces en diferentes regiones para cargas críticas."
   },
   {
-    id: 232, domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: 232,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "¿Qué sucede si la región de Azure donde está la Capacity de Fabric experimenta una caída (outage)?",
     options: [
       "Fabric automáticamente migra a otra región sin interrupciones",
@@ -2696,7 +4173,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Durante un outage regional, los workspaces asociados a Capacities en esa región no están disponibles. Los datos en OneLake persisten (están almacenados con redundancia) pero no se pueden ejecutar operaciones computacionales. Fabric no ofrece failover automático multi-región nativo — se recomienda planificación de BCDR."
   },
   {
-    id: 233, domain: 2, difficulty: 2, subtopic: "Workspace Security",
+    id: 233,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Workspace Security",
     question: "¿Qué diferencia hay entre los roles Member y Contributor en un workspace?",
     options: [
       "No hay diferencia práctica",
@@ -2705,10 +4185,33 @@ const NEW_QUESTIONS_D2 = [
       "Member solo puede ver contenido; Contributor puede editarlo"
     ],
     correct: 1,
-    explanation: "Member = Contributor + gestión de permisos. Members pueden añadir otros usuarios al workspace (como Member, Contributor o Viewer), compartir items, y publicar apps. Contributors pueden crear y editar todo el contenido pero no pueden gestionar quién tiene acceso al workspace."
+    explanation: "Member = Contributor + gestión de permisos. Members pueden añadir otros usuarios al workspace (como Member, Contributor o Viewer), compartir items, y publicar apps. Contributors pueden crear y editar todo el contenido pero no pueden gestionar quién tiene acceso al workspace.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   },
   {
-    id: 234, domain: 2, difficulty: 3, subtopic: "RLS/CLS/OLS",
+    id: 234,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "RLS/CLS/OLS",
     question: "¿Se puede combinar RLS y OLS en el mismo modelo semántico?",
     options: [
       "No, son mutuamente excluyentes",
@@ -2717,10 +4220,33 @@ const NEW_QUESTIONS_D2 = [
       "Solo con licencia Fabric F64 o superior"
     ],
     correct: 1,
-    explanation: "RLS y OLS se complementan y pueden usarse juntos: RLS filtra filas (el vendedor solo ve sus ventas), OLS oculta columnas/tablas (RRHH ve salarios, ventas no). Se definen en el modelo semántico con roles DAX (RLS) y propiedades de OLS en TMSL/TMDL. Ambos funcionan en Import y Direct Lake."
+    explanation: "RLS y OLS se complementan y pueden usarse juntos: RLS filtra filas (el vendedor solo ve sus ventas), OLS oculta columnas/tablas (RRHH ve salarios, ventas no). Se definen en el modelo semántico con roles DAX (RLS) y propiedades de OLS en TMSL/TMDL. Ambos funcionan en Import y Direct Lake.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   },
   {
-    id: 235, domain: 2, difficulty: 1, subtopic: "Workspace Security",
+    id: 235,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Workspace Security",
     question: "¿Qué tipo de usuario necesita una licencia para acceder a contenido de Fabric?",
     options: [
       "Solo los administradores necesitan licencia",
@@ -2732,7 +4258,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Con Fabric Capacity (F-SKU), los consumidores de contenido pueden usar una licencia Free de Power BI para ver informes y dashboards. Sin Capacity, necesitan Power BI Pro o Premium Per User (PPU). Los creadores de contenido generalmente necesitan Pro o PPU para publicar."
   },
   {
-    id: 236, domain: 2, difficulty: 2, subtopic: "Networking",
+    id: 236,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Networking",
     question: "¿Qué es un Private Link en el contexto de Fabric?",
     options: [
       "Un enlace acortado para compartir informes internamente",
@@ -2744,7 +4273,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Azure Private Link para Fabric permite que los usuarios accedan al servicio de Fabric a través de un Private Endpoint en su Azure Virtual Network, manteniendo todo el tráfico dentro de la red privada de Microsoft. Esto es un requisito de compliance para organizaciones con políticas de zero-trust o regulaciones estrictas."
   },
   {
-    id: 237, domain: 2, difficulty: 3, subtopic: "Networking",
+    id: 237,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Networking",
     question: "¿Cuál es la diferencia entre Managed Private Endpoints y Private Links en Fabric?",
     options: [
       "Son lo mismo con nombres diferentes",
@@ -2756,7 +4288,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "Dirección del tráfico: Managed Private Endpoints → tráfico SALIENTE (Fabric conectando a Azure SQL, Storage, etc. por red privada). Private Links → tráfico ENTRANTE (usuarios accediendo a Fabric desde su red corporativa por red privada). Ambos eliminan tráfico por internet público pero protegen conexiones en direcciones opuestas."
   },
   {
-    id: 238, domain: 2, difficulty: 2, subtopic: "Governance",
+    id: 238,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "¿Qué es el 'Scanner API' en Fabric y para qué se usa?",
     options: [
       "Una API para escanear virus en los datos",
@@ -2768,7 +4303,10 @@ const NEW_QUESTIONS_D2 = [
     explanation: "La Scanner API (GetModifiedWorkspaces + GetScanResult) permite a los administradores escanear masivamente todos los workspaces del tenant y obtener: lista de items, permisos configurados, sensitivity labels aplicadas, fuentes de datos, y metadatos. Es esencial para inventario de datos, auditoría de permisos y reporting de compliance a gran escala."
   },
   {
-    id: 239, domain: 2, difficulty: 1, subtopic: "Deployment Pipelines",
+    id: 239,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Deployment Pipelines",
     question: "¿Qué requisito debe cumplirse para usar Deployment Pipelines en Fabric?",
     options: [
       "Tener una cuenta de Azure DevOps",
@@ -2777,10 +4315,34 @@ const NEW_QUESTIONS_D2 = [
       "Solo funciona con Power BI Pro"
     ],
     correct: 1,
-    explanation: "Deployment Pipelines requieren que los workspaces de cada etapa (Dev, Test, Prod) estén asignados a una Capacity de Fabric o Premium. Es una feature de Capacity, no disponible con solo licencia Pro. El usuario que opera el pipeline necesita al menos rol Member en los workspaces."
+    explanation: "Deployment Pipelines requieren que los workspaces de cada etapa (Dev, Test, Prod) estén asignados a una Capacity de Fabric o Premium. Es una feature de Capacity, no disponible con solo licencia Pro. El usuario que opera el pipeline necesita al menos rol Member en los workspaces.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
   },
   {
-    id: 240, domain: 2, difficulty: 3, subtopic: "Workspace Security",
+    id: 240,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Workspace Security",
     question: "¿Cómo se puede auditar quién accedió a un informe específico en las últimas 24 horas?",
     options: [
       "No es posible auditar accesos individuales",
@@ -2789,15 +4351,536 @@ const NEW_QUESTIONS_D2 = [
       "Preguntando a cada usuario individualmente"
     ],
     correct: 1,
-    explanation: "El Unified Audit Log registra cada visualización de informe (ViewReport event) con: usuario, hora, informe, workspace, y más. Se filtra en Purview compliance portal o con PowerShell: Search-UnifiedAuditLog -Operations ViewReport -RecordType PowerBIAudit. Esto permite auditoría de acceso granular para compliance."
+    explanation: "El Unified Audit Log registra cada visualización de informe (ViewReport event) con: usuario, hora, informe, workspace, y más. Se filtra en Purview compliance portal o con PowerShell: Search-UnifiedAuditLog -Operations ViewReport -RecordType PowerBIAudit. Esto permite auditoría de acceso granular para compliance.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
+  },
+  {
+    id: 341,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué diferencia principal hay entre un proyecto .pbip y un archivo .pbix?",
+    options: [
+      ".pbip guarda artefactos en estructura de carpetas/archivos de texto apta para Git; .pbix es un binario monolítico",
+      ".pbip solo sirve para dashboards en móvil",
+      ".pbix no puede contener modelo semántico",
+      "No hay diferencia técnica"
+    ],
+    correct: 0,
+    explanation: "El formato .pbip facilita control de versiones porque expone cambios en archivos legibles. .pbix concentra todo en un binario, lo que dificulta diffs y revisiones finas en PR. Esta distinción es clave en prácticas modernas de ALM para Power BI/Fabric.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 342,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué ventaja de Git es más clara al usar .pbip?",
+    options: [
+      "Permite diffs y code review granulares sobre cambios de modelo/report",
+      "Evita necesidad de ramas y PRs",
+      "Elimina conflictos en cualquier equipo",
+      "Convierte automáticamente datos en Delta"
+    ],
+    correct: 0,
+    explanation: "Con artefactos en texto, Git puede mostrar cambios línea a línea y mejorar la trazabilidad técnica. Aun así, siguen siendo necesarias buenas prácticas de ramas y revisión. El formato no elimina conflictos por sí solo, pero sí los hace más manejables.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 343,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué elemento forma parte típica de la estructura de un proyecto .pbip?",
+    options: [
+      "Archivos de definición como .pbi/ y definiciones del reporte/modelo",
+      "Un ejecutable .exe con el motor VertiPaq",
+      "Solo capturas PNG de cada visual",
+      "Un único archivo CSV final"
+    ],
+    correct: 0,
+    explanation: "Un proyecto .pbip se compone de carpetas y definiciones versionables del reporte y del modelo. Esa granularidad es justamente su ventaja en equipos que trabajan con Git. No es un contenedor binario ni un empaquetado de imágenes.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 344,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué representa un archivo .pbit?",
+    options: [
+      "Una plantilla de Power BI con estructura y lógica, pero sin datos cargados",
+      "Un backup completo con datos históricos",
+      "Un conector exclusivo para Real-Time Hub",
+      "Un archivo de permisos RLS"
+    ],
+    correct: 0,
+    explanation: ".pbit sirve para distribuir un diseño reutilizable sin mover datos sensibles ni pesados. Al abrirlo, el usuario puede completar parámetros y conectar su origen. Es ideal para estandarizar informes corporativos.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 345,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Development Lifecycle",
+    question: "¿Cuándo es más conveniente distribuir un .pbit en lugar de un .pbix?",
+    options: [
+      "Cuando quieres estandarizar una solución y dejar que cada equipo cargue sus propios datos/credenciales",
+      "Cuando necesitas compartir un snapshot con datos incluidos",
+      "Cuando quieres bloquear cualquier reutilización",
+      "Cuando el objetivo es monitorizar jobs Spark"
+    ],
+    correct: 0,
+    explanation: ".pbit separa estructura de datos y permite reutilización controlada en distintos contextos. Si necesitas enviar un snapshot con datos, un .pbix puede ser más apropiado. En examen, la palabra clave suele ser \"template reutilizable\".",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 346,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué describe correctamente a un archivo .pbids?",
+    options: [
+      "Define una conexión de datos para abrir Power BI Desktop preconfigurado con la fuente",
+      "Es un formato para medidas DAX compartidas",
+      "Es un contenedor de deployment rules",
+      "Reemplaza completamente los gateways"
+    ],
+    correct: 0,
+    explanation: ".pbids encapsula información de conexión para facilitar onboarding y reducir errores al configurar fuentes. No reemplaza gobernanza ni componentes de conectividad empresarial. Es una pieza útil de self-service controlado dentro del lifecycle de analítica.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 347,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué es un shared semantic model en Fabric/Power BI?",
+    options: [
+      "Un modelo central reutilizable por múltiples informes para evitar duplicación",
+      "Un modelo visible solo para administradores",
+      "Un tipo de dataset sin medidas",
+      "Un reporte incrustado en un notebook"
+    ],
+    correct: 0,
+    explanation: "Un shared semantic model actúa como fuente única de verdad para varios reportes y equipos. Esto mejora consistencia de métricas y reduce duplicación de lógica. También simplifica gobernanza al centralizar cambios en una sola capa semántica.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 348,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Development Lifecycle",
+    question: "¿Qué beneficio clave da reutilizar shared semantic models?",
+    options: [
+      "Centraliza definiciones de negocio y reduce divergencia de KPIs entre reportes",
+      "Elimina necesidad de permisos en modelos",
+      "Impide usar RLS",
+      "Obliga a usar solo DirectQuery"
+    ],
+    correct: 0,
+    explanation: "Al centralizar lógica semántica, los equipos consumen KPIs consistentes y evitan redefinir medidas en cada informe. Esto acelera mantenimiento y reduce riesgo de incoherencias. Seguridad y modo de almacenamiento siguen gestionándose según arquitectura.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 349,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Development Lifecycle",
+    question: "¿Para qué sirve Impact Analysis antes de modificar un Lakehouse, Warehouse o modelo?",
+    options: [
+      "Para identificar dependencias downstream y estimar qué artefactos/usuarios podrían verse afectados",
+      "Para comprimir automáticamente archivos Delta",
+      "Para generar flashcards de estudio",
+      "Para reemplazar pruebas en Test"
+    ],
+    correct: 0,
+    explanation: "Impact Analysis expone relaciones de dependencia y ayuda a evaluar riesgo antes de cambios estructurales. Es una práctica clave de cambio controlado en entornos empresariales. No sustituye pruebas, pero mejora planificación y comunicación de impacto.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 350,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Development Lifecycle",
+    question: "En un release crítico, ¿qué secuencia es más robusta para minimizar regresiones?",
+    options: [
+      "Revisar impacto (lineage), aprobar PR en Git, promover por pipeline y validar en entorno destino",
+      "Editar directamente producción sin análisis",
+      "Aplicar cambios en Desktop local y enviar captura de pantalla",
+      "Desactivar seguridad temporalmente para acelerar despliegue"
+    ],
+    correct: 0,
+    explanation: "La combinación de análisis de impacto, control de cambios en Git y promoción controlada por pipeline reduce riesgos de ruptura. Cada etapa agrega trazabilidad y puntos de validación. Saltar esos controles es un anti-patrón frecuente en preguntas de lifecycle.",
+    relatedContent: {
+      flashcards: [
+        138,
+        139,
+        140,
+        141
+      ],
+      summaries: [
+        38,
+        39
+      ],
+      labs: [
+        10
+      ],
+      glossary: [
+        "PBIP",
+        "PBIT",
+        "PBIDS",
+        "Impact Analysis"
+      ]
+    }
+  },
+  {
+    id: 355,
+    domain: 2,
+    difficulty: 1,
+    subtopic: "Workspace Security",
+    question: "¿Qué es File-Level Access Control en OneLake/Lakehouse?",
+    options: [
+      "Control de permisos sobre carpetas y archivos específicos dentro de la sección Files",
+      "Un reemplazo total de RLS/CLS/OLS en modelos semánticos",
+      "Un formato de cifrado automático de archivos",
+      "Una política exclusiva para dashboards"
+    ],
+    correct: 0,
+    explanation: "File-level access controla visibilidad a nivel de archivo/carpeta en almacenamiento, no a nivel de filas o columnas en el modelo semántico. Por eso complementa, pero no reemplaza, RLS/CLS/OLS. Cada mecanismo opera en una capa distinta de seguridad.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
+  },
+  {
+    id: 356,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Workspace Security",
+    question: "¿Cuál diferencia correctamente File-level access frente a RLS?",
+    options: [
+      "File-level restringe archivos/carpetas; RLS filtra filas durante consulta en el modelo",
+      "RLS restringe carpetas y File-level filtra filas",
+      "Ambos son exactamente el mismo control",
+      "Ninguno aplica en Fabric"
+    ],
+    correct: 0,
+    explanation: "RLS actúa durante la consulta del modelo semántico y decide qué filas ve cada usuario. File-level access opera antes, en la capa de almacenamiento, controlando qué archivos puede leer un principal. Entender esta separación evita diseñar controles incompletos.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
+  },
+  {
+    id: 357,
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Workspace Security",
+    question: "Un equipo de Finanzas solo debe ver su carpeta en Files del Lakehouse. ¿Qué enfoque es más directo?",
+    options: [
+      "Aplicar permisos File-level sobre la carpeta de Finanzas y negar acceso al resto",
+      "Crear únicamente una medida DAX",
+      "Configurar solo bookmarks del reporte",
+      "Quitar todos los workspaces del tenant"
+    ],
+    correct: 0,
+    explanation: "El requisito es de alcance físico del almacenamiento, por lo que File-level access es la capa correcta. DAX y bookmarks son controles de presentación/consulta, no permisos de archivo. La solución debe alinearse con el punto donde se quiere aplicar la restricción.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
+  },
+  {
+    id: 358,
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Workspace Security",
+    question: "¿Qué diseño de seguridad es más robusto en un escenario regulado con Lakehouse y reportes?",
+    options: [
+      "Combinar file-level access para capas raw y RLS/CLS/OLS en el modelo semántico para consumo analítico",
+      "Usar solo roles de workspace y nada más",
+      "Usar solo filtros visuales de reportes",
+      "Deshabilitar toda compartición para todos los usuarios"
+    ],
+    correct: 0,
+    explanation: "La seguridad en capas evita huecos: almacenamiento protegido en origen y restricciones semánticas en consumo analítico. Roles de workspace son necesarios pero insuficientes para granularidad fina. Este enfoque multicapa es el que normalmente se espera en escenarios de cumplimiento.",
+    relatedContent: {
+      flashcards: [
+        143,
+        17,
+        18
+      ],
+      summaries: [
+        7,
+        40
+      ],
+      labs: [
+        12
+      ],
+      glossary: [
+        "File-Level Access Control",
+        "RLS",
+        "CLS",
+        "OLS"
+      ]
+    }
   }
 ];
 
-
 const NEW_QUESTIONS_D3 = [
-  // === DAX avanzado (241-252) ===
   {
-    id: 241, domain: 3, difficulty: 2, subtopic: "DAX Advanced",
+    id: 241,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Advanced",
     question: "¿Cuál es la ventaja de usar variables (VAR/RETURN) en expresiones DAX?",
     options: [
       "Solo mejoran la legibilidad del código",
@@ -2806,10 +4889,32 @@ const NEW_QUESTIONS_D3 = [
       "Solo funcionan en columnas calculadas, no en medidas"
     ],
     correct: 1,
-    explanation: "VAR/RETURN: (1) Legibilidad: nombres descriptivos en lugar de expresiones anidadas. (2) Rendimiento: cada VAR se evalúa una sola vez y se reutiliza (el motor no recalcula). (3) Debug: puedes cambiar el RETURN para inspeccionar cualquier VAR intermedia. Ejemplo: VAR TotalVentas = SUM(...) VAR TotalCoste = SUM(...) RETURN TotalVentas - TotalCoste."
+    explanation: "VAR/RETURN: (1) Legibilidad: nombres descriptivos en lugar de expresiones anidadas. (2) Rendimiento: cada VAR se evalúa una sola vez y se reutiliza (el motor no recalcula). (3) Debug: puedes cambiar el RETURN para inspeccionar cualquier VAR intermedia. Ejemplo: VAR TotalVentas = SUM(...) VAR TotalCoste = SUM(...) RETURN TotalVentas - TotalCoste.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 242, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 242,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Qué hace CALCULATE con múltiples argumentos de filtro?",
     options: [
       "Aplica OR entre todos los filtros",
@@ -2818,10 +4923,32 @@ const NEW_QUESTIONS_D3 = [
       "Genera un error si hay más de un filtro"
     ],
     correct: 1,
-    explanation: "CALCULATE(medida, filtro1, filtro2) aplica AND entre filtros de columnas diferentes: CALCULATE(SUM(Ventas), Producto[Color]=\"Rojo\", Fecha[Año]=2024) → ventas de productos rojos EN 2024. Si dos filtros afectan la misma columna, el segundo reemplaza al primero (no AND)."
+    explanation: "CALCULATE(medida, filtro1, filtro2) aplica AND entre filtros de columnas diferentes: CALCULATE(SUM(Ventas), Producto[Color]=\"Rojo\", Fecha[Año]=2024) → ventas de productos rojos EN 2024. Si dos filtros afectan la misma columna, el segundo reemplaza al primero (no AND).",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 243, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 243,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Qué hace la función TREATAS en DAX y cuándo se usa?",
     options: [
       "Crea una tabla temporal en memoria",
@@ -2830,10 +4957,32 @@ const NEW_QUESTIONS_D3 = [
       "Aplica un tratamiento especial a columnas con NULLs"
     ],
     correct: 1,
-    explanation: "TREATAS(tabla_valores, columna_destino) permite usar valores de una tabla para filtrar otra columna SIN necesidad de una relación física. Ejemplo: CALCULATE(SUM(Ventas[Importe]), TREATAS(VALUES(TablaFiltro[Producto]), Ventas[Producto])). Es útil para relaciones virtuales y escenarios de role-playing dimensions."
+    explanation: "TREATAS(tabla_valores, columna_destino) permite usar valores de una tabla para filtrar otra columna SIN necesidad de una relación física. Ejemplo: CALCULATE(SUM(Ventas[Importe]), TREATAS(VALUES(TablaFiltro[Producto]), Ventas[Producto])). Es útil para relaciones virtuales y escenarios de role-playing dimensions.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 244, domain: 3, difficulty: 2, subtopic: "DAX Advanced",
+    id: 244,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Advanced",
     question: "¿Qué función DAX permite activar una relación inactiva para un cálculo específico?",
     options: [
       "ACTIVATERELATIONSHIP()",
@@ -2842,10 +4991,32 @@ const NEW_QUESTIONS_D3 = [
       "ENABLERELATION()"
     ],
     correct: 1,
-    explanation: "USERELATIONSHIP activa una relación inactiva solo para la duración de ese CALCULATE. Caso típico: una tabla de ventas con FechaVenta y FechaEnvío, ambas conectadas a DimFecha. La relación con FechaVenta es activa por defecto. Para calcular por FechaEnvío: CALCULATE(SUM(Ventas[Importe]), USERELATIONSHIP(Ventas[FechaEnvío], Fecha[Date]))."
+    explanation: "USERELATIONSHIP activa una relación inactiva solo para la duración de ese CALCULATE. Caso típico: una tabla de ventas con FechaVenta y FechaEnvío, ambas conectadas a DimFecha. La relación con FechaVenta es activa por defecto. Para calcular por FechaEnvío: CALCULATE(SUM(Ventas[Importe]), USERELATIONSHIP(Ventas[FechaEnvío], Fecha[Date])).",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 245, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 245,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Cuál es la diferencia entre SUM y SUMX en DAX?",
     options: [
       "Son idénticas, SUMX es solo un alias",
@@ -2854,10 +5025,32 @@ const NEW_QUESTIONS_D3 = [
       "SUM funciona solo con enteros; SUMX con decimales"
     ],
     correct: 1,
-    explanation: "SUM(columna) agrega directamente una columna. SUMX(tabla, expresion) itera cada fila de la tabla, evalúa la expresión en el contexto de esa fila, y suma los resultados. SUMX es necesario cuando calculas algo fila por fila: SUMX(Ventas, Ventas[Cantidad] * Ventas[PrecioUnitario]) — no podrías hacer esto con SUM."
+    explanation: "SUM(columna) agrega directamente una columna. SUMX(tabla, expresion) itera cada fila de la tabla, evalúa la expresión en el contexto de esa fila, y suma los resultados. SUMX es necesario cuando calculas algo fila por fila: SUMX(Ventas, Ventas[Cantidad] * Ventas[PrecioUnitario]) — no podrías hacer esto con SUM.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 246, domain: 3, difficulty: 2, subtopic: "DAX Advanced",
+    id: 246,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Advanced",
     question: "¿Qué función DAX devuelve TRUE si el contexto de filtro actual tiene exactamente un valor para una columna?",
     options: [
       "ISFILTERED()",
@@ -2866,10 +5059,32 @@ const NEW_QUESTIONS_D3 = [
       "COUNTFILTERS()"
     ],
     correct: 1,
-    explanation: "HASONEVALUE(columna) devuelve TRUE si hay exactamente un valor visible en el contexto para esa columna. Se usa frecuentemente en medidas condicionales: IF(HASONEVALUE(Producto[Categoría]), SELECTEDVALUE(Producto[Categoría]), \"Múltiples\"). Es más preciso que ISFILTERED, que solo indica si existe algún filtro."
+    explanation: "HASONEVALUE(columna) devuelve TRUE si hay exactamente un valor visible en el contexto para esa columna. Se usa frecuentemente en medidas condicionales: IF(HASONEVALUE(Producto[Categoría]), SELECTEDVALUE(Producto[Categoría]), \"Múltiples\"). Es más preciso que ISFILTERED, que solo indica si existe algún filtro.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 247, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 247,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Cómo se calcula un porcentaje del total general en DAX, ignorando los filtros de un slicer?",
     options: [
       "Dividiendo la medida por el total de la tabla",
@@ -2878,10 +5093,32 @@ const NEW_QUESTIONS_D3 = [
       "[Ventas] / [TotalVentas] (creando otra medida)"
     ],
     correct: 1,
-    explanation: "El patrón % del total: DIVIDE([Ventas], CALCULATE([Ventas], REMOVEFILTERS(Dimension))). REMOVEFILTERS (o ALL) dentro de CALCULATE elimina los filtros de la dimensión, calculando el total general como denominador. El numerador [Ventas] respeta los filtros actuales. DIVIDE evita error de división por cero."
+    explanation: "El patrón % del total: DIVIDE([Ventas], CALCULATE([Ventas], REMOVEFILTERS(Dimension))). REMOVEFILTERS (o ALL) dentro de CALCULATE elimina los filtros de la dimensión, calculando el total general como denominador. El numerador [Ventas] respeta los filtros actuales. DIVIDE evita error de división por cero.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 248, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 248,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Qué es un 'contexto de transición' (context transition) en DAX?",
     options: [
       "El cambio de modo Import a DirectQuery",
@@ -2890,10 +5127,32 @@ const NEW_QUESTIONS_D3 = [
       "El cambio entre vista de datos y vista de modelo"
     ],
     correct: 1,
-    explanation: "Context transition ocurre cuando CALCULATE (implícita o explícitamente) convierte el row context de un iterador o columna calculada en un filter context equivalente. Sin esto, una medida dentro de SUMX no sabría qué fila está evaluando. Es un concepto fundamental que explica por qué las medidas 'funcionan' dentro de iteradores."
+    explanation: "Context transition ocurre cuando CALCULATE (implícita o explícitamente) convierte el row context de un iterador o columna calculada en un filter context equivalente. Sin esto, una medida dentro de SUMX no sabría qué fila está evaluando. Es un concepto fundamental que explica por qué las medidas 'funcionan' dentro de iteradores.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 249, domain: 3, difficulty: 2, subtopic: "DAX Advanced",
+    id: 249,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Advanced",
     question: "¿Qué hace la función FILTER en DAX y cuándo se usa con CALCULATE?",
     options: [
       "Elimina filas de una tabla permanentemente",
@@ -2902,10 +5161,32 @@ const NEW_QUESTIONS_D3 = [
       "Solo funciona con tablas de dimensión"
     ],
     correct: 1,
-    explanation: "FILTER itera una tabla y devuelve las filas que cumplen la condición. Se usa con CALCULATE para filtros complejos: CALCULATE(SUM(Ventas[Importe]), FILTER(ALL(Producto), [MargenPct] > 0.3)) — filtra por una medida, algo que no se puede hacer con un predicado simple de CALCULATE."
+    explanation: "FILTER itera una tabla y devuelve las filas que cumplen la condición. Se usa con CALCULATE para filtros complejos: CALCULATE(SUM(Ventas[Importe]), FILTER(ALL(Producto), [MargenPct] > 0.3)) — filtra por una medida, algo que no se puede hacer con un predicado simple de CALCULATE.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 250, domain: 3, difficulty: 2, subtopic: "DAX Time Intelligence",
+    id: 250,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Time Intelligence",
     question: "¿Cómo se calcula la variación porcentual respecto al mismo mes del año anterior en DAX?",
     options: [
       "([Ventas] - [Ventas Año Anterior]) / [Ventas Año Anterior]",
@@ -2914,10 +5195,32 @@ const NEW_QUESTIONS_D3 = [
       "YEAROVERCHANGE([Ventas])"
     ],
     correct: 1,
-    explanation: "El patrón estándar de YoY%: (1) Calcular ventas actuales, (2) Calcular ventas del mismo periodo del año anterior con SAMEPERIODLASTYEAR o DATEADD(-1,YEAR), (3) Calcular el porcentaje con DIVIDE(actual - anterior, anterior). Usar DIVIDE evita error cuando VentasPY es 0."
+    explanation: "El patrón estándar de YoY%: (1) Calcular ventas actuales, (2) Calcular ventas del mismo periodo del año anterior con SAMEPERIODLASTYEAR o DATEADD(-1,YEAR), (3) Calcular el porcentaje con DIVIDE(actual - anterior, anterior). Usar DIVIDE evita error cuando VentasPY es 0.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 251, domain: 3, difficulty: 3, subtopic: "DAX Time Intelligence",
+    id: 251,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Time Intelligence",
     question: "¿Cuál es la diferencia entre DATEADD y PARALLELPERIOD en DAX?",
     options: [
       "Son exactamente iguales",
@@ -2926,10 +5229,32 @@ const NEW_QUESTIONS_D3 = [
       "DATEADD es más lenta que PARALLELPERIOD"
     ],
     correct: 1,
-    explanation: "DATEADD(-1, MONTH, fechas) desplaza exactamente las fechas del contexto. PARALLELPERIOD(fechas, -1, MONTH) desplaza Y completa el periodo. Si el contexto filtra del 10 al 20 de marzo, DATEADD devuelve 10-20 febrero, pero PARALLELPERIOD devuelve todo febrero (1-28). PARALLELPERIOD es útil cuando quieres comparar periodos completos."
+    explanation: "DATEADD(-1, MONTH, fechas) desplaza exactamente las fechas del contexto. PARALLELPERIOD(fechas, -1, MONTH) desplaza Y completa el periodo. Si el contexto filtra del 10 al 20 de marzo, DATEADD devuelve 10-20 febrero, pero PARALLELPERIOD devuelve todo febrero (1-28). PARALLELPERIOD es útil cuando quieres comparar periodos completos.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 252, domain: 3, difficulty: 2, subtopic: "DAX Time Intelligence",
+    id: 252,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Time Intelligence",
     question: "¿Qué función DAX calcula un acumulado del mes hasta la fecha (MTD)?",
     options: [
       "TOTALMTD(expresion, columna_fecha) o CALCULATE(medida, DATESMTD(columna_fecha))",
@@ -2938,11 +5263,32 @@ const NEW_QUESTIONS_D3 = [
       "RUNNINGTOTAL(expresion, MONTH)"
     ],
     correct: 0,
-    explanation: "TOTALMTD es el atajo directo. Alternativamente, CALCULATE(medida, DATESMTD(Fecha[Date])) logra lo mismo con más flexibilidad. DATESMTD genera el rango de fechas desde el primer día del mes hasta la fecha actual del contexto. También existen TOTALQTD (trimestre) y TOTALYTD (año)."
+    explanation: "TOTALMTD es el atajo directo. Alternativamente, CALCULATE(medida, DATESMTD(Fecha[Date])) logra lo mismo con más flexibilidad. DATESMTD genera el rango de fechas desde el primer día del mes hasta la fecha actual del contexto. También existen TOTALQTD (trimestre) y TOTALYTD (año).",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
-  // === Calculation Groups (253-260) ===
   {
-    id: 253, domain: 3, difficulty: 2, subtopic: "Calculation Groups",
+    id: 253,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Calculation Groups",
     question: "¿Cómo se crea un Calculation Group en un modelo semántico de Fabric?",
     options: [
       "Desde la interfaz visual de Power BI Desktop directamente",
@@ -2954,7 +5300,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Los Calculation Groups se crean con herramientas externas como Tabular Editor (2 o 3), que se conecta al modelo semántico publicado via XMLA endpoint, o en modo local editando el archivo TMDL/BIM. Power BI Desktop no tiene interfaz visual nativa para crearlos, aunque sí los consume y muestra."
   },
   {
-    id: 254, domain: 3, difficulty: 3, subtopic: "Calculation Groups",
+    id: 254,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Calculation Groups",
     question: "¿Qué es SELECTEDMEASURE() dentro de un Calculation Item?",
     options: [
       "Una función que devuelve el nombre de la medida seleccionada",
@@ -2966,7 +5315,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "SELECTEDMEASURE() es la referencia dinámica a 'la medida actual' dentro de un Calculation Item. Si el usuario pone [Ventas] en un visual y selecciona el item 'YTD', la expresión CALCULATE(SELECTEDMEASURE(), DATESYTD(Fecha[Date])) evalúa CALCULATE([Ventas], DATESYTD(...)). Si cambia a [Costes], aplica lo mismo a [Costes]."
   },
   {
-    id: 255, domain: 3, difficulty: 3, subtopic: "Calculation Groups",
+    id: 255,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Calculation Groups",
     question: "¿Qué es el FormatString Expression en un Calculation Item?",
     options: [
       "Una función para convertir números a texto",
@@ -2978,7 +5330,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "FormatString Expression permite que el formato del valor cambie dinámicamente. Ejemplo: un item 'Actual' usa \"#,##0\" pero un item 'YoY Change %' usa \"0.0%;-0.0%\". Sin FormatString, el porcentaje se mostraría con el formato original de la medida (ej: como número absoluto). Se define en la propiedad FormatString del Calculation Item."
   },
   {
-    id: 256, domain: 3, difficulty: 2, subtopic: "Calculation Groups",
+    id: 256,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Calculation Groups",
     question: "¿Qué ventaja principal ofrecen los Calculation Groups sobre crear medidas individuales para cada variación temporal?",
     options: [
       "Son más rápidos de ejecutar",
@@ -2990,7 +5345,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Sin Calculation Groups: N medidas × M variaciones = N×M medidas totales. Con Calculation Groups: N medidas + M items = N+M objetos. Para 20 medidas y 5 variaciones temporales: sin CG = 100 medidas; con CG = 20 medidas + 5 items = 25 objetos. La escalabilidad y mantenibilidad mejoran dramáticamente."
   },
   {
-    id: 257, domain: 3, difficulty: 3, subtopic: "Calculation Groups",
+    id: 257,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Calculation Groups",
     question: "¿Qué sucede cuando se aplican múltiples Calculation Groups simultáneamente a una medida?",
     options: [
       "Solo se aplica el primero y los demás se ignoran",
@@ -3002,7 +5360,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Cuando hay múltiples Calculation Groups, se aplican secuencialmente según la propiedad Precedence: el grupo con mayor precedencia se evalúa primero, y su resultado se pasa como SELECTEDMEASURE() al siguiente grupo. Ejemplo: Time Intelligence (precedence 10) calcula YTD, luego Currency Conversion (precedence 20) convierte la moneda del resultado YTD."
   },
   {
-    id: 258, domain: 3, difficulty: 2, subtopic: "Calculation Groups",
+    id: 258,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Calculation Groups",
     question: "¿Cómo se usa un Calculation Group en un informe de Power BI?",
     options: [
       "Se activa automáticamente en todas las visualizaciones",
@@ -3013,9 +5374,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Un Calculation Group se consume como una dimensión: aparece en la lista de campos como una tabla con una columna (los items: YTD, PY, MTD, etc.). Se coloca en un slicer para que el usuario elija la transformación, o en el eje de un visual para comparar variaciones lado a lado."
   },
-  // === Direct Lake advanced (259-266) ===
   {
-    id: 259, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 259,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Qué guardrails (límites) aplica Direct Lake según el SKU de la Capacity?",
     options: [
       "Solo límite de almacenamiento total",
@@ -3027,7 +5390,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Cada SKU (F2, F4, F8...F2048) tiene guardrails específicos para Direct Lake: max rows per table, max total model size, max parquet rowgroups, max columns. Ejemplo: F2 soporta ~300M filas; F64 soporta billones. Si se excede cualquier guardrail, el modelo hace fallback a DirectQuery con su impacto en rendimiento."
   },
   {
-    id: 260, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 260,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Cómo se puede forzar un nuevo framing en un modelo Direct Lake?",
     options: [
       "No es posible forzar framing, ocurre solo automáticamente",
@@ -3039,7 +5405,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Un refresh del modelo semántico Direct Lake desencadena un nuevo framing: el modelo toma un nuevo snapshot de los archivos Delta actuales. El framing también puede ocurrir automáticamente cuando Fabric detecta cambios en los archivos subyacentes. Se puede programar con triggers o ejecutar manualmente."
   },
   {
-    id: 261, domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: 261,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "¿Cuándo se recomienda usar Direct Lake vs Import en Fabric?",
     options: [
       "Siempre Direct Lake, nunca Import",
@@ -3051,7 +5420,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Direct Lake es ideal cuando: (1) datos ya están en OneLake como Delta, (2) quieres datos siempre frescos sin programar refrescos, (3) el modelo no usa calculated tables ni ciertas funciones incompatibles. Import es mejor cuando: (1) necesitas calculated tables, (2) datos vienen de fuentes externas, (3) necesitas transformaciones Power Query complejas en el modelo."
   },
   {
-    id: 262, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 262,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Qué propiedad del modelo semántico Direct Lake controla si se permite el fallback a DirectQuery?",
     options: [
       "No hay propiedad, el fallback siempre ocurre",
@@ -3062,9 +5434,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "DirectLakeBehavior controla el comportamiento: Automatic (default) permite fallback transparente a DirectQuery. DirectLakeOnly desactiva el fallback — si el modelo no puede servir desde caché, la query falla en lugar de degradarse a DQ. DirectQueryOnly fuerza siempre DirectQuery. Se configura vía XMLA/TMDL."
   },
-  // === Composite Models (263-270) ===
   {
-    id: 263, domain: 3, difficulty: 2, subtopic: "Composite Models",
+    id: 263,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Composite Models",
     question: "¿Qué es un modelo semántico compuesto (Composite Model)?",
     options: [
       "Un modelo con más de 10 tablas",
@@ -3076,7 +5450,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Un Composite Model permite mezclar modos de almacenamiento en el mismo modelo: dimensiones en Import (rendimiento máximo), tabla de hechos grande en DirectQuery (datos en tiempo real, sin límite de tamaño), y potencialmente otras tablas en Direct Lake. Tablas Dual se almacenan en Import pero pueden actuar como DirectQuery según el contexto."
   },
   {
-    id: 264, domain: 3, difficulty: 3, subtopic: "Composite Models",
+    id: 264,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Composite Models",
     question: "¿Qué es 'DirectQuery over Semantic Models' (chained models)?",
     options: [
       "Ejecutar SQL directamente contra un modelo semántico",
@@ -3088,7 +5465,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "DirectQuery over Semantic Models (chained/composite models) permite crear un modelo que se conecta a otro modelo semántico existente vía DirectQuery y lo extiende: añade nuevas tablas (de cualquier fuente), nuevas medidas, nuevas relaciones. El modelo base no se modifica ni duplica. Ideal para escenarios departamentales que extienden un modelo corporativo."
   },
   {
-    id: 265, domain: 3, difficulty: 2, subtopic: "Composite Models",
+    id: 265,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Composite Models",
     question: "¿Cuándo conviene usar tablas en modo 'Dual' dentro de un Composite Model?",
     options: [
       "Nunca, Dual es un modo legacy",
@@ -3100,7 +5480,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Tablas Dual almacenan datos en Import Y pueden actuar como DirectQuery según la necesidad. Si una query solo involucra tablas Import/Dual, usa la caché Import (rápido). Si involucra un join con una tabla DirectQuery, la tabla Dual actúa como DirectQuery para que el join se ejecute en el origen. Son ideales para dimensiones en Composite Models."
   },
   {
-    id: 266, domain: 3, difficulty: 3, subtopic: "Composite Models",
+    id: 266,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Composite Models",
     question: "¿Qué limitación tienen los modelos que usan DirectQuery over Semantic Models (chained models)?",
     options: [
       "No pueden tener medidas DAX",
@@ -3111,9 +5494,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Limitaciones clave de chained models: (1) RLS definido en el modelo encadenado NO se propaga al modelo base — se debe confiar en el RLS del modelo base. (2) Rendimiento depende de ambos modelos. (3) Ciertas funciones DAX que requieren acceso a datos granulares pueden no funcionar en tablas DQ. (4) El modelo base debe tener permisos Read y Build."
   },
-  // === Performance optimization (267-276) ===
   {
-    id: 267, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 267,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Cuál es la técnica más efectiva para reducir el tamaño de un modelo semántico Import?",
     options: [
       "Añadir más índices",
@@ -3125,7 +5510,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "La cardinalidad (número de valores distintos) es el factor principal del tamaño en VertiPaq. Reducirla: (1) Eliminar columnas no usadas en reports (IDs técnicos, descripciones largas), (2) Redondear decimales, (3) Separar fecha y hora en columnas distintas, (4) Reemplazar columnas de texto de alta cardinalidad por claves numéricas con dimensiones."
   },
   {
-    id: 268, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 268,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué herramienta muestra el desglose de tiempo de una query DAX entre Formula Engine y Storage Engine?",
     options: [
       "Power Query Editor",
@@ -3137,7 +5525,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "DAX Studio Server Timings descompone cada query en: Formula Engine time (procesamiento DAX en CPU) y Storage Engine time (lectura de datos de VertiPaq o envío de queries DirectQuery). El objetivo es minimizar FE (simplificar DAX) y SE (reducir datos escaneados). Un ratio FE alto indica DAX ineficiente."
   },
   {
-    id: 269, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 269,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Qué muestra el Performance Analyzer de Power BI Desktop?",
     options: [
       "Solo el tiempo de carga de la página completa",
@@ -3149,7 +5540,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Performance Analyzer descompone cada visual en: (1) DAX Query — la query completa generada (copiable para pegar en DAX Studio), (2) Tiempo de evaluación DAX en el motor, (3) Tiempo de renderizado del visual en la UI. Permite identificar qué visuals son lentos y si el cuello de botella es DAX o rendering."
   },
   {
-    id: 270, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 270,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué es el Best Practices Analyzer (BPA) y cómo se usa?",
     options: [
       "Un análisis automático de seguridad del modelo",
@@ -3161,7 +5555,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "BPA es un feature de Tabular Editor que aplica reglas configurables sobre el modelo: detecta columnas sin referencias, relaciones bidireccionales innecesarias, medidas sin carpeta, tablas sin relaciones, columnas calculadas que deberían ser medidas, formatos inconsistentes, etc. Se puede ejecutar vía XMLA endpoint sobre modelos publicados."
   },
   {
-    id: 271, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 271,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Por qué se recomienda separar columnas de fecha y hora en dos columnas distintas?",
     options: [
       "Por estética en la interfaz",
@@ -3173,7 +5570,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Una columna DateTime con precisión de segundo puede tener 86.400 valores únicos por día × 365 días = 31.5M valores. Separar en Date (365 valores/año) y Time (86.400 valores, compartidos entre todos los días) reduce la cardinalidad total dramáticamente. VertiPaq comprime mejor columnas de baja cardinalidad."
   },
   {
-    id: 272, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 272,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué muestra el VertiPaq Analyzer en DAX Studio?",
     options: [
       "Las queries más lentas ejecutadas en el modelo",
@@ -3185,7 +5585,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "VertiPaq Analyzer muestra la anatomía del modelo en memoria: tamaño total, tamaño por tabla y por columna (datos + diccionario + jerarquías), cardinalidad exacta de cada columna, tipo de encoding usado, y un % del total. Esto permite identificar las columnas 'pesadas' que son candidatas a optimización (eliminar, reducir cardinalidad, cambiar tipo)."
   },
   {
-    id: 273, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 273,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Cuál es la mejor práctica para relaciones bidireccionales en un modelo semántico?",
     options: [
       "Usar bidireccional en todas las relaciones para máxima flexibilidad",
@@ -3196,9 +5599,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Relaciones bidireccionales causan: (1) Ambigüedad en caminos de filtro (múltiples rutas entre tablas), (2) Menor rendimiento por evaluación de más filtros, (3) Resultados inesperados en medidas. La alternativa: usar relaciones unidireccionales por defecto y CROSSFILTER(tabla1[col], tabla2[col], BOTH) dentro de CALCULATE solo cuando sea necesario."
   },
-  // === Large semantic models y XMLA (274-279) ===
   {
-    id: 274, domain: 3, difficulty: 2, subtopic: "XMLA/Tabular Model",
+    id: 274,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Qué es el XMLA endpoint y qué operaciones permite?",
     options: [
       "Un endpoint para exportar datos como XML",
@@ -3210,7 +5615,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "XMLA endpoint expone el modelo semántico usando el protocolo Analysis Services. Modo lectura: permite conectar herramientas de análisis (DAX Studio, SSMS). Modo lectura/escritura (requiere Premium/Fabric): permite modificar el modelo programáticamente — crear particiones, medidas, calculation groups, ejecutar refrescos, etc."
   },
   {
-    id: 275, domain: 3, difficulty: 3, subtopic: "XMLA/Tabular Model",
+    id: 275,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Qué es TMDL (Tabular Model Definition Language) y cómo se relaciona con Git?",
     options: [
       "Un lenguaje de consultas alternativo a DAX",
@@ -3222,7 +5630,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "TMDL es el nuevo formato de serialización de modelos semánticos: descompone el modelo en múltiples archivos de texto (uno por tabla, uno por medida, etc.) con sintaxis legible. Esto facilita enormemente el control de versiones en Git: diffs significativos, merge sin conflictos, code review de cambios de modelo. Reemplaza al formato BIM (un solo JSON)."
   },
   {
-    id: 276, domain: 3, difficulty: 3, subtopic: "XMLA/Tabular Model",
+    id: 276,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Qué permite hacer el ALM Toolkit en el contexto de modelos semánticos?",
     options: [
       "Solo visualizar modelos",
@@ -3233,9 +5644,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "ALM Toolkit compara schema de dos modelos semánticos (origen y destino) conectándose vía XMLA. Muestra diferencias: objetos nuevos, modificados o eliminados. Permite sincronizar selectivamente: elegir qué cambios aplicar al destino. Es esencial para promover cambios de modelos entre entornos cuando Deployment Pipelines no son suficientes."
   },
-  // === Field parameters (277-280) ===
   {
-    id: 277, domain: 3, difficulty: 2, subtopic: "DAX Advanced",
+    id: 277,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Advanced",
     question: "¿Qué son los Field Parameters en Power BI?",
     options: [
       "Parámetros de conexión a la fuente de datos",
@@ -3247,7 +5660,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Los Field Parameters crean una tabla DAX que lista campos (columnas y/o medidas). Al colocar el Field Parameter en un visual y un slicer, el usuario puede cambiar dinámicamente qué se muestra: cambiar el eje de una gráfica entre Producto, Región y Categoría, o cambiar la medida entre Ventas, Costes y Margen, todo con un slicer."
   },
   {
-    id: 278, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 278,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Cómo se crea un Field Parameter que permita alternar entre diferentes medidas?",
     options: [
       "Con una tabla calculada estándar",
@@ -3258,9 +5674,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "En Power BI Desktop: Modeling → New parameter → Fields. Se seleccionan las medidas (ej: Ventas, Costes, Margen). Esto genera una tabla DAX con la función NAMEOF() que referencia cada medida. La tabla aparece como un slicer y al seleccionar un valor, el visual muestra la medida correspondiente."
   },
-  // === Incremental Refresh avanzado (279-284) ===
   {
-    id: 279, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 279,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Cómo funciona Incremental Refresh con particiones en un modelo semántico?",
     options: [
       "Carga toda la tabla en cada refresco",
@@ -3272,7 +5690,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Al configurar Incremental Refresh, Fabric crea particiones automáticas basadas en la columna de fecha. Las particiones históricas (ej: meses anteriores) se polarizan y no se refrescan. Solo las particiones del rango incremental (ej: últimos 7 días) se refrescan. Esto reduce drásticamente el tiempo y los datos procesados."
   },
   {
-    id: 280, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 280,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué es 'detect data changes' en Incremental Refresh?",
     options: [
       "Detectar cambios de schema en la tabla",
@@ -3283,9 +5704,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Detect data changes permite que particiones históricas (normalmente no refrescadas) se actualicen si una columna de tracking (ej: LastModifiedDate) indica cambios. Sin esta opción, solo se refrescan las particiones del rango incremental. Con esta opción, las correcciones de datos históricos se propagan al modelo."
   },
-  // === Star Schema avanzado (281-286) ===
   {
-    id: 281, domain: 3, difficulty: 2, subtopic: "Star Schema",
+    id: 281,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Star Schema",
     question: "¿Qué es una tabla bridge (puente) y cuándo se usa en un star schema?",
     options: [
       "Una tabla que conecta la base de datos con el modelo",
@@ -3297,7 +5720,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Una bridge table resuelve relaciones M:N. Ejemplo: un estudiante tiene muchos cursos y un curso tiene muchos estudiantes. La bridge table tiene StudentID + CourseID (una fila por combinación). Esto permite modelar la relación como dos relaciones 1:N (Estudiante→Bridge←Curso) evitando la relación M:N directa."
   },
   {
-    id: 282, domain: 3, difficulty: 3, subtopic: "Star Schema",
+    id: 282,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Star Schema",
     question: "¿Por qué se recomienda desnormalizar las dimensiones en un star schema para Power BI?",
     options: [
       "Porque Power BI no soporta tablas normalizadas",
@@ -3309,7 +5735,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "En un star schema, las dimensiones se desnormalizan (ej: País, Región, Ciudad en la misma tabla en lugar de 3 tablas separadas). VertiPaq comprime valores repetidos eficientemente con dictionary encoding. Menos tablas significa: menos relaciones que navegar, menos joins, mejor rendimiento, y una experiencia de usuario más simple."
   },
   {
-    id: 283, domain: 3, difficulty: 1, subtopic: "Star Schema",
+    id: 283,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Star Schema",
     question: "¿Qué columnas debe tener una tabla de hechos en un star schema?",
     options: [
       "Solo atributos descriptivos como nombres y categorías",
@@ -3321,7 +5750,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Una tabla de hechos contiene: (1) Claves foráneas que conectan con cada dimensión (DimFechaKey, DimProductoKey, DimClienteKey), (2) Métricas numéricas que se agregan (Cantidad, Importe, Descuento, Coste). No debe contener atributos descriptivos — esos van en las dimensiones."
   },
   {
-    id: 284, domain: 3, difficulty: 2, subtopic: "Star Schema",
+    id: 284,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Star Schema",
     question: "¿Qué es una 'role-playing dimension' y cómo se maneja en Power BI?",
     options: [
       "Una dimensión que cambia de estructura según el usuario",
@@ -3332,9 +5764,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Una role-playing dimension es una tabla (típicamente Fecha) que se relaciona con la tabla de hechos por múltiples columnas. En Power BI: crear una sola tabla DimFecha, crear múltiples relaciones (solo una activa), y usar USERELATIONSHIP() en medidas para activar la relación inactiva apropiada."
   },
-  // === Storage Modes y modelos avanzados (285-290) ===
   {
-    id: 285, domain: 3, difficulty: 2, subtopic: "Storage Modes",
+    id: 285,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
     question: "¿Qué limitación tiene DirectQuery que Import no tiene?",
     options: [
       "DirectQuery no soporta DAX",
@@ -3343,10 +5777,30 @@ const NEW_QUESTIONS_D3 = [
       "DirectQuery no puede usar slicers"
     ],
     correct: 1,
-    explanation: "DirectQuery envía queries SQL al origen por cada interacción del usuario, causando latencia. Limitaciones: algunas funciones DAX no están disponibles, Power Query tiene restricciones (folding obligatorio), el rendimiento depende del origen, hay límite de 1M filas por query, y las transformaciones complejas degradan rendimiento."
+    explanation: "DirectQuery envía queries SQL al origen por cada interacción del usuario, causando latencia. Limitaciones: algunas funciones DAX no están disponibles, Power Query tiene restricciones (folding obligatorio), el rendimiento depende del origen, hay límite de 1M filas por query, y las transformaciones complejas degradan rendimiento.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
   },
   {
-    id: 286, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 286,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué son las 'aggregations' (tablas de agregación) en un modelo semántico?",
     options: [
       "Las funciones SUM y COUNT de DAX",
@@ -3357,9 +5811,11 @@ const NEW_QUESTIONS_D3 = [
     correct: 1,
     explanation: "Las aggregations son tablas Import ocultas que contienen datos pre-agregados de tablas DirectQuery. Ejemplo: una tabla DQ tiene 100M filas de ventas diarias; la aggregation tiene ventas mensuales por producto (10K filas). Queries que piden 'ventas por mes y producto' usan la aggregation (rápido); queries que necesitan detalle diario van a DirectQuery."
   },
-  // === Últimas preguntas de D3 (287-300) ===
   {
-    id: 287, domain: 3, difficulty: 1, subtopic: "DAX Core",
+    id: 287,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Core",
     question: "¿Cuál es la diferencia entre BLANK() y 0 en DAX?",
     options: [
       "Son exactamente lo mismo",
@@ -3371,7 +5827,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "BLANK() es el valor 'ausente' en DAX (como NULL en SQL). BLANK + 5 = 5 (se trata como 0 aritméticamente), pero IF(ISBLANK(x), 'vacío', 'tiene valor') distingue entre BLANK y 0 real. En slicers, los BLANKs aparecen como '(Blank)'. DIVIDE(x, 0) devuelve BLANK (no error). Es importante para manejar datos incompletos."
   },
   {
-    id: 288, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 288,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué función DAX permite crear una tabla virtual en memoria dentro de una medida?",
     options: [
       "CREATE TABLE",
@@ -3383,7 +5842,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "DAX tiene varias funciones de creación de tablas virtuales: SUMMARIZE (agrupa y opcionalmente agrega), ADDCOLUMNS (añade columnas calculadas a una tabla), SELECTCOLUMNS (selecciona/renombra columnas), DATATABLE (crea una tabla literal), UNION/INTERSECT/EXCEPT (operaciones de conjuntos). Todas generan tablas en memoria para uso dentro de la expresión."
   },
   {
-    id: 289, domain: 3, difficulty: 3, subtopic: "XMLA/Tabular Model",
+    id: 289,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Cómo se crean particiones manuales en un modelo semántico para controlar el refresco granular?",
     options: [
       "Desde la interfaz de Power BI Desktop",
@@ -3392,10 +5854,30 @@ const NEW_QUESTIONS_D3 = [
       "Con DAX en una columna calculada"
     ],
     correct: 1,
-    explanation: "Las particiones manuales se crean vía XMLA endpoint: con TMSL (JSON) o Tabular Editor. Cada partición tiene su propia query M que filtra un rango de datos. Esto permite refrescar solo particiones específicas: TMSL refreshPartition solo refresca las particiones indicadas, ideal para tablas muy grandes donde Incremental Refresh estándar no es suficiente."
+    explanation: "Las particiones manuales se crean vía XMLA endpoint: con TMSL (JSON) o Tabular Editor. Cada partición tiene su propia query M que filtra un rango de datos. Esto permite refrescar solo particiones específicas: TMSL refreshPartition solo refresca las particiones indicadas, ideal para tablas muy grandes donde Incremental Refresh estándar no es suficiente.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
   },
   {
-    id: 290, domain: 3, difficulty: 2, subtopic: "Composite Models",
+    id: 290,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Composite Models",
     question: "¿Qué es una 'Hybrid Table' en un modelo semántico?",
     options: [
       "Una tabla que almacena datos en dos formatos diferentes",
@@ -3407,7 +5889,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Las Hybrid Tables combinan Incremental Refresh con DirectQuery: las particiones históricas se mantienen en Import (rendimiento) y la partición más reciente usa DirectQuery (datos en tiempo real). Esto ofrece lo mejor de ambos mundos: rendimiento Import para historial + frescura DirectQuery para datos actuales."
   },
   {
-    id: 291, domain: 3, difficulty: 1, subtopic: "DAX Core",
+    id: 291,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Core",
     question: "¿Cuál es la función DAX correcta para dividir de forma segura (sin error por división entre 0)?",
     options: [
       "a / b",
@@ -3419,7 +5904,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "DIVIDE(numerador, denominador [, alternativo]) es la función recomendada para divisiones en DAX. Si el denominador es 0 o BLANK, devuelve BLANK (o el valor alternativo si se especifica). Es más limpia y eficiente que usar IF para verificar antes de dividir."
   },
   {
-    id: 292, domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: 292,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué son las 'Storage Engine queries' y por qué se prefieren sobre 'Formula Engine queries' para rendimiento?",
     options: [
       "Storage Engine es para datos; Formula Engine es para fórmulas",
@@ -3431,7 +5919,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "SE (Storage Engine): opera sobre el almacenamiento columnar de VertiPaq, altamente optimizado, ejecuta scans y aggregations en paralelo, muy rápido. FE (Formula Engine): procesa lógica DAX compleja, single-threaded, más lento. El objetivo al optimizar DAX es que el máximo trabajo lo haga el SE (con queries simples) y minimizar el trabajo del FE."
   },
   {
-    id: 293, domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: 293,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "¿Qué diferencia hay entre ALL() y REMOVEFILTERS() en DAX?",
     options: [
       "Son completamente diferentes en funcionalidad",
@@ -3440,10 +5931,32 @@ const NEW_QUESTIONS_D3 = [
       "REMOVEFILTERS elimina más filtros que ALL"
     ],
     correct: 1,
-    explanation: "Dentro de CALCULATE, ALL(tabla/columna) y REMOVEFILTERS(tabla/columna) son funcionalmente idénticos: eliminan filtros del contexto. La diferencia: ALL() tiene un doble uso — también funciona como función de tabla (SELECT * sin filtros). REMOVEFILTERS() es más explícito y legible porque solo hace una cosa: quitar filtros. Microsoft recomienda REMOVEFILTERS por claridad."
+    explanation: "Dentro de CALCULATE, ALL(tabla/columna) y REMOVEFILTERS(tabla/columna) son funcionalmente idénticos: eliminan filtros del contexto. La diferencia: ALL() tiene un doble uso — también funciona como función de tabla (SELECT * sin filtros). REMOVEFILTERS() es más explícito y legible porque solo hace una cosa: quitar filtros. Microsoft recomienda REMOVEFILTERS por claridad.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 294, domain: 3, difficulty: 3, subtopic: "DAX Advanced",
+    id: 294,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Advanced",
     question: "¿Cómo se calcula un 'Moving Average' de 3 meses en DAX?",
     options: [
       "AVERAGE de los últimos 3 valores",
@@ -3452,10 +5965,32 @@ const NEW_QUESTIONS_D3 = [
       "SUM([Ventas]) / 3"
     ],
     correct: 1,
-    explanation: "El patrón Moving Average: AVERAGEX(ventana_temporal, medida). DATESINPERIOD genera el rango de fechas (últimos 3 meses desde la fecha actual del contexto). AVERAGEX itera cada fecha del rango, evalúa [Ventas] en ese contexto, y calcula la media. Esto suaviza fluctuaciones y muestra tendencias."
+    explanation: "El patrón Moving Average: AVERAGEX(ventana_temporal, medida). DATESINPERIOD genera el rango de fechas (últimos 3 meses desde la fecha actual del contexto). AVERAGEX itera cada fecha del rango, evalúa [Ventas] en ese contexto, y calcula la media. Esto suaviza fluctuaciones y muestra tendencias.",
+    relatedContent: {
+      flashcards: [
+        59,
+        60,
+        63,
+        64
+      ],
+      summaries: [
+        20
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "DAX",
+        "CALCULATE",
+        "SUMX"
+      ]
+    }
   },
   {
-    id: 295, domain: 3, difficulty: 1, subtopic: "Star Schema",
+    id: 295,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Star Schema",
     question: "¿Qué es una 'Slowly Changing Dimension' (SCD) Type 1 en el contexto de modelado?",
     options: [
       "Una dimensión que nunca cambia",
@@ -3467,7 +6002,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "SCD Type 1 sobrescribe el valor anterior: si un cliente cambia de ciudad, se actualiza directamente en la tabla de dimensión. No se mantiene historial — las consultas siempre muestran el valor actual. Es el tipo más simple y adecuado cuando el historial de cambios no es relevante para el análisis."
   },
   {
-    id: 296, domain: 3, difficulty: 2, subtopic: "XMLA/Tabular Model",
+    id: 296,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "XMLA/Tabular Model",
     question: "¿Qué es TMSL (Tabular Model Scripting Language)?",
     options: [
       "Un lenguaje de consultas similar a SQL",
@@ -3476,10 +6014,30 @@ const NEW_QUESTIONS_D3 = [
       "Una extensión de DAX para scripting"
     ],
     correct: 1,
-    explanation: "TMSL usa comandos JSON enviados via XMLA endpoint: createOrReplace (crear/actualizar objetos), refresh (refrescar tablas/particiones), alter (modificar propiedades), delete (eliminar objetos). Ejemplo: un script TMSL puede refrescar solo las particiones del último mes de una tabla, o crear una nueva medida. Se puede automatizar con PowerShell o REST API."
+    explanation: "TMSL usa comandos JSON enviados via XMLA endpoint: createOrReplace (crear/actualizar objetos), refresh (refrescar tablas/particiones), alter (modificar propiedades), delete (eliminar objetos). Ejemplo: un script TMSL puede refrescar solo las particiones del último mes de una tabla, o crear una nueva medida. Se puede automatizar con PowerShell o REST API.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
   },
   {
-    id: 297, domain: 3, difficulty: 3, subtopic: "Composite Models",
+    id: 297,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Composite Models",
     question: "¿Qué consideración de seguridad aplica cuando un modelo usa DirectQuery a una fuente SQL?",
     options: [
       "La seguridad solo se aplica en el modelo semántico",
@@ -3491,7 +6049,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Con DirectQuery, las credenciales de la conexión determinan qué datos son accesibles: Fixed credentials (una cuenta para todos — el RLS debe configurarse en el modelo) o SSO (Single Sign-On — las queries se ejecutan con la identidad del usuario, y el RLS del origen SQL también aplica). SSO proporciona doble capa de seguridad."
   },
   {
-    id: 298, domain: 3, difficulty: 2, subtopic: "Performance Optimization",
+    id: 298,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Performance Optimization",
     question: "¿Qué técnica reduce el tiempo de refresco de un modelo semántico Import grande?",
     options: [
       "Añadir más medidas al modelo",
@@ -3503,7 +6064,10 @@ const NEW_QUESTIONS_D3 = [
     explanation: "Incremental Refresh es la técnica principal: divide la tabla en particiones temporales y solo refresca las que contienen datos nuevos o modificados. Otras técnicas: (1) Optimizar las queries Power Query (query folding), (2) Reducir columnas innecesarias en origen, (3) Usar Enhanced Refresh API para refrescar particiones específicas."
   },
   {
-    id: 299, domain: 3, difficulty: 1, subtopic: "Storage Modes",
+    id: 299,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Storage Modes",
     question: "¿Qué modo de almacenamiento es el predeterminado al crear un modelo semántico en Power BI Desktop?",
     options: [
       "DirectQuery",
@@ -3512,10 +6076,30 @@ const NEW_QUESTIONS_D3 = [
       "Dual"
     ],
     correct: 1,
-    explanation: "Import es el modo predeterminado en Power BI Desktop: al conectar una fuente y cargar datos, se copian en la caché VertiPaq del archivo .pbix. Para usar DirectQuery hay que seleccionarlo explícitamente al configurar la conexión. Direct Lake solo está disponible en modelos creados directamente en Fabric (no en Desktop)."
+    explanation: "Import es el modo predeterminado en Power BI Desktop: al conectar una fuente y cargar datos, se copian en la caché VertiPaq del archivo .pbix. Para usar DirectQuery hay que seleccionarlo explícitamente al configurar la conexión. Direct Lake solo está disponible en modelos creados directamente en Fabric (no en Desktop).",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
   },
   {
-    id: 300, domain: 3, difficulty: 3, subtopic: "Calculation Groups",
+    id: 300,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Calculation Groups",
     question: "¿Cómo se implementa un Calculation Item que muestre el valor acumulado del año (YTD) dinámicamente para cualquier medida?",
     options: [
       "Creando una medida TOTALYTD para cada medida del modelo",
@@ -3525,9 +6109,1094 @@ const NEW_QUESTIONS_D3 = [
     ],
     correct: 1,
     explanation: "El Calculation Item 'YTD' tiene la expresión: CALCULATE(SELECTEDMEASURE(), DATESYTD(DimDate[Date])). Cuando el usuario selecciona 'YTD' en el slicer del Calculation Group, SELECTEDMEASURE() se reemplaza dinámicamente por la medida del visual ([Ventas], [Costes], [Margen]...). Un solo item sirve para TODAS las medidas."
+  },
+  {
+    id: 301,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Windowing",
+    question: "¿Qué función DAX está diseñada para devolver una fila relativa (anterior o siguiente) dentro de un conjunto ordenado?",
+    options: [
+      "DATEADD()",
+      "OFFSET()",
+      "SAMEPERIODLASTYEAR()",
+      "TOPN()"
+    ],
+    correct: 1,
+    explanation: "OFFSET() devuelve una fila relativa respecto a la fila actual dentro de una ventana ordenada. Es el equivalente conceptual de LAG/LEAD en SQL cuando trabajas en DAX. DATEADD desplaza fechas en una tabla de calendario, pero no resuelve comparaciones fila a fila en cualquier conjunto ordenado.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 302,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Windowing",
+    question: "¿Qué describe mejor a INDEX() en DAX windowing?",
+    options: [
+      "Devuelve el índice de una columna en el modelo",
+      "Obtiene una fila por su posición absoluta dentro de un conjunto ordenado",
+      "Crea un índice persistente para acelerar consultas",
+      "Solo funciona en columnas calculadas"
+    ],
+    correct: 1,
+    explanation: "INDEX() permite recuperar una fila por posición dentro de un conjunto definido por ORDERBY y, opcionalmente, PARTITIONBY. Es útil cuando necesitas una fila exacta, por ejemplo la primera o la quinta de cada partición. No crea índices físicos en el almacenamiento ni sustituye optimizaciones de modelo.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 303,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "Necesitas una media móvil de 7 días sin depender de DATESINPERIOD. ¿Qué patrón es más apropiado?",
+    options: [
+      "WINDOW() + ORDERBY() para definir el rango deslizante y luego AVERAGEX",
+      "COUNTROWS() sobre toda la tabla sin ordenar",
+      "VALUES() con un filtro de mes actual",
+      "RELATEDTABLE() sobre la dimensión calendario"
+    ],
+    correct: 0,
+    explanation: "WINDOW() te permite delimitar explícitamente qué filas entran en la ventana móvil y ORDERBY establece la secuencia temporal correcta. Después, AVERAGEX evalúa la medida dentro de ese subconjunto de filas. Sin orden y sin ventana explícita, el resultado no representa una media móvil real.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 304,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "En funciones windowing de DAX, ¿para qué sirve ORDERBY()?",
+    options: [
+      "Para ordenar visuales del informe",
+      "Para definir la secuencia de filas que usan OFFSET, INDEX y WINDOW",
+      "Para crear relaciones 1:N",
+      "Para reemplazar SUMMARIZE() en todas las medidas"
+    ],
+    correct: 1,
+    explanation: "ORDERBY() define el orden lógico de evaluación dentro del conjunto que usa la función windowing. Sin ese orden, no hay forma consistente de identificar qué fila es anterior, actual o siguiente. Ordenar el visual en la UI no sustituye el orden interno que necesita la medida DAX.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 305,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "Tienes ventas por región y quieres comparar cada fila con la fila anterior de su misma región. ¿Qué elemento evita mezclar regiones?",
+    options: [
+      "REMOVEFILTERS()",
+      "PARTITIONBY(Region)",
+      "ALLSELECTED(Region)",
+      "USERELATIONSHIP()"
+    ],
+    correct: 1,
+    explanation: "PARTITIONBY divide el conjunto en grupos independientes antes de aplicar la lógica de ventana. Así, OFFSET o INDEX operan dentro de cada región y no cruzan datos entre grupos. REMOVEFILTERS y ALLSELECTED alteran contexto de filtro, pero no reemplazan el concepto de partición de una ventana.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 306,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Windowing",
+    question: "¿Cuál es una diferencia clave entre OFFSET() y DATEADD()?",
+    options: [
+      "OFFSET trabaja con filas ordenadas; DATEADD desplaza periodos en una tabla de fechas",
+      "OFFSET solo funciona con texto y DATEADD solo con números",
+      "DATEADD requiere siempre DirectQuery y OFFSET no",
+      "No hay diferencia funcional"
+    ],
+    correct: 0,
+    explanation: "OFFSET es una función de ventana orientada a filas dentro de un conjunto ordenado y particionado. DATEADD es una función de inteligencia temporal basada en una columna de fecha válida. Si tu escenario no es estrictamente de calendario, OFFSET suele ser más flexible para comparaciones fila a fila.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 307,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "¿Cuándo suele ser mejor usar WINDOW() en lugar de DATESINPERIOD()?",
+    options: [
+      "Cuando necesitas una ventana basada en filas ordenadas que no depende de calendario continuo",
+      "Cuando solo quieres calcular YTD estándar",
+      "Cuando quieres evitar cualquier ORDERBY",
+      "Cuando trabajas únicamente con medidas sin tabla de hechos"
+    ],
+    correct: 0,
+    explanation: "WINDOW() es ideal para ventanas definidas por posición relativa de filas y puede aplicarse más allá de escenarios de calendario clásico. DATESINPERIOD funciona muy bien para intervalos de fecha estándar con una tabla de fechas correcta. En examen, la pista suele ser si el problema describe filas ordenadas o periodos de calendario.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 308,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "¿Qué ventaja aporta INDEX() frente a TOPN() en ciertos escenarios?",
+    options: [
+      "INDEX devuelve una posición exacta en el orden definido, mientras TOPN devuelve un conjunto de N filas",
+      "TOPN siempre devuelve una sola fila",
+      "INDEX crea materializaciones en disco y TOPN no",
+      "No existe diferencia real"
+    ],
+    correct: 0,
+    explanation: "INDEX() recupera una fila por posición concreta, lo que simplifica cálculos tipo \"segunda fila\" o \"última fila\" en un orden establecido. TOPN está pensado para obtener subconjuntos de varias filas. Usar TOPN para una posición exacta suele requerir pasos extra y complica el razonamiento.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 309,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "En un ranking con empates, ¿qué práctica reduce ambigüedad al usar funciones windowing?",
+    options: [
+      "Definir ORDERBY con columna principal y un desempate secundario estable",
+      "Quitar PARTITIONBY para que el ranking sea global",
+      "Usar solo la métrica principal aunque tenga empates",
+      "Forzar formato texto en la métrica"
+    ],
+    correct: 0,
+    explanation: "Si hay empates y no defines desempate, el motor puede tener múltiples órdenes válidos y resultados no deterministas. ORDERBY con una segunda columna estable (por ejemplo ID) fija una secuencia reproducible. Es un patrón clásico en examen cuando se evalúa precisión de ranking.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 310,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "¿Qué riesgo técnico debes considerar al usar cálculos windowing complejos en modelos Direct Lake?",
+    options: [
+      "Pueden aumentar la probabilidad de fallback a DirectQuery en escenarios no soportados o muy costosos",
+      "Deshabilitan automáticamente RLS",
+      "El modelo deja de usar OneLake",
+      "Obligan a convertir todo a Import"
+    ],
+    correct: 0,
+    explanation: "Direct Lake ofrece alto rendimiento cuando el modelo y las consultas permanecen dentro de guardrails y rutas optimizadas. Algunas expresiones complejas pueden empujar al motor a rutas menos eficientes o fallback, afectando latencia. Por eso conviene validar comportamiento real con pruebas de rendimiento y monitoreo.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 311,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Windowing",
+    question: "¿Qué componente es obligatorio junto con OFFSET() para identificar fila anterior y siguiente?",
+    options: [
+      "ORDERBY()",
+      "RANKX()",
+      "DATESYTD()",
+      "ISFILTERED()"
+    ],
+    correct: 0,
+    explanation: "OFFSET necesita un orden explícito para saber cuál es la fila previa o posterior. Ese orden se define con ORDERBY y, cuando procede, segmentando con PARTITIONBY. Sin un orden bien definido, el resultado puede ser ambiguo y poco confiable.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 312,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "Quieres calcular variación vs fila anterior por producto. ¿Qué patrón es más adecuado?",
+    options: [
+      "Calcular valor actual y restar un valor obtenido con OFFSET(-1, ...)",
+      "Usar siempre SAMEPERIODLASTYEAR",
+      "Aplicar DISTINCTCOUNT sobre producto",
+      "Convertir la medida a columna calculada fija"
+    ],
+    correct: 0,
+    explanation: "El patrón habitual es guardar el valor actual y el valor previo (OFFSET -1) en variables, y luego calcular diferencia o porcentaje. SAMEPERIODLASTYEAR solo aplica a comparativas de calendario anual. Convertirlo en columna fija elimina la naturaleza dinámica del contexto del visual.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 313,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "Para un running total por cliente, ¿qué define mejor el alcance correcto de WINDOW()? ",
+    options: [
+      "Ventana desde el inicio de la partición hasta la fila actual con ORDERBY por fecha",
+      "Ventana fija de 2 filas sin partición",
+      "Ventana sin ORDERBY porque no afecta al acumulado",
+      "Ventana basada solo en columnas de texto"
+    ],
+    correct: 0,
+    explanation: "Un acumulado necesita incluir todas las filas previas de la misma partición hasta la posición actual. ORDERBY por fecha asegura secuencia temporal coherente, y PARTITIONBY por cliente evita mezclar entidades. Si omites cualquiera de esos elementos, el acumulado deja de ser semánticamente correcto.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 314,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "¿Qué combinación describe mejor una ventana por región con ranking de ventas de mayor a menor?",
+    options: [
+      "PARTITIONBY(Region) + ORDERBY(Ventas, DESC)",
+      "ORDERBY(Region) + REMOVEFILTERS(Ventas)",
+      "PARTITIONBY(Ventas) + ORDERBY(Region)",
+      "ALL(Region) + DATESMTD()"
+    ],
+    correct: 0,
+    explanation: "PARTITIONBY por región crea grupos independientes y ORDERBY por ventas define el ranking dentro de cada grupo. Ese es el patrón equivalente al PARTITION BY / ORDER BY de SQL. Las otras opciones mezclan conceptos de filtro temporal o quitan contexto sin resolver la lógica de ranking.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 315,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "DAX Windowing",
+    question: "¿Qué ocurre si en ORDERBY no incluyes una columna de desempate cuando hay valores iguales?",
+    options: [
+      "El orden relativo puede no ser determinista entre filas empatadas",
+      "DAX lanza siempre error de sintaxis",
+      "Se ignora PARTITIONBY automáticamente",
+      "La función pasa a modo Import"
+    ],
+    correct: 0,
+    explanation: "Con empates, varios órdenes pueden ser válidos y el resultado puede variar entre evaluaciones. Por eso se recomienda incluir un criterio de desempate estable, como un identificador único. Esta práctica evita resultados sorpresivos en preguntas de examen con ranking.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 316,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "¿Qué analogía SQL es correcta para PARTITIONBY() en DAX?",
+    options: [
+      "Equivale al PARTITION BY de funciones de ventana en SQL",
+      "Equivale a GROUP BY permanente sobre la tabla",
+      "Equivale a HAVING en consultas agregadas",
+      "Equivale a crear un índice clustered"
+    ],
+    correct: 0,
+    explanation: "PARTITIONBY en DAX cumple el mismo rol conceptual que PARTITION BY en SQL window functions: segmentar el conjunto para cálculos por grupo. No cambia el esquema físico ni crea agregaciones persistentes. Solo define el contexto de la ventana para esa expresión.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 317,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Windowing",
+    question: "En tablas grandes, ¿qué ayuda más a mantener rendimiento en medidas windowing?",
+    options: [
+      "Reducir cardinalidad de columnas usadas en ORDERBY y simplificar la expresión",
+      "Añadir columnas calculadas de texto para cada visual",
+      "Activar filtro bidireccional en todas las relaciones",
+      "Reemplazar todas las medidas por columnas físicas"
+    ],
+    correct: 0,
+    explanation: "Menor cardinalidad y expresiones más simples reducen trabajo del motor en evaluaciones repetidas. También conviene validar que el modelo siga buenas prácticas de star schema y relaciones claras. Las alternativas propuestas suelen incrementar complejidad y empeorar tiempos de consulta.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 318,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "DAX Windowing",
+    question: "¿Cuál es un criterio razonable para elegir WINDOW frente a funciones time-intelligence clásicas?",
+    options: [
+      "Usar WINDOW cuando la lógica es posicional por filas; usar time-intelligence cuando la lógica es calendario estándar",
+      "Usar siempre WINDOW porque reemplaza todas las funciones de fecha",
+      "Usar siempre DATEADD porque WINDOW no admite orden",
+      "No hay criterio; ambas son equivalentes en todos los casos"
+    ],
+    correct: 0,
+    explanation: "La decisión depende del problema: posición relativa de filas frente a periodos de calendario. WINDOW es más flexible para patrones de ventana no estrictamente temporales, mientras funciones time-intelligence son directas para escenarios YTD/MTD/PY. En examen, identificar esa diferencia conceptual suele ser la clave de la respuesta.",
+    relatedContent: {
+      flashcards: [
+        126,
+        127,
+        128,
+        129,
+        130
+      ],
+      summaries: [
+        31,
+        32,
+        33
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "OFFSET",
+        "INDEX",
+        "WINDOW",
+        "ORDERBY",
+        "PARTITIONBY"
+      ]
+    }
+  },
+  {
+    id: 319,
+    domain: 3,
+    difficulty: 1,
+    subtopic: "Storage Modes",
+    question: "¿Qué caracteriza a Direct Lake on OneLake?",
+    options: [
+      "Lee directamente archivos Delta en OneLake sin importar datos al modelo",
+      "Siempre consulta un SQL endpoint intermedio",
+      "Solo funciona con modelos Import",
+      "No soporta tablas Delta"
+    ],
+    correct: 0,
+    explanation: "Direct Lake on OneLake accede a datos Delta almacenados en OneLake con latencia baja y sin refresh tradicional de importación. Esto permite combinar frescura de datos y rendimiento alto en muchos escenarios. No implica pasar obligatoriamente por un endpoint SQL intermedio.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 320,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
+    question: "¿Cuándo suele ser preferible Direct Lake on SQL endpoint frente a Direct Lake on OneLake?",
+    options: [
+      "Cuando necesitas consumir vistas SQL y lógica relacional ya modelada en el endpoint",
+      "Cuando quieres evitar cualquier capa SQL",
+      "Cuando el equipo no usa gobernanza",
+      "Cuando no existen tablas en Lakehouse o Warehouse"
+    ],
+    correct: 0,
+    explanation: "Si el diseño ya depende de vistas SQL, joins complejos o convenciones de seguridad definidas en la capa SQL, Direct Lake on SQL endpoint puede simplificar la adopción. Direct Lake on OneLake es excelente para acceso directo a Delta, pero no reemplaza todos los patrones relacionales. La elección debe alinearse con el tipo de modelado y gobierno existente.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 321,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
+    question: "¿Qué trade-off es correcto al comparar Direct Lake on OneLake vs on SQL endpoint?",
+    options: [
+      "OneLake prioriza acceso directo a Delta; SQL endpoint aporta más flexibilidad relacional predefinida",
+      "Ambos son idénticos en arquitectura y límites funcionales",
+      "SQL endpoint elimina cualquier necesidad de modelado semántico",
+      "OneLake no soporta seguridad"
+    ],
+    correct: 0,
+    explanation: "Direct Lake on OneLake favorece simplicidad de acceso directo sobre Delta. La variante sobre SQL endpoint permite aprovechar artefactos SQL existentes para ciertos escenarios de negocio. Ninguna opción elimina la necesidad de buen modelado semántico y gobierno.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 322,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Storage Modes",
+    question: "Un equipo necesita reutilizar vistas SQL certificadas por gobierno corporativo. ¿Qué elección encaja mejor?",
+    options: [
+      "Direct Lake on SQL endpoint",
+      "Import clásico sin endpoint",
+      "Solo DirectQuery a origen transaccional",
+      "Desactivar gobernanza para ganar velocidad"
+    ],
+    correct: 0,
+    explanation: "Si las vistas certificadas ya forman parte del contrato de datos, consumirlas mediante SQL endpoint reduce retrabajo y mantiene estándares de gobierno. Import clásico podría funcionar, pero no aprovecha el patrón solicitado por el escenario. Desactivar controles de gobernanza nunca es una buena práctica de examen.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 323,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
+    question: "¿Qué afirmación sobre configuración del modo Direct Lake es más precisa?",
+    options: [
+      "La elección de ruta (OneLake o SQL endpoint) depende de cómo conectas el modelo semántico al origen en Fabric",
+      "El modo se fija de forma irreversible al crear el tenant",
+      "No puede cambiarse entre entornos Dev/Test/Prod",
+      "Solo se configura desde Power BI Desktop offline"
+    ],
+    correct: 0,
+    explanation: "El modo efectivo depende de la conexión y del tipo de artefacto fuente que use el modelo semántico. En ALM, puedes ajustar esa configuración por entorno siguiendo prácticas de CI/CD. No es una decisión irrevertible a nivel tenant ni exclusiva de Desktop.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 324,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
+    question: "¿Qué riesgo debes evaluar al mover un modelo desde Direct Lake on OneLake a SQL endpoint?",
+    options: [
+      "Cambios en semántica de objetos SQL (vistas, nombres, seguridad) pueden alterar resultados y permisos esperados",
+      "El modelo pierde definitivamente soporte DAX",
+      "Las medidas dejan de calcularse en el motor tabular",
+      "Se deshabilita automáticamente RLS en todos los informes"
+    ],
+    correct: 0,
+    explanation: "Al cambiar la fuente lógica, pueden variar objetos consumidos, convenciones de nombres y reglas de seguridad, por lo que conviene validar resultados funcionales. DAX y el motor tabular siguen siendo parte del modelo. El riesgo real es de coherencia de datos y gobierno, no de desaparición del lenguaje.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 325,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
+    question: "Para minimizar latencia en consultas de detalle sobre tablas Delta bien optimizadas y sin lógica SQL adicional, ¿qué opción suele encajar mejor?",
+    options: [
+      "Direct Lake on OneLake",
+      "Direct Lake on SQL endpoint con vistas anidadas complejas",
+      "DirectQuery a fuente operacional",
+      "Import con refresco mensual"
+    ],
+    correct: 0,
+    explanation: "Cuando la tabla Delta ya está preparada para consumo analítico y no necesitas capa relacional intermedia, Direct Lake on OneLake suele ofrecer la ruta más directa. El SQL endpoint aporta valor cuando hay lógica SQL que reutilizar, pero añade otra capa conceptual. El examen evalúa precisamente ese balance entre latencia y flexibilidad.",
+    relatedContent: {
+      flashcards: [
+        134,
+        135
+      ],
+      summaries: [
+        36
+      ],
+      labs: [
+        14
+      ],
+      glossary: [
+        "Direct Lake",
+        "SQL Analytics Endpoint",
+        "Fallback"
+      ]
+    }
+  },
+  {
+    id: 326,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "XMLA/Tabular Model",
+    question: "¿Qué es Large Semantic Model Storage Format (antes Large Dataset Storage Format)?",
+    options: [
+      "Una configuración de almacenamiento para modelos semánticos muy grandes en capacidad Premium/Fabric",
+      "Un modo de compresión para archivos CSV",
+      "Una licencia especial de usuario final",
+      "Un tipo de visual de Power BI"
+    ],
+    correct: 0,
+    explanation: "Large Semantic Model Storage Format habilita escenarios de modelos grandes que superan límites tradicionales del almacenamiento tabular estándar. Es una capacidad de plataforma, no un formato de archivo manual para el analista. Suele aparecer en examen junto con XMLA e incremental refresh.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
+  },
+  {
+    id: 327,
+    domain: 3,
+    difficulty: 2,
+    subtopic: "XMLA/Tabular Model",
+    question: "¿En qué caso suele recomendarse habilitar Large Semantic Model Storage Format?",
+    options: [
+      "Modelos con gran volumen, alta cardinalidad y particiones numerosas",
+      "Modelos de prueba con dos tablas pequeñas",
+      "Cualquier modelo sin importar tamaño ni capacidad",
+      "Solo modelos DirectQuery"
+    ],
+    correct: 0,
+    explanation: "La habilitación tiene sentido cuando el modelo puede crecer significativamente y requiere estrategia de particionado robusta. En modelos pequeños no aporta beneficio operativo relevante. Tampoco está limitado a DirectQuery; es una decisión de capacidad y tamaño del modelo tabular.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
+  },
+  {
+    id: 328,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
+    question: "¿Qué requisito de plataforma es correcto para usar Large Semantic Model Storage Format?",
+    options: [
+      "El workspace/modelo debe estar en capacidad Premium o Fabric compatible",
+      "Solo requiere licencia Free del usuario autor",
+      "Debe ejecutarse en modo Import local sin publicar",
+      "No depende de capacidad asignada"
+    ],
+    correct: 0,
+    explanation: "Large semantic model depende de capacidad del servicio, no de licencia individual aislada. Por eso se asocia a entornos Premium/Fabric donde el motor tabular avanzado está habilitado. Es un punto clásico de examen: distinguir permisos de usuario de capacidades del workspace.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
+  },
+  {
+    id: 329,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
+    question: "¿Cómo se relaciona Large Semantic Model Storage Format con XMLA endpoint e Incremental Refresh?",
+    options: [
+      "Se complementan: XMLA facilita administración avanzada y particiones, incremental refresh reduce carga de procesamiento",
+      "Son tecnologías excluyentes",
+      "Incremental refresh deja de funcionar en modelos grandes",
+      "XMLA solo sirve para reportes paginados"
+    ],
+    correct: 0,
+    explanation: "Estas capacidades no compiten, se refuerzan entre sí para modelos empresariales. XMLA permite administración fina (scripts, particiones) y incremental refresh evita recargas completas innecesarias. Juntas mejoran mantenibilidad, tiempos de proceso y gobernanza técnica.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
+  },
+  {
+    id: 330,
+    domain: 3,
+    difficulty: 3,
+    subtopic: "XMLA/Tabular Model",
+    question: "¿Qué riesgo operativo conviene validar al habilitar Large Semantic Model Storage Format?",
+    options: [
+      "Compatibilidad de herramientas/procesos de exportación y estrategia de respaldo en el ciclo ALM",
+      "Que el modelo pierda soporte de medidas DAX",
+      "Que desaparezcan las relaciones del modelo",
+      "Que se eliminen automáticamente tablas históricas"
+    ],
+    correct: 0,
+    explanation: "En modelos grandes debes revisar cómo impacta la configuración en tus procesos de administración, automatización y recuperación. DAX y relaciones siguen funcionando, pero la operación requiere mayor disciplina técnica. El examen suele plantear este punto como decisión de arquitectura y lifecycle.",
+    relatedContent: {
+      flashcards: [
+        136,
+        137
+      ],
+      summaries: [
+        37
+      ],
+      labs: [
+        17
+      ],
+      glossary: [
+        "XMLA Endpoint",
+        "Large Semantic Model Storage Format",
+        "Incremental Refresh"
+      ]
+    }
   }
 ];
-
 
 // Combine all questions
 const ALL_QUESTIONS = [
@@ -3538,21 +7207,24 @@ const ALL_QUESTIONS = [
 ];
 
 const DOMAIN_NAMES = {
-  1: "Preparar Datos",
-  2: "Mantener Solución de Análisis",
-  3: "Implementar y Gestionar Modelos Semánticos"
+  "1": "Preparar Datos",
+  "2": "Mantener Solución de Análisis",
+  "3": "Implementar y Gestionar Modelos Semánticos"
 };
 
 const DOMAIN_WEIGHTS = {
-  1: "45-50%",
-  2: "25-30%",
-  3: "25-30%"
+  "1": "45-50%",
+  "2": "25-30%",
+  "3": "25-30%"
 };
 
-// Advanced exam question types (Prompt 2)
 const MULTI_QUESTIONS = [
   {
-    id: "M1", type: "multi", domain: 1, difficulty: 3, subtopic: "Delta Lake",
+    id: "M1",
+    type: "multi",
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Delta Lake",
     question: "Selecciona TODAS las afirmaciones correctas sobre Delta Lake en Fabric (elige 3):",
     options: [
       "Soporta transacciones ACID",
@@ -3562,12 +7234,20 @@ const MULTI_QUESTIONS = [
       "Mantiene transaction log en _delta_log",
       "Solo funciona desde PySpark"
     ],
-    correct: [0, 2, 4],
+    correct: [
+      0,
+      2,
+      4
+    ],
     requiredSelections: 3,
-    explanation: "Delta Lake soporta ACID, time travel y transaction log. El formato base es Parquet (no Avro) y puede consultarse desde múltiples motores."
+    explanation: "Las opciones correctas son ACID, Time Travel y _delta_log porque describen capacidades fundamentales de Delta Lake en Fabric. Avro no es el formato base de las tablas Delta (se basan en Parquet) y Delta sí admite UPDATE/DELETE mediante transacciones. Tampoco está restringido a PySpark: puede consultarse desde SQL endpoints y otros motores compatibles. Tip de examen: cuando aparezca Delta Lake, piensa en transaccionalidad + versionado + gobernanza de esquema."
   },
   {
-    id: "M2", type: "multi", domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: "M2",
+    type: "multi",
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "¿Qué capacidades son propias de Pipelines en Fabric? (elige 3)",
     options: [
       "Orquestar actividades con dependencias",
@@ -3577,12 +7257,20 @@ const MULTI_QUESTIONS = [
       "Aplicar RLS en modelos semánticos",
       "Usar triggers programados"
     ],
-    correct: [0, 1, 5],
+    correct: [
+      0,
+      1,
+      5
+    ],
     requiredSelections: 3,
-    explanation: "Pipelines se enfocan en orquestación/automatización con actividades y triggers; DAX y RLS no pertenecen a esta capa."
+    explanation: "Pipelines destacan por orquestación de actividades, ejecución de procesos dependientes y automatización con triggers programados. Crear medidas DAX y definir RLS pertenece a la capa de modelo semántico, no a Data Factory orchestration. Aunque también existe configuración de reintentos/timeout, en esta pregunta se pedían exactamente tres capacidades y el distractor buscaba mezclar capas técnicas. Tip: identifica siempre si el enunciado habla de \"flujo de procesos\" (pipeline) o de \"lógica analítica\" (modelo)."
   },
   {
-    id: "M3", type: "multi", domain: 2, difficulty: 2, subtopic: "Governance",
+    id: "M3",
+    type: "multi",
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Governance",
     question: "Selecciona opciones correctas sobre governance en Fabric (elige 3):",
     options: [
       "Endorsement puede ser Promoted o Certified",
@@ -3592,12 +7280,20 @@ const MULTI_QUESTIONS = [
       "Solo Admin puede ver Monitoring Hub",
       "Purview no se integra con Fabric"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "Endorsement, labels y lineage son pilares de governance. RLS no sustituye permisos de acceso y Purview sí se integra con Fabric."
+    explanation: "Endorsement, sensitivity labels y lineage son pilares de governance porque cubren confianza, clasificación y trazabilidad del dato. RLS no reemplaza permisos de acceso al workspace o al item; son controles complementarios en distintas capas. Tampoco es cierto que Purview no se integre con Fabric, ya que aporta capacidades de compliance y gobierno. Tip: en DP-600, governance casi siempre implica una combinación de seguridad, catálogo y linaje."
   },
   {
-    id: "M4", type: "multi", domain: 2, difficulty: 3, subtopic: "Workspace Security",
+    id: "M4",
+    type: "multi",
+    domain: 2,
+    difficulty: 3,
+    subtopic: "Workspace Security",
     question: "¿Qué afirmaciones son verdaderas sobre seguridad de datos en Fabric? (elige 3)",
     options: [
       "RLS filtra filas por usuario",
@@ -3607,12 +7303,20 @@ const MULTI_QUESTIONS = [
       "Workspace role Viewer permite editar items",
       "Dynamic RLS suele usar USERPRINCIPALNAME()"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "RLS/CLS/OLS tienen propósitos complementarios. Labels no sustituyen seguridad de modelo y Viewer no edita contenido."
+    explanation: "RLS, CLS y OLS son controles válidos y complementarios para limitar exposición de datos según usuario y objeto. Sensitivity labels ayudan a clasificación y protección, pero no sustituyen filtros de acceso en tiempo de consulta. El rol Viewer no permite editar artefactos, por lo que esa opción es incorrecta pese a ser un error común. Tip: recuerda que USERPRINCIPALNAME() es una pieza típica de Dynamic RLS."
   },
   {
-    id: "M5", type: "multi", domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: "M5",
+    type: "multi",
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "Selecciona lo correcto sobre Direct Lake (elige 3):",
     options: [
       "Lee datos Delta en OneLake",
@@ -3622,12 +7326,20 @@ const MULTI_QUESTIONS = [
       "No admite modelos semánticos",
       "No depende del SKU de capacidad"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "Direct Lake usa Delta + framing y puede caer a DirectQuery según guardrails/casos incompatibles."
+    explanation: "Direct Lake lee Delta en OneLake y puede caer a DirectQuery en ciertos escenarios, además de utilizar framing para snapshots de lectura. No requiere refresh completo al estilo Import para cada consulta, aunque sí depende del estado del modelo y guardrails. También sí admite modelos semánticos y está condicionado por capacidad/SKU, por eso las opciones de independencia total son distractores. Tip: no confundas frescura de Direct Lake con ausencia total de requisitos de diseño."
   },
   {
-    id: "M6", type: "multi", domain: 3, difficulty: 2, subtopic: "DAX Core",
+    id: "M6",
+    type: "multi",
+    domain: 3,
+    difficulty: 2,
+    subtopic: "DAX Core",
     question: "Selecciona funciones DAX de Time Intelligence válidas (elige 3):",
     options: [
       "TOTALYTD",
@@ -3637,12 +7349,20 @@ const MULTI_QUESTIONS = [
       "SUMWINDOW",
       "MOVINGAVG"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "TOTALYTD, DATESMTD y SAMEPERIODLASTYEAR son funciones estándar de Time Intelligence."
+    explanation: "TOTALYTD, DATESMTD y SAMEPERIODLASTYEAR son funciones estándar y oficialmente reconocidas en Time Intelligence de DAX. RUNNINGTOTAL, SUMWINDOW y MOVINGAVG no son funciones nativas con esos nombres en DAX, aunque conceptualmente existan patrones equivalentes. La trampa habitual es aceptar nombres \"plausibles\" que suenan correctos pero no existen. Tip: memoriza nombres exactos para evitar errores en preguntas multi-select."
   },
   {
-    id: "M7", type: "multi", domain: 1, difficulty: 2, subtopic: "Lakehouse",
+    id: "M7",
+    type: "multi",
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Lakehouse",
     question: "¿Qué elementos pertenecen al concepto Lakehouse en Fabric? (elige 3)",
     options: [
       "Sección Files",
@@ -3652,12 +7372,20 @@ const MULTI_QUESTIONS = [
       "Capacity Metrics App",
       "Deployment Pipeline"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "Lakehouse incluye Files, Tables y SQL endpoint; lo demás son componentes de otras capas."
+    explanation: "Files, Tables y SQL Analytics Endpoint forman parte de la experiencia Lakehouse en Fabric. Managed Private Endpoint, Capacity Metrics App y Deployment Pipeline pertenecen a otras áreas de plataforma (conectividad, administración y ALM). El distractor busca mezclar capacidades reales de Fabric pero de dominios distintos. Tip: en preguntas de arquitectura, clasifica cada componente por capa antes de seleccionar."
   },
   {
-    id: "M8", type: "multi", domain: 2, difficulty: 2, subtopic: "Capacity Management",
+    id: "M8",
+    type: "multi",
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Capacity Management",
     question: "Selecciona afirmaciones correctas sobre capacidad Fabric (elige 3):",
     options: [
       "El consumo se mide en CU",
@@ -3667,12 +7395,20 @@ const MULTI_QUESTIONS = [
       "No existe relación con rendimiento",
       "Siempre es gratuita"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "CU, métricas y administración de capacidad impactan directamente operación y rendimiento."
+    explanation: "El consumo en CU, la detección de throttling con Capacity Metrics App y la posibilidad de pausar/reanudar en SKUs F son afirmaciones correctas. La capacidad sí afecta a workloads Spark y al rendimiento general, por lo que negarlo es incorrecto. Tampoco es gratuita por defecto: es un recurso de pago asociado a cómputo. Tip: separa siempre coste, rendimiento y operación al analizar preguntas de capacity."
   },
   {
-    id: "M9", type: "multi", domain: 3, difficulty: 3, subtopic: "Performance Optimization",
+    id: "M9",
+    type: "multi",
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Performance Optimization",
     question: "¿Qué acciones mejoran rendimiento de modelos semánticos? (elige 3)",
     options: [
       "Reducir cardinalidad",
@@ -3682,12 +7418,20 @@ const MULTI_QUESTIONS = [
       "Duplicar medidas sin necesidad",
       "Aumentar texto libre en dimensiones"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "Modelado limpio y reducción de cardinalidad son claves de rendimiento tabular."
+    explanation: "Reducir cardinalidad, eliminar columnas no usadas y diseñar star schema son tres palancas de alto impacto en rendimiento tabular. Las relaciones bidireccionales indiscriminadas y la duplicación innecesaria de medidas suelen empeorar performance y mantenibilidad. Aumentar texto libre en dimensiones eleva cardinalidad y consumo de memoria, por eso es distractor típico. Tip: piensa en \"menos complejidad, mejor compresión\" como regla general de VertiPaq."
   },
   {
-    id: "M10", type: "multi", domain: 1, difficulty: 3, subtopic: "Dataflows Gen2",
+    id: "M10",
+    type: "multi",
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Dataflows Gen2",
     question: "Sobre Dataflow Gen2, selecciona las correctas (elige 3):",
     options: [
       "Usa Power Query M",
@@ -3697,15 +7441,23 @@ const MULTI_QUESTIONS = [
       "No permite programación",
       "Sustituye completamente a Pipelines"
     ],
-    correct: [0, 1, 2],
+    correct: [
+      0,
+      1,
+      2
+    ],
     requiredSelections: 3,
-    explanation: "Dataflow Gen2 es ETL visual con destino en Fabric; no reemplaza todos los escenarios de orquestación de Pipelines."
+    explanation: "Dataflow Gen2 usa Power Query M, aprovecha query folding cuando el origen lo permite y puede cargar a destinos Fabric como Lakehouse o Warehouse. No está limitado a CSV ni reemplaza por completo la orquestación de Pipelines, que cubre escenarios más amplios de control y dependencias. También soporta programación mediante integración con otros componentes. Tip: identifica Dataflow como ETL visual y Pipeline como orquestador end-to-end."
   }
 ];
 
 const ORDER_QUESTIONS = [
   {
-    id: "O1", type: "order", domain: 2, difficulty: 2, subtopic: "Deployment Pipelines",
+    id: "O1",
+    type: "order",
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Deployment Pipelines",
     question: "Ordena los pasos para configurar un Deployment Pipeline en Fabric:",
     options: [
       "Promover contenido de Dev a Test",
@@ -3714,11 +7466,21 @@ const ORDER_QUESTIONS = [
       "Configurar deployment rules",
       "Validar en Test y promover a Prod"
     ],
-    correctOrder: [1, 2, 3, 0, 4],
-    explanation: "Primero creas pipeline, luego etapas/workspaces, reglas, promoción a Test y finalmente a Prod."
+    correctOrder: [
+      1,
+      2,
+      3,
+      0,
+      4
+    ],
+    explanation: "Primero se crea el pipeline y se asocian workspaces a etapas para definir el ciclo Dev/Test/Prod. Después se configuran deployment rules para parametrizar diferencias por entorno antes de promover. Finalmente se valida en Test y, con evidencia, se promueve a Prod. Tip: en examen, \"configurar reglas\" debe ocurrir antes de promociones finales."
   },
   {
-    id: "O2", type: "order", domain: 1, difficulty: 2, subtopic: "Pipelines",
+    id: "O2",
+    type: "order",
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Pipelines",
     question: "Ordena un flujo típico de ingestión diaria con Pipeline:",
     options: [
       "Ejecutar Notebook de limpieza",
@@ -3727,11 +7489,21 @@ const ORDER_QUESTIONS = [
       "Validar calidad y registrar métricas",
       "Publicar tabla Silver"
     ],
-    correctOrder: [1, 2, 0, 3, 4],
-    explanation: "Trigger inicia el proceso, Copy carga raw, Notebook transforma, validación y publicación final."
+    correctOrder: [
+      1,
+      2,
+      0,
+      3,
+      4
+    ],
+    explanation: "El trigger programado inicia la ejecución, luego se ingieren datos raw y después se transforman en notebook. Una vez transformado, se validan reglas de calidad para asegurar confiabilidad antes de publicar la tabla Silver. Alterar ese orden suele generar datos no validados en capas de consumo. Tip: ingesta -> transformación -> validación -> publicación es una secuencia clásica."
   },
   {
-    id: "O3", type: "order", domain: 1, difficulty: 3, subtopic: "Medallion Architecture",
+    id: "O3",
+    type: "order",
+    domain: 1,
+    difficulty: 3,
+    subtopic: "Medallion Architecture",
     question: "Ordena la secuencia correcta de Medallion Architecture:",
     options: [
       "Aplicar reglas de negocio y agregaciones",
@@ -3740,11 +7512,21 @@ const ORDER_QUESTIONS = [
       "Limpiar y deduplicar",
       "Exponer KPIs a reportes"
     ],
-    correctOrder: [1, 3, 0, 2, 4],
-    explanation: "Raw primero, luego calidad, después lógica de negocio, modelado y exposición analítica."
+    correctOrder: [
+      1,
+      3,
+      0,
+      2,
+      4
+    ],
+    explanation: "La arquitectura medallion parte de ingesta raw, continúa con limpieza/deduplicación y luego aplica reglas de negocio. Después se modela para consumo BI y finalmente se exponen KPIs a reportes. Saltar la fase de calidad antes del modelado es un error común en diseño de pipelines. Tip: cada capa debe tener una responsabilidad clara y no solapada."
   },
   {
-    id: "O4", type: "order", domain: 3, difficulty: 2, subtopic: "Star Schema",
+    id: "O4",
+    type: "order",
+    domain: 3,
+    difficulty: 2,
+    subtopic: "Star Schema",
     question: "Ordena los pasos para crear un modelo estrella:",
     options: [
       "Crear medidas DAX base",
@@ -3753,11 +7535,21 @@ const ORDER_QUESTIONS = [
       "Depurar tipos y claves",
       "Publicar modelo"
     ],
-    correctOrder: [1, 3, 2, 0, 4],
-    explanation: "Carga, tipado/llaves, relaciones, medidas y finalmente publicación."
+    correctOrder: [
+      1,
+      3,
+      2,
+      0,
+      4
+    ],
+    explanation: "Primero se cargan tablas, luego se depuran tipos y claves para evitar relaciones incorrectas. Con datos consistentes se configuran relaciones 1:N y recién entonces se crean medidas DAX base. Publicar al final asegura que el modelo ya está validado funcionalmente. Tip: modelado correcto siempre precede a visualización/consumo."
   },
   {
-    id: "O5", type: "order", domain: 3, difficulty: 3, subtopic: "Storage Modes",
+    id: "O5",
+    type: "order",
+    domain: 3,
+    difficulty: 3,
+    subtopic: "Storage Modes",
     question: "Ordena la secuencia más razonable para diagnosticar fallback en Direct Lake:",
     options: [
       "Medir consulta inicial",
@@ -3766,11 +7558,21 @@ const ORDER_QUESTIONS = [
       "Validar latencia después de cambios",
       "Confirmar modo de almacenamiento"
     ],
-    correctOrder: [4, 0, 1, 2, 3],
-    explanation: "Primero confirmas contexto, mides baseline, analizas causa, ajustas y comparas."
+    correctOrder: [
+      4,
+      0,
+      1,
+      2,
+      3
+    ],
+    explanation: "En diagnóstico de fallback conviene confirmar primero el modo de almacenamiento y luego medir baseline real. Después se revisan guardrails/limitaciones, se aplican optimizaciones y se revalida latencia. Sin baseline y sin verificación final, no puedes demostrar mejora. Tip: medir antes y después es obligatorio en preguntas de performance."
   },
   {
-    id: "O6", type: "order", domain: 2, difficulty: 2, subtopic: "Git Integration",
+    id: "O6",
+    type: "order",
+    domain: 2,
+    difficulty: 2,
+    subtopic: "Git Integration",
     question: "Ordena un flujo simple de Git Integration en Fabric:",
     options: [
       "Hacer commit de cambios",
@@ -3779,11 +7581,21 @@ const ORDER_QUESTIONS = [
       "Abrir Pull Request",
       "Mergear a main"
     ],
-    correctOrder: [2, 1, 0, 3, 4],
-    explanation: "Conectas workspace, trabajas en feature, haces commit, PR y merge a main."
+    correctOrder: [
+      2,
+      1,
+      0,
+      3,
+      4
+    ],
+    explanation: "La conexión inicial del workspace al repositorio habilita control de versiones del contenido. Luego se crea rama de trabajo, se realizan commits y se abre PR para revisión antes del merge a main. Este flujo reduce cambios directos no auditados en ramas protegidas. Tip: branch + PR es el patrón esperado en ALM moderno."
   },
   {
-    id: "O7", type: "order", domain: 1, difficulty: 2, subtopic: "Delta Lake",
+    id: "O7",
+    type: "order",
+    domain: 1,
+    difficulty: 2,
+    subtopic: "Delta Lake",
     question: "Ordena una rutina de mantenimiento Delta:",
     options: [
       "Comparar métricas antes/después",
@@ -3792,11 +7604,21 @@ const ORDER_QUESTIONS = [
       "Ejecutar VACUUM según retención",
       "Planificar periodicidad"
     ],
-    correctOrder: [2, 1, 3, 0, 4],
-    explanation: "Mides baseline, optimizas, limpias con retención, comparas y calendarizas."
+    correctOrder: [
+      2,
+      1,
+      3,
+      0,
+      4
+    ],
+    explanation: "Primero capturas baseline para tener referencia objetiva del estado inicial. Después ejecutas OPTIMIZE y VACUUM con retención adecuada, comparas métricas y finalmente defines periodicidad operativa. Si no mides baseline, no puedes cuantificar beneficio real del mantenimiento. Tip: mantenimiento Delta debe ser medible y repetible."
   },
   {
-    id: "O8", type: "order", domain: 2, difficulty: 3, subtopic: "RLS/CLS/OLS",
+    id: "O8",
+    type: "order",
+    domain: 2,
+    difficulty: 3,
+    subtopic: "RLS/CLS/OLS",
     question: "Ordena implementación de Dynamic RLS:",
     options: [
       "Publicar y validar en Service",
@@ -3805,8 +7627,14 @@ const ORDER_QUESTIONS = [
       "Probar con View As",
       "Ajustar relaciones del modelo"
     ],
-    correctOrder: [1, 4, 2, 3, 0],
-    explanation: "Tabla de seguridad y relaciones primero, luego expresión RLS, pruebas y publicación."
+    correctOrder: [
+      1,
+      4,
+      2,
+      3,
+      0
+    ],
+    explanation: "Dynamic RLS comienza con la tabla de seguridad y relaciones correctas para mapear usuario-scope. Luego se define filtro DAX con USERPRINCIPALNAME(), se prueba con View As y finalmente se valida en Service. Publicar sin pruebas de rol es una práctica de alto riesgo en producción. Tip: seguridad siempre se valida con usuarios/roles simulados antes de liberar."
   }
 ];
 
@@ -3849,6 +7677,39 @@ const CASE_STUDIES = [
         ],
         correct: 1,
         explanation: "Silver es la capa adecuada para calidad y estandarización repetible."
+      },
+      {
+        question: "Para monitorizar rendimiento de la carga diaria, ¿qué combinación ofrece mejor visibilidad operativa?",
+        options: [
+          "Monitoring Hub + alertas sobre fallos/duración en pipelines",
+          "Solo revisar el reporte final a las 8:00 AM",
+          "Desactivar logs para ahorrar recursos",
+          "Usar únicamente bookmarks"
+        ],
+        correct: 0,
+        explanation: "Monitoring Hub permite observar ejecuciones, duración y errores en tiempo casi real. Complementar con alertas evita detectar problemas demasiado tarde. Es la práctica esperada para SLAs diarios."
+      },
+      {
+        question: "¿Qué control de seguridad aplica mejor para proteger datos sensibles por área en el modelo final?",
+        options: [
+          "RLS dinámico por área + roles de workspace mínimos",
+          "Solo rol Admin para todos los usuarios",
+          "Compartir el workspace completo sin restricciones",
+          "Ocultar visuales sin seguridad real"
+        ],
+        correct: 0,
+        explanation: "RLS dinámico permite segmentar acceso por área manteniendo un modelo común. Combinarlo con permisos mínimos de workspace reduce superficie de riesgo. Ocultar visuales no reemplaza controles de seguridad de datos."
+      },
+      {
+        question: "Para garantizar disponibilidad antes de las 8:00 AM, ¿qué scheduling es más robusto?",
+        options: [
+          "Trigger programado con margen previo, dependencias explícitas y política de reintentos",
+          "Ejecución manual cada mañana",
+          "Un único job sin control de fallos",
+          "Actualizar solo cuando lo pida negocio"
+        ],
+        correct: 0,
+        explanation: "Un pipeline programado con dependencias y retries reduce fallos por errores transitorios. Además, deja trazabilidad para auditoría y mejora cumplimiento del SLA. El enfoque manual es frágil y poco escalable."
       }
     ]
   },
@@ -3890,6 +7751,39 @@ const CASE_STUDIES = [
         ],
         correct: 1,
         explanation: "Aprobación por PR y validación en Test estabilizan el ciclo de releases."
+      },
+      {
+        question: "Si un despliegue a Prod introduce un error, ¿qué estrategia de rollback es más segura?",
+        options: [
+          "Promover la última versión estable desde Pipeline/Git en lugar de editar manualmente en caliente",
+          "Corregir directo en Prod sin registro",
+          "Eliminar el workspace y recrearlo",
+          "Ignorar hasta el siguiente sprint"
+        ],
+        correct: 0,
+        explanation: "Rollback controlado con versiones conocidas reduce downtime y preserva trazabilidad. Editar en caliente sin control rompe disciplina CI/CD. La recuperación debe ser repetible y auditable."
+      },
+      {
+        question: "¿Cómo auditarías cambios de configuración en reportes y modelos?",
+        options: [
+          "Historial de commits/PR en Git + activity logs para acciones en el servicio",
+          "Solo memoria del desarrollador",
+          "Capturas de pantalla sin metadata",
+          "Cambiar nombres de archivo en cada release"
+        ],
+        correct: 0,
+        explanation: "Git aporta trazabilidad técnica de cambios en artefactos y el log del servicio complementa acciones operativas. Juntos permiten auditoría completa del lifecycle. En examen, esta combinación suele ser la respuesta más sólida."
+      },
+      {
+        question: "Ante conflictos de Git entre cambios locales y remotos, ¿qué práctica minimiza riesgo?",
+        options: [
+          "Resolver conflictos en rama de feature, validar en Dev y luego crear PR",
+          "Forzar push sobre main",
+          "Eliminar el repositorio remoto",
+          "Desconectar Git integration permanentemente"
+        ],
+        correct: 0,
+        explanation: "Resolver en feature branch evita contaminar main con cambios no validados. Después se revisa por PR y se prueba antes de promover. Forzar main rompe el modelo colaborativo y aumenta regresiones."
       }
     ]
   },
@@ -3931,6 +7825,39 @@ const CASE_STUDIES = [
         ],
         correct: 1,
         explanation: "Calculation Groups reducen mantenimiento y evitan explosión de medidas."
+      },
+      {
+        question: "Para mejorar refresco de tablas grandes, ¿qué estrategia de particionado suele aportar más?",
+        options: [
+          "Particionar por fecha y combinar con incremental refresh",
+          "Particionar por columnas de texto de alta cardinalidad",
+          "No usar particiones nunca",
+          "Crear una sola partición gigante"
+        ],
+        correct: 0,
+        explanation: "Particionado temporal e incremental refresh reducen el volumen procesado por ciclo. Particionar por alta cardinalidad suele fragmentar en exceso y empeorar operaciones. El objetivo es balancear mantenimiento y rendimiento."
+      },
+      {
+        question: "¿Qué condición favorece evaluar Direct Lake como alternativa viable para el modelo?",
+        options: [
+          "Datos en Delta bien optimizados en OneLake y consultas alineadas a guardrails de capacidad",
+          "Dependencia total de transformaciones no soportadas",
+          "Ausencia de tablas en formato Delta",
+          "Necesidad de edición manual en cada visual"
+        ],
+        correct: 0,
+        explanation: "Direct Lake funciona mejor cuando el origen Delta y el diseño del modelo están optimizados para ese modo. Si el escenario rompe guardrails o requiere patrones incompatibles, puede haber fallback y latencia alta. Por eso debe validarse con pruebas reales."
+      },
+      {
+        question: "¿Qué ajuste suele mejorar primero la experiencia del reporte cuando hay visuales lentos?",
+        options: [
+          "Reducir cardinalidad y simplificar interacciones/medidas más costosas del visual",
+          "Duplicar todas las páginas del informe",
+          "Añadir más slicers complejos en cada página",
+          "Mover todo a una sola tabla plana sin modelo"
+        ],
+        correct: 0,
+        explanation: "La optimización de visuales comienza por eliminar complejidad innecesaria en consultas y contexto de filtro. Reducir cardinalidad y revisar medidas pesadas suele tener impacto inmediato. Duplicar contenido o aumentar interacciones puede agravar el problema."
       }
     ]
   },
@@ -3953,7 +7880,12 @@ const CASE_STUDIES = [
       },
       {
         question: "¿Qué función DAX es clave en RLS dinámico?",
-        options: ["USERNAMEHASH()", "USERPRINCIPALNAME()", "CURRENTROLE()", "ACCESSLEVEL()"],
+        options: [
+          "USERNAMEHASH()",
+          "USERPRINCIPALNAME()",
+          "CURRENTROLE()",
+          "ACCESSLEVEL()"
+        ],
         correct: 1,
         explanation: "USERPRINCIPALNAME() permite mapear usuario actual con tabla de seguridad."
       },
@@ -3967,6 +7899,39 @@ const CASE_STUDIES = [
         ],
         correct: 1,
         explanation: "View As permite simular permisos y verificar resultados de seguridad."
+      },
+      {
+        question: "¿Qué aporta añadir sensitivity labels en este caso de RRHH?",
+        options: [
+          "Clasifica y protege contenido sensible con políticas de cumplimiento adicionales",
+          "Reemplaza completamente RLS y OLS",
+          "Aumenta automáticamente la capacidad SKU",
+          "Elimina necesidad de auditoría"
+        ],
+        correct: 0,
+        explanation: "Las labels aportan clasificación y controles de protección, especialmente útiles para datos sensibles como salarios. No sustituyen controles de acceso de modelo, sino que se complementan con ellos. Es una capa clave de compliance."
+      },
+      {
+        question: "Para tener audit trail de accesos y comparticiones, ¿qué fuente es más adecuada?",
+        options: [
+          "Unified Audit Log / registros administrativos de Fabric y Microsoft 365",
+          "Solo comentarios en el reporte",
+          "Bookmarks de navegación",
+          "El historial del navegador del usuario"
+        ],
+        correct: 0,
+        explanation: "El audit log central registra eventos de acceso y cambios administrativos con trazabilidad temporal. Esa información es la base para investigaciones y cumplimiento. Fuentes informales no sirven para auditoría confiable."
+      },
+      {
+        question: "Si se plantea compartir externamente un reporte de RRHH, ¿qué condición debería revisarse primero?",
+        options: [
+          "Tenant settings de external sharing y políticas de clasificación/protección aplicadas",
+          "Solo el color del tema del reporte",
+          "Número de visuales por página",
+          "Si existe una medida YTD"
+        ],
+        correct: 0,
+        explanation: "El primer control es de gobierno y seguridad a nivel tenant para compartir con externos. También debe validarse clasificación del contenido y mínimos permisos. Aspectos visuales o de modelado no sustituyen ese análisis."
       }
     ]
   },
@@ -3978,7 +7943,12 @@ const CASE_STUDIES = [
     questions: [
       {
         question: "¿Qué componente usarías para ingesta y análisis en tiempo real?",
-        options: ["Eventhouse + Eventstream", "Solo Warehouse", "Solo Excel", "Solo Dataflow batch"],
+        options: [
+          "Eventhouse + Eventstream",
+          "Solo Warehouse",
+          "Solo Excel",
+          "Solo Dataflow batch"
+        ],
         correct: 0,
         explanation: "Eventstream + Eventhouse es la ruta natural para streaming y consultas KQL en tiempo real."
       },
@@ -3995,9 +7965,151 @@ const CASE_STUDIES = [
       },
       {
         question: "¿Qué solución encaja para alertas automáticas por umbral?",
-        options: ["Data Activator", "OPTIMIZE", "RLS", "Deployment rules"],
+        options: [
+          "Data Activator",
+          "OPTIMIZE",
+          "RLS",
+          "Deployment rules"
+        ],
         correct: 0,
         explanation: "Data Activator permite disparar acciones cuando se cumplen condiciones de eventos."
+      },
+      {
+        question: "¿Qué política ayuda a equilibrar coste y análisis histórico en telemetría de alto volumen?",
+        options: [
+          "Definir retención por capas (hot para reciente, histórico en Lakehouse/Delta)",
+          "Guardar todo indefinidamente en memoria",
+          "Eliminar todos los eventos cada 24 horas",
+          "Exportar manualmente una vez al mes"
+        ],
+        correct: 0,
+        explanation: "Una estrategia por capas controla coste sin perder analítica histórica relevante. Mantener todo en capa caliente suele ser caro e innecesario. El diseño de retención debe alinearse con uso de negocio y compliance."
+      },
+      {
+        question: "Para alertas técnicas sobre anomalías de streaming, ¿qué enfoque encaja mejor?",
+        options: [
+          "Reglas KQL y/o Data Activator sobre eventos con umbrales definidos",
+          "Solo refresco nocturno batch",
+          "Desactivar métricas para reducir ruido",
+          "Crear relaciones bidireccionales en el modelo"
+        ],
+        correct: 0,
+        explanation: "KQL y Data Activator permiten detección cercana al tiempo real con acciones automáticas. Un refresco batch no cubre alertas oportunas en escenarios IoT críticos. La pregunta busca separar monitoreo operativo de modelado semántico."
+      },
+      {
+        question: "¿Qué diseño de dashboard suele funcionar mejor para combinar histórico y tiempo real?",
+        options: [
+          "Separar visuales de estado en vivo y tendencias históricas, con contexto temporal claro",
+          "Un único visual sin distinguir ventana temporal",
+          "Mostrar solo datos del último minuto",
+          "Ocultar historial para simplificar"
+        ],
+        correct: 0,
+        explanation: "Diferenciar capas de análisis evita confusión entre señal instantánea y tendencia. El usuario entiende qué parte es real-time y cuál es histórico consolidado. Esa claridad mejora decisiones operativas y estratégicas."
+      }
+    ]
+  },
+  {
+    id: "CS6",
+    domain: 2,
+    difficulty: 3,
+    scenario: "**Alpine Manufacturing** tiene una solución Power BI Premium (P-SKU) con múltiples datasets e informes críticos. La empresa quiere migrar a Microsoft Fabric con mínima interrupción, mantener gobernanza y habilitar capacidades Direct Lake y CI/CD.",
+    questions: [
+      {
+        question: "¿Cuál debería ser el primer paso del plan de migración?",
+        options: [
+          "Inventariar dependencias (lineage), capacidades actuales, cargas y requisitos de negocio",
+          "Mover todo directamente a producción Fabric",
+          "Recrear todos los reportes desde cero sin análisis previo",
+          "Desactivar gobernanza durante la transición"
+        ],
+        correct: 0,
+        explanation: "Un assessment inicial evita sorpresas de capacidad, seguridad y dependencias downstream. Sin inventario técnico es difícil priorizar y secuenciar migración. Es el punto de partida recomendado en proyectos enterprise."
+      },
+      {
+        question: "¿Qué criterio ayuda a decidir si un modelo migrado puede usar Direct Lake?",
+        options: [
+          "Que el origen esté en Delta/OneLake y cumpla guardrails de capacidad y patrón de consulta",
+          "Que el reporte tenga más de 10 páginas",
+          "Que no existan medidas DAX",
+          "Que todos los usuarios sean administradores"
+        ],
+        correct: 0,
+        explanation: "Direct Lake depende de formato de datos, diseño de modelo y límites de capacidad. El tamaño visual del reporte o roles administrativos no determinan viabilidad técnica. Se requiere validación de rendimiento antes de adoptar en producción."
+      },
+      {
+        question: "Para mantener calidad en despliegues durante la migración, ¿qué combinación es más adecuada?",
+        options: [
+          "Git Integration + Deployment Pipelines + validación en entornos Dev/Test/Prod",
+          "Edición directa en Prod por cada desarrollador",
+          "Solo exportar archivos locales por correo",
+          "Eliminar entorno Test para ahorrar tiempo"
+        ],
+        correct: 0,
+        explanation: "CI/CD controlado reduce regresiones y mejora trazabilidad durante cambios masivos. Dev/Test/Prod permite detectar incompatibilidades antes de impactar usuarios finales. Es un patrón central del skill de lifecycle en DP-600."
+      },
+      {
+        question: "¿Qué enfoque de capacity sizing es más prudente post-migración?",
+        options: [
+          "Medir consumo real (CU), picos y throttling, y ajustar SKU con base en evidencia",
+          "Elegir el SKU mínimo y no volver a revisar",
+          "Elegir siempre el SKU máximo sin análisis",
+          "Dimensionar solo por número de reportes"
+        ],
+        correct: 0,
+        explanation: "El sizing debe basarse en telemetría operativa y patrones de carga, no en suposiciones. Capacity Metrics App y monitoreo continuo permiten optimizar coste-rendimiento. Este enfoque evita infra o sobreaprovisionamiento."
+      }
+    ]
+  },
+  {
+    id: "CS7",
+    domain: 2,
+    difficulty: 3,
+    scenario: "**Blue Yonder Group** integra datos de varios departamentos. Necesita Composite Models para combinar fuentes, seguridad RLS por región y un proceso formal de Impact Analysis antes de modificar tablas compartidas.",
+    questions: [
+      {
+        question: "¿Qué diseño minimiza duplicación de lógica entre departamentos?",
+        options: [
+          "Shared semantic model central + composite models departamentales para extensiones específicas",
+          "Un modelo independiente por cada analista",
+          "Sin modelo semántico compartido",
+          "Duplicar todas las medidas en cada reporte"
+        ],
+        correct: 0,
+        explanation: "Un núcleo semántico compartido mantiene métricas consistentes y reduce mantenimiento repetido. Composite models permiten extensiones controladas sin rehacer todo el stack. Es un equilibrio común entre estandarización y flexibilidad."
+      },
+      {
+        question: "¿Qué patrón de seguridad escala mejor para RLS regional en múltiples áreas?",
+        options: [
+          "Tabla de seguridad central + Dynamic RLS con USERPRINCIPALNAME()",
+          "Un rol manual por usuario",
+          "Solo permisos de Viewer en workspace",
+          "Ocultar páginas por bookmarks"
+        ],
+        correct: 0,
+        explanation: "Dynamic RLS centraliza mantenimiento y evita explosionar roles por usuario. La tabla de seguridad permite gobernar cambios organizativos de forma más estable. Permisos de workspace o UI no reemplazan seguridad de datos."
+      },
+      {
+        question: "Antes de alterar una tabla compartida del Lakehouse, ¿qué práctica reduce riesgo de ruptura?",
+        options: [
+          "Ejecutar Impact Analysis/Lineage para identificar consumidores downstream y planificar ventana de cambio",
+          "Aplicar cambio directo sin comunicación",
+          "Borrar dependencias y recrearlas luego",
+          "Confiar en que los reportes se ajusten solos"
+        ],
+        correct: 0,
+        explanation: "Impact Analysis permite saber qué modelos e informes dependen del activo antes de tocarlo. Eso habilita comunicación y pruebas dirigidas. En entornos multi-departamento, esta práctica es crítica para evitar incidentes masivos."
+      },
+      {
+        question: "¿Qué secuencia de release es más adecuada para este escenario multi-equipo?",
+        options: [
+          "Cambios en branch, PR con revisión, pruebas en Test y promoción controlada por pipeline",
+          "Cambios directos en main y promoción automática a Prod sin pruebas",
+          "Publicar versiones paralelas sin control de dependencias",
+          "Deshabilitar RLS temporalmente en cada release"
+        ],
+        correct: 0,
+        explanation: "La secuencia con branch+PR+Test+Pipeline protege consistencia entre equipos y reduce conflictos de integración. También deja un rastro auditable de decisiones técnicas. Es la práctica más alineada con ALM en Fabric."
       }
     ]
   }

@@ -17,6 +17,7 @@
         <span>DP-600 Study</span>
       </div>
       <div class="nav-links">
+        <button class="nav-link" data-section="learning-path"><span class="icon">🎓</span><span>Mi Ruta</span></button>
         <button class="nav-link active" data-section="dashboard"><span class="icon">📊</span><span>Dashboard</span></button>
         <button class="nav-link" data-section="knowledge-map"><span class="icon">🗺️</span><span>Mapa</span></button>
         <button class="nav-link" data-section="analytics"><span class="icon">📈</span><span>Stats</span></button>
@@ -35,11 +36,46 @@
   <!-- ═══ MAIN CONTENT ═══ -->
   <main class="main">
 
+    <!-- ═══ LEARNING PATH ═══ -->
+    <section id="learning-path" class="section">
+      <div class="section-header">
+        <h1 class="section-title">🎓 Mi Ruta de Aprendizaje</h1>
+        <p class="section-subtitle">Sigue los 20 módulos para preparar la certificación DP-600 paso a paso</p>
+      </div>
+      <div class="lp-global-progress card">
+        <div class="lp-global-stats">
+          <span class="lp-global-label">Progreso general</span>
+          <span class="lp-global-pct" id="lp-global-pct">0%</span>
+        </div>
+        <div class="lp-global-bar-container">
+          <div class="lp-global-bar" id="lp-global-bar" style="width:0%"></div>
+        </div>
+        <div class="lp-global-detail" id="lp-global-detail">Módulos completados: 0/20</div>
+      </div>
+      <div id="lp-phases-container"></div>
+    </section>
+
+    <!-- ═══ MODULE DETAIL VIEW ═══ -->
+    <section id="module-detail" class="section">
+      <div id="module-detail-content"></div>
+    </section>
+
     <!-- ═══ DASHBOARD ═══ -->
     <section id="dashboard" class="section active">
       <div class="section-header">
         <h1 class="section-title">Dashboard</h1>
         <p class="section-subtitle">Tu progreso hacia la certificación DP-600</p>
+      </div>
+
+      <div id="dashboard-lp-card" class="card lp-dashboard-card" style="display:none">
+        <div class="lp-dashboard-card-inner">
+          <div class="lp-dashboard-info">
+            <div class="lp-dashboard-title">🎓 Tu Ruta de Aprendizaje</div>
+            <div class="lp-dashboard-module" id="lp-dashboard-module">Módulo actual: --</div>
+            <div class="lp-dashboard-progress" id="lp-dashboard-progress">Progreso general: 0%</div>
+          </div>
+          <button class="btn btn-primary lp-dashboard-btn" id="lp-dashboard-continue-btn">Continuar →</button>
+        </div>
       </div>
 
       <div class="dash-grid">
@@ -516,11 +552,31 @@
     </div>
   </div>
 
+  <!-- ═══ ONBOARDING MODAL ═══ -->
+  <div class="lp-onboarding-overlay" id="lp-onboarding-overlay" style="display:none">
+    <div class="lp-onboarding-modal">
+      <div class="lp-onboarding-icon">🎓</div>
+      <h2 class="lp-onboarding-title">¡Bienvenido al DP-600<br>Study Companion!</h2>
+      <p class="lp-onboarding-text">Esta app te va a ayudar a preparar la certificación <strong>Microsoft Fabric Analytics Engineer Associate (DP-600)</strong>.</p>
+      <div class="lp-onboarding-domains">
+        <div class="lp-onboarding-domain"><span>📘</span> Preparar Datos (45-50%)</div>
+        <div class="lp-onboarding-domain"><span>🔧</span> Mantener Soluciones (25-30%)</div>
+        <div class="lp-onboarding-domain"><span>📐</span> Modelos Semánticos (25-30%)</div>
+      </div>
+      <p class="lp-onboarding-text">Hemos preparado una ruta de <strong>20 módulos</strong> que te llevarán de cero a listo para el examen. ¿Cómo quieres empezar?</p>
+      <div class="lp-onboarding-actions">
+        <button class="btn btn-primary lp-onboarding-btn-primary" id="lp-onboarding-path-btn">🎓 Seguir la Ruta de Aprendizaje</button>
+        <button class="btn btn-secondary lp-onboarding-btn-secondary" id="lp-onboarding-dashboard-btn">📊 Ir al Dashboard</button>
+      </div>
+    </div>
+  </div>
+
   <script src="data/questions.js"></script>
   <script src="data/flashcards.js"></script>
   <script src="data/summaries.js"></script>
   <script src="data/labs.js"></script>
   <script src="data/glossary.js"></script>
+  <script src="data/curriculum.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
