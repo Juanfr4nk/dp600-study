@@ -424,26 +424,185 @@
   }
 
   // ─── Navigation ─────────────────────────────────────────────────────────────
-  document.querySelectorAll('.nav-link').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const section = btn.dataset.section;
-      setActiveSection(section);
+
+  // All nav-link buttons (desktop dropdowns, sidebar, mobile more menu, bottom bar)
+  document.querySelectorAll('.nav-link').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var section = btn.dataset.section;
+      if (section) setActiveSection(section);
     });
   });
 
-  function setActiveSection(section) {
-    document.querySelectorAll('.nav-link').forEach((b) => b.classList.remove('active'));
-    let navBtn = document.querySelector(`.nav-link[data-section="${section}"]`);
-    if (!navBtn && section === 'module-detail') navBtn = document.querySelector('.nav-link[data-section="learning-path"]');
-    if (navBtn) navBtn.classList.add('active');
+  // Bottom bar items
+  document.querySelectorAll('.bottom-bar-item[data-section]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var section = btn.dataset.section;
+      if (section) setActiveSection(section);
+    });
+  });
 
-    document.querySelectorAll('.section').forEach((s) => s.classList.remove('active'));
-    const sec = document.getElementById(section);
+  // ─── Desktop dropdown menus ────────────────────────────────────────────────
+  document.querySelectorAll('.nav-group-trigger').forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var group = trigger.closest('.nav-group');
+      var wasOpen = group.classList.contains('open');
+      // Close all groups first
+      document.querySelectorAll('.nav-group').forEach(function (g) {
+        g.classList.remove('open');
+        g.querySelector('.nav-group-trigger').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        group.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-group')) {
+      document.querySelectorAll('.nav-group').forEach(function (g) {
+        g.classList.remove('open');
+        g.querySelector('.nav-group-trigger').setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // ─── Hamburger sidebar (tablet) ────────────────────────────────────────────
+  var hamburgerBtn = document.getElementById('nav-hamburger');
+  var navMenu = document.getElementById('nav-menu');
+  var sidebarOverlay = document.getElementById('nav-sidebar-overlay');
+
+  function closeSidebar() {
+    if (navMenu) navMenu.classList.remove('sidebar-open');
+    if (hamburgerBtn) {
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+    if (sidebarOverlay) sidebarOverlay.classList.remove('visible');
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', function () {
+      var isOpen = navMenu && navMenu.classList.contains('sidebar-open');
+      if (isOpen) {
+        closeSidebar();
+      } else {
+        if (navMenu) navMenu.classList.add('sidebar-open');
+        hamburgerBtn.classList.add('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'true');
+        if (sidebarOverlay) sidebarOverlay.classList.add('visible');
+      }
+    });
+  }
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeSidebar);
+  }
+
+  // ─── Mobile "More" menu ────────────────────────────────────────────────────
+  var moreBtn = document.getElementById('bottom-more-btn');
+  var moreMenu = document.getElementById('more-menu');
+  var moreOverlay = document.getElementById('more-menu-overlay');
+
+  function closeMoreMenu() {
+    if (moreMenu) moreMenu.classList.remove('visible');
+    if (moreOverlay) moreOverlay.classList.remove('visible');
+    if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  if (moreBtn) {
+    moreBtn.addEventListener('click', function () {
+      var isOpen = moreMenu && moreMenu.classList.contains('visible');
+      if (isOpen) {
+        closeMoreMenu();
+      } else {
+        if (moreMenu) moreMenu.classList.add('visible');
+        if (moreOverlay) moreOverlay.classList.add('visible');
+        moreBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+  if (moreOverlay) {
+    moreOverlay.addEventListener('click', closeMoreMenu);
+  }
+
+  // Close menus on nav-link click inside more-menu
+  if (moreMenu) {
+    moreMenu.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', closeMoreMenu);
+    });
+  }
+
+  // Close sidebar on nav-link click
+  if (navMenu) {
+    navMenu.addEventListener('click', function (e) {
+      if (e.target.closest('.nav-link') && e.target.closest('.nav-link').dataset.section) {
+        closeSidebar();
+      }
+    });
+  }
+
+  // ─── Keyboard: Escape closes menus ─────────────────────────────────────────
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeSidebar();
+      closeMoreMenu();
+      document.querySelectorAll('.nav-group').forEach(function (g) {
+        g.classList.remove('open');
+        g.querySelector('.nav-group-trigger').setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // ─── setActiveSection ──────────────────────────────────────────────────────
+  function setActiveSection(section) {
+    // Update all nav-link active states
+    document.querySelectorAll('.nav-link').forEach(function (b) { b.classList.remove('active'); });
+    var navBtns = document.querySelectorAll('.nav-link[data-section="' + section + '"]');
+    if (navBtns.length === 0 && section === 'module-detail') {
+      navBtns = document.querySelectorAll('.nav-link[data-section="learning-path"]');
+    }
+    navBtns.forEach(function (btn) { btn.classList.add('active'); });
+
+    // Update bottom bar active states
+    document.querySelectorAll('.bottom-bar-item').forEach(function (b) { b.classList.remove('active'); });
+    var bottomBtn = document.querySelector('.bottom-bar-item[data-section="' + section + '"]');
+    if (!bottomBtn && section === 'module-detail') {
+      bottomBtn = document.querySelector('.bottom-bar-item[data-section="learning-path"]');
+    }
+    // Map sections to their bottom bar parent
+    var bottomBarMap = {
+      'analytics': 'dashboard', 'knowledge-map': 'dashboard', 'review': 'dashboard',
+      'summaries': 'learning-path', 'labs': 'learning-path', 'glossary': 'learning-path',
+      'exam': 'quiz', 'notes': null
+    };
+    if (!bottomBtn && bottomBarMap[section] !== undefined) {
+      if (bottomBarMap[section]) {
+        bottomBtn = document.querySelector('.bottom-bar-item[data-section="' + bottomBarMap[section] + '"]');
+      }
+    }
+    if (bottomBtn) bottomBtn.classList.add('active');
+
+    // Highlight parent nav-group trigger if a child is active
+    document.querySelectorAll('.nav-group-trigger').forEach(function (t) { t.classList.remove('active'); });
+    var activeNavLink = document.querySelector('.nav-menu .nav-link.active');
+    if (activeNavLink) {
+      var parentGroup = activeNavLink.closest('.nav-group');
+      if (parentGroup) {
+        parentGroup.querySelector('.nav-group-trigger').classList.add('active');
+      }
+    }
+
+    // Show/hide sections
+    document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active'); });
+    var sec = document.getElementById(section);
     if (sec) sec.classList.add('active');
 
     state.currentSection = section;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // Section-specific renders
     if (section === 'dashboard') { updateDashboard(); updateDashboardLPCard(); }
     if (section === 'learning-path') renderLearningPath();
     if (section === 'knowledge-map') renderKnowledgeMap();
